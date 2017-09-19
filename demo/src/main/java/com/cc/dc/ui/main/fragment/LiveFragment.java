@@ -46,7 +46,7 @@ public class LiveFragment extends BaseFragment {
 
     @Override
     public void lazyLoadData() {
-        for (int i = 0; i < 102; i++) {
+        for (int i = 0; i < 100; i++) {
             LiveBean bean = new LiveBean();
             bean.setName("name info " + i);
             data.add(bean);

@@ -24,6 +24,8 @@ public class GridItemDecoration extends RecyclerView.ItemDecoration {
 
     private HashMap<Integer, Integer>[] maps;
     private int[] heights;
+    // 存储最后四个位置上的position
+    private int[] lastPosition;
 
     public GridItemDecoration(int spanCount, int space, List<LiveBean> data) {
         this.spanCount = spanCount;
@@ -35,6 +37,7 @@ public class GridItemDecoration extends RecyclerView.ItemDecoration {
             maps[i] = new HashMap<>();
         }
         heights = new int[spanCount];
+        lastPosition = new int[spanCount];
     }
 
     /**
@@ -54,6 +57,7 @@ public class GridItemDecoration extends RecyclerView.ItemDecoration {
                 if (getMaxHeight() == heights[j]) {
                     heights[j] += height + space;
                     maps[j].put(i, height);
+                    lastPosition[j] = i;
                     break;
                 }
             }
@@ -92,6 +96,11 @@ public class GridItemDecoration extends RecyclerView.ItemDecoration {
             Log.e("Info", "中间>>" + pos);
             outRect.left = space / 2;
             outRect.right = space / 2;
+        }
+        for (int i = 0; i < lastPosition.length; i++) {
+            if (pos == lastPosition[i]) {
+                outRect.bottom = space;
+            }
         }
 
 //        //两列的左边一列
