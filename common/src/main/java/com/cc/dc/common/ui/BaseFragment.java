@@ -17,6 +17,11 @@ public abstract class BaseFragment extends Fragment {
 
     private View rootView;
 
+    // 标识fragment视图是否已经初始化完毕
+    private boolean isViewPrepared;
+    // 标识是否已经触发过懒加载数据
+    private boolean hasLoadData;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -25,7 +30,14 @@ public abstract class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (rootView == null) {
+        if (rootView != null) {
+            ViewGroup parent = (ViewGroup) rootView.getParent();
+            if (parent != null) {
+                parent.removeView(rootView);
+            }
+            return rootView;
+        }
+        if (getLayoutId() != 0) {
             rootView = inflater.inflate(getLayoutId(), container, false);
             ButterKnife.bind(this, rootView);
         }
@@ -33,9 +45,33 @@ public abstract class BaseFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        isViewPrepared = true;
+        lazyLoadDataPrepared();
+    }
+
     public abstract int getLayoutId();
 
     public abstract void initView();
+
+    public abstract void lazyLoadData();
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            lazyLoadDataPrepared();
+        }
+    }
+
+    private void lazyLoadDataPrepared() {
+        if (getUserVisibleHint() && !hasLoadData && isViewPrepared) {
+            hasLoadData = true;
+            lazyLoadData();
+        }
+    }
 
     @Override
     public void onDestroyView() {

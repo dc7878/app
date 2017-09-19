@@ -17,4 +17,9 @@ public class VideoFragment extends BaseFragment {
     public void initView() {
 
     }
+
+    @Override
+    public void lazyLoadData() {
+
+    }
 }

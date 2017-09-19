@@ -1,10 +1,12 @@
 package com.cc.dc.ui.main.fragment;
 
+import android.graphics.Color;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.cc.dc.bean.InfoBean;
 import com.cc.dc.common.ui.BaseFragment;
+import com.cc.dc.custom.LinearItemDecoration;
 import com.cc.dc.dc.R;
 import com.cc.dc.ui.main.adapter.HomeRecyclerViewAdapter;
 
@@ -32,15 +34,20 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void initView() {
+        adapter = new HomeRecyclerViewAdapter(getActivity(), data);
+        recyclerViewHome.setAdapter(adapter);
+        recyclerViewHome.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerViewHome.addItemDecoration(new LinearItemDecoration(getActivity(), R.drawable.item_decoration_home, LinearItemDecoration.VERTICAL));
+    }
+
+    @Override
+    public void lazyLoadData() {
         for (int i = 0; i < 100; i++) {
             InfoBean bean = new InfoBean();
             bean.setName("name->" + i);
             bean.setDesc("desc-->" + i * 10);
             data.add(bean);
         }
-        adapter = new HomeRecyclerViewAdapter(getActivity(), data);
-        recyclerViewHome.setAdapter(adapter);
-
-        recyclerViewHome.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adapter.notifyDataSetChanged();
     }
 }

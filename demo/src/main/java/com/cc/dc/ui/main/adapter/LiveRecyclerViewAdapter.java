@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.cc.dc.bean.InfoBean;
+import com.cc.dc.bean.LiveBean;
 import com.cc.dc.dc.R;
 
 import java.util.List;
@@ -18,27 +19,26 @@ import butterknife.ButterKnife;
 /**
  * Created by dc on 2017/9/19.
  */
-public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerViewAdapter.HomeViewHolder> {
+public class LiveRecyclerViewAdapter extends RecyclerView.Adapter<LiveRecyclerViewAdapter.LiveViewHolder> {
 
-    private List<InfoBean> data;
+    private List<LiveBean> data;
 
     private LayoutInflater inflater;
 
-    public HomeRecyclerViewAdapter(Context context, List<InfoBean> data) {
+    public LiveRecyclerViewAdapter(Context context, List<LiveBean> data) {
         this.data = data;
         inflater = LayoutInflater.from(context);
     }
 
     @Override
-    public HomeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.item_fragment_home, parent, false);
-        return new HomeViewHolder(view);
+    public LiveViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = inflater.inflate(R.layout.item_fragment_live, parent, false);
+        return new LiveViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(HomeViewHolder holder, int position) {
+    public void onBindViewHolder(LiveViewHolder holder, int position) {
         holder.tvName.setText(data.get(position).getName());
-        holder.tvDesc.setText(data.get(position).getDesc());
     }
 
     @Override
@@ -46,14 +46,12 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
         return data.size();
     }
 
-    public class HomeViewHolder extends RecyclerView.ViewHolder {
+    public class LiveViewHolder extends RecyclerView.ViewHolder {
 
         @Bind(R.id.tv_name)
         TextView tvName;
-        @Bind(R.id.tv_desc)
-        TextView tvDesc;
 
-        public HomeViewHolder(View itemView) {
+        public LiveViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
