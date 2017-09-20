@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.cc.dc.bean.InfoBean;
 import com.cc.dc.bean.LiveBean;
 import com.cc.dc.dc.R;
 

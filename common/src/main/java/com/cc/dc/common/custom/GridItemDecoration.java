@@ -1,11 +1,10 @@
-package com.cc.dc.custom;
+package com.cc.dc.common.custom;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.cc.dc.bean.LiveBean;
-import com.cc.dc.bean.MultipleColumnBean;
+import com.cc.dc.common.bean.MultipleColumnBean;
 
 import java.util.HashMap;
 import java.util.List;

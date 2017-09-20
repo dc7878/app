@@ -1,12 +1,11 @@
 package com.cc.dc.ui.main.fragment;
 
-import android.graphics.Color;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.cc.dc.bean.InfoBean;
 import com.cc.dc.common.ui.BaseFragment;
-import com.cc.dc.custom.LinearItemDecoration;
+import com.cc.dc.common.custom.LinearItemDecoration;
 import com.cc.dc.dc.R;
 import com.cc.dc.ui.main.adapter.HomeRecyclerViewAdapter;
 

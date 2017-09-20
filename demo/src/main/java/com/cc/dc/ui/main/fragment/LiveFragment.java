@@ -1,12 +1,11 @@
 package com.cc.dc.ui.main.fragment;
 
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import com.cc.dc.bean.LiveBean;
 import com.cc.dc.common.ui.BaseFragment;
-import com.cc.dc.custom.GridItemDecoration;
+import com.cc.dc.common.custom.GridItemDecoration;
 import com.cc.dc.dc.R;
 import com.cc.dc.ui.main.adapter.LiveRecyclerViewAdapter;
 

@@ -1,4 +1,4 @@
-package com.cc.dc.custom;
+package com.cc.dc.common.custom;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -17,8 +17,9 @@ public class LinearItemDecoration extends RecyclerView.ItemDecoration {
 
     public static final int VERTICAL = OrientationHelper.VERTICAL;
 
+    // 间距的drawable
     private Drawable drawable;
-
+    // 默认是垂直方向
     private int orientation = VERTICAL;
 
     public LinearItemDecoration(Context context, int drawableId, int orientation) {

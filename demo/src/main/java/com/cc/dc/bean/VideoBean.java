@@ -3,13 +3,12 @@ package com.cc.dc.bean;
 import com.cc.dc.common.bean.MultipleColumnBean;
 
 /**
- * Created by dc on 2017/9/19.
+ * Created by dc on 2017/9/20.
  */
-public class LiveBean extends MultipleColumnBean {
+public class VideoBean extends MultipleColumnBean {
 
     private String name;
-
-    private String url;
+    private String desc;
 
     public String getName() {
         return name;
@@ -19,11 +18,11 @@ public class LiveBean extends MultipleColumnBean {
         this.name = name;
     }
 
-    public String getUrl() {
-        return url;
+    public String getDesc() {
+        return desc;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 }
