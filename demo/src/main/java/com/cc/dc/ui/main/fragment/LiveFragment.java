@@ -1,5 +1,6 @@
 package com.cc.dc.ui.main.fragment;
 
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
@@ -9,9 +10,9 @@ import com.cc.dc.custom.GridItemDecoration;
 import com.cc.dc.dc.R;
 import com.cc.dc.ui.main.adapter.LiveRecyclerViewAdapter;
 
-import java.lang.ref.PhantomReference;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.Bind;
 
@@ -40,15 +41,26 @@ public class LiveFragment extends BaseFragment {
         adapter = new LiveRecyclerViewAdapter(getActivity(), data);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL));
-        itemDecoration = new GridItemDecoration(spanCount, 30, data);
+//        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), spanCount));
+        itemDecoration = new GridItemDecoration.Builder()
+                .left(0)
+                .right(0)
+                .middle(20)
+                .top(20)
+                .bottom(20)
+                .spanCount(spanCount)
+                .data(data)
+                .build();
         recyclerView.addItemDecoration(itemDecoration);
     }
 
     @Override
     public void lazyLoadData() {
+        Random random = new Random();
         for (int i = 0; i < 100; i++) {
             LiveBean bean = new LiveBean();
             bean.setName("name info " + i);
+            bean.setHeight(random.nextInt(300) + 100);
             data.add(bean);
         }
         adapter.notifyDataSetChanged();
