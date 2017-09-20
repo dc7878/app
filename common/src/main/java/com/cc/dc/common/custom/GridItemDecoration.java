@@ -21,21 +21,23 @@ public class GridItemDecoration<T extends MultipleColumnBean> extends RecyclerVi
     private int topSpace;
     private int rightSpace;
     private int bottomSpace;
-    private int middleSpace;
+    private int rowSpace;
+    private int columnSpace;
 
     private HashMap<Integer, Integer>[] maps;
     private int[] heights;
     // 存储最后四个位置上的position
     private int[] lastPosition;
 
-    private GridItemDecoration(int spanCount, List<T> data, int leftSpace, int topSpace, int rightSpace, int bottomSpace, int middleSpace) {
+    private GridItemDecoration(int spanCount, List<T> data, int leftSpace, int topSpace, int rightSpace, int bottomSpace, int rowSpace, int columnSpace) {
         this.spanCount = spanCount;
         this.data = data;
         this.leftSpace = leftSpace;
         this.topSpace = topSpace;
         this.rightSpace = rightSpace;
         this.bottomSpace = bottomSpace;
-        this.middleSpace = middleSpace;
+        this.rowSpace = rowSpace;
+        this.columnSpace = columnSpace;
 
         maps = new HashMap[spanCount];
         for (int i = 0; i < spanCount; i++) {
@@ -96,16 +98,16 @@ public class GridItemDecoration<T extends MultipleColumnBean> extends RecyclerVi
         outRect.top = topSpace;
         if (maps[spanCount - 1].containsKey(pos)) {
             // 右边
-            outRect.left = middleSpace / 2;
+            outRect.left = rowSpace / 2;
             outRect.right = rightSpace;
         } else if (maps[0].containsKey(pos)){
             // 左边
             outRect.left = leftSpace;
-            outRect.right = middleSpace / 2;
+            outRect.right = rowSpace / 2;
         } else {
             // 中间位置
-            outRect.left = middleSpace / 2;
-            outRect.right = middleSpace / 2;
+            outRect.left = rowSpace / 2;
+            outRect.right = rowSpace / 2;
         }
         // 设置底部的距离
         for (int i = 0; i < lastPosition.length; i++) {
@@ -117,46 +119,53 @@ public class GridItemDecoration<T extends MultipleColumnBean> extends RecyclerVi
 
     public static final class Builder<T> {
         // 最左侧的Item距离右边的距离
-        private int left;
+        private int leftSpace;
         // 最右测Item距离左边的距离
-        private int right;
-        // 每两个Item中间的间距
-        private int middle;
+        private int rightSpace;
+        // 行的间距
+        private int rowSpace;
+        // 列的间距
+        private int columnSpace;
         // 每个Item距离顶部的高度
-        private int top;
+        private int topSpace;
         // 最后一行距离底部的高度
-        private int bottom;
+        private int bottomSpace;
         // 设置上下左右的间距都是一样的，
-        // 如果该值不为0则，left、right、top、bottom、middle
-        // 均为该值
+        // 如果该值不为0则，leftSpace、rightSpace、topSpace、bottomSpace、
+        // rowSpace、columnSpace 均为该值
         private int eachEqual = -1;
         // 列数
         private int spanCount;
         // 数据集
         private List<T> data;
 
-        public Builder left(int left) {
-            this.left = left;
+        public Builder leftSpace(int leftSpace) {
+            this.leftSpace = leftSpace;
             return this;
         }
 
-        public Builder right(int right) {
-            this.right = right;
+        public Builder rightSpace(int rightSpace) {
+            this.rightSpace = rightSpace;
             return this;
         }
 
-        public Builder middle(int middle) {
-            this.middle = middle;
+        public Builder rowSpace(int rowSpace) {
+            this.rowSpace = rowSpace;
             return this;
         }
 
-        public Builder top(int top) {
-            this.top = top;
+        public Builder columnSpace(int columnSpace) {
+            this.columnSpace = columnSpace;
             return this;
         }
 
-        public Builder bottom(int bottom) {
-            this.bottom = bottom;
+        public Builder topSpace(int topSpace) {
+            this.topSpace = topSpace;
+            return this;
+        }
+
+        public Builder bottomSpace(int bottomSpace) {
+            this.bottomSpace = bottomSpace;
             return this;
         }
 
@@ -177,13 +186,14 @@ public class GridItemDecoration<T extends MultipleColumnBean> extends RecyclerVi
 
         public GridItemDecoration build() {
             if (eachEqual != -1) {
-                left = eachEqual;
-                right = eachEqual;
-                top = eachEqual;
-                bottom = eachEqual;
-                middle = eachEqual;
+                leftSpace = eachEqual;
+                rightSpace = eachEqual;
+                topSpace = eachEqual;
+                bottomSpace = eachEqual;
+                rowSpace = eachEqual;
+                columnSpace = eachEqual;
             }
-            return new GridItemDecoration(spanCount, data, left, top, right, bottom, middle);
+            return new GridItemDecoration(spanCount, data, leftSpace, topSpace, rightSpace, bottomSpace, rowSpace, columnSpace);
         }
     }
 }

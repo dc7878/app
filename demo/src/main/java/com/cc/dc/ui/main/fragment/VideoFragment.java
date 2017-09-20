@@ -51,11 +51,12 @@ public class VideoFragment extends BaseFragment {
         recyclerViewHome.setLayoutManager(new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL));
 //        recyclerViewHome.setLayoutManager(new GridLayoutManager(getActivity(), spanCount));
         itemDecoration = new GridItemDecoration.Builder()
-                .left(0)
-                .right(0)
-                .middle(20)
-                .top(20)
-                .bottom(20)
+                .leftSpace(10)
+                .rightSpace(10)
+                .rowSpace(20)
+                .columnSpace(20)
+                .topSpace(20)
+                .bottomSpace(20)
                 .spanCount(spanCount)
                 .data(data)
                 .build();

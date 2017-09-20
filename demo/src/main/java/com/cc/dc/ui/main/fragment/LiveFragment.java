@@ -42,11 +42,7 @@ public class LiveFragment extends BaseFragment {
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL));
 //        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), spanCount));
         itemDecoration = new GridItemDecoration.Builder()
-                .left(0)
-                .right(0)
-                .middle(20)
-                .top(20)
-                .bottom(20)
+                .eachEqual(20)
                 .spanCount(spanCount)
                 .data(data)
                 .build();
