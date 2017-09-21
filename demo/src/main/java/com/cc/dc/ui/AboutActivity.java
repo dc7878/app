@@ -3,7 +3,6 @@ package com.cc.dc.ui;
 import com.cc.dc.common.presenter.BaseModel;
 import com.cc.dc.common.presenter.BasePresenter;
 import com.cc.dc.common.ui.BaseActivity;
-import com.cc.dc.ui.main.contract.AboutContract;
 
 /**
  * Created by dc on 2017/9/18.

@@ -60,6 +60,7 @@
             <task name="prepareComAndroidSupportSupportCoreUtils2531Library" type="com.android.build.gradle.internal.tasks.PrepareLibraryTask">Prepare com.android.support:support-core-utils:25.3.1&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="prepareComAndroidSupportSupportV42531Library" type="com.android.build.gradle.internal.tasks.PrepareLibraryTask">Prepare com.android.support:support-v4:25.3.1&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="transformResourcesWithMergeJavaResForReleaseUnitTest" type="com.android.build.gradle.internal.pipeline.TransformTask">&lt;i&gt;Task group: other&lt;i&gt;</task>
+            <task name="prepareIoReactivexRxjava2Rxandroid201Library" type="com.android.build.gradle.internal.tasks.PrepareLibraryTask">Prepare io.reactivex.rxjava2:rxandroid:2.0.1&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="cleanIdeaModule" type="org.gradle.api.tasks.Delete">&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="transformClassesWithDexForDebug" type="com.android.build.gradle.internal.pipeline.TransformTask">&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="preDebugAndroidTestBuild">&lt;i&gt;Task group: other&lt;i&gt;</task>
@@ -104,6 +105,7 @@
             <task name="assembleAndroidTest">Assembles all the Test applications.&lt;p&gt;&lt;i&gt;Task group: build&lt;i&gt;</task>
             <task name="processDebugAndroidTestResources" type="com.android.build.gradle.tasks.ProcessAndroidResources">&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="transformNative_libsWithMergeJniLibsForDebug" type="com.android.build.gradle.internal.pipeline.TransformTask">&lt;i&gt;Task group: other&lt;i&gt;</task>
+            <task name="prepareComOrhanobutLogger211Library" type="com.android.build.gradle.internal.tasks.PrepareLibraryTask">Prepare com.orhanobut:logger:2.1.1&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="extractReleaseAnnotations" type="com.android.build.gradle.tasks.ExtractAnnotations">Extracts Android annotations for the release variant into the archive file&lt;p&gt;&lt;i&gt;Task group: build&lt;i&gt;</task>
             <task name="packageRelease" type="com.android.build.gradle.tasks.PackageApplication">&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="validateSigningDebug" type="com.android.build.gradle.internal.tasks.ValidateSigningTask">&lt;i&gt;Task group: other&lt;i&gt;</task>
@@ -251,6 +253,7 @@
             <task name="prepareComAndroidSupportSupportCoreUtils2531Library" type="com.android.build.gradle.internal.tasks.PrepareLibraryTask">Prepare com.android.support:support-core-utils:25.3.1&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="prepareComAndroidSupportSupportV42531Library" type="com.android.build.gradle.internal.tasks.PrepareLibraryTask">Prepare com.android.support:support-v4:25.3.1&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="transformResourcesWithMergeJavaResForReleaseUnitTest" type="com.android.build.gradle.internal.pipeline.TransformTask">&lt;i&gt;Task group: other&lt;i&gt;</task>
+            <task name="prepareIoReactivexRxjava2Rxandroid201Library" type="com.android.build.gradle.internal.tasks.PrepareLibraryTask">Prepare io.reactivex.rxjava2:rxandroid:2.0.1&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="cleanIdeaModule" type="org.gradle.api.tasks.Delete">&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="preDebugAndroidTestBuild">&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="extractDebugAnnotations" type="com.android.build.gradle.tasks.ExtractAnnotations">Extracts Android annotations for the debug variant into the archive file&lt;p&gt;&lt;i&gt;Task group: build&lt;i&gt;</task>
@@ -291,6 +294,7 @@
             <task name="assembleAndroidTest">Assembles all the Test applications.&lt;p&gt;&lt;i&gt;Task group: build&lt;i&gt;</task>
             <task name="processDebugAndroidTestResources" type="com.android.build.gradle.tasks.ProcessAndroidResources">&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="transformNative_libsWithMergeJniLibsForDebug" type="com.android.build.gradle.internal.pipeline.TransformTask">&lt;i&gt;Task group: other&lt;i&gt;</task>
+            <task name="prepareComOrhanobutLogger211Library" type="com.android.build.gradle.internal.tasks.PrepareLibraryTask">Prepare com.orhanobut:logger:2.1.1&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="extractReleaseAnnotations" type="com.android.build.gradle.tasks.ExtractAnnotations">Extracts Android annotations for the release variant into the archive file&lt;p&gt;&lt;i&gt;Task group: build&lt;i&gt;</task>
             <task name="compileDebugAidl" type="com.android.build.gradle.tasks.AidlCompile">&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="preDebugUnitTestBuild">&lt;i&gt;Task group: other&lt;i&gt;</task>
@@ -470,6 +474,7 @@
             <task name="prepareComAndroidSupportSupportCoreUtils2531Library" type="com.android.build.gradle.internal.tasks.PrepareLibraryTask">Prepare com.android.support:support-core-utils:25.3.1&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="prepareComAndroidSupportSupportV42531Library" type="com.android.build.gradle.internal.tasks.PrepareLibraryTask">Prepare com.android.support:support-v4:25.3.1&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="transformResourcesWithMergeJavaResForReleaseUnitTest" type="com.android.build.gradle.internal.pipeline.TransformTask">&lt;i&gt;Task group: other&lt;i&gt;</task>
+            <task name="prepareIoReactivexRxjava2Rxandroid201Library" type="com.android.build.gradle.internal.tasks.PrepareLibraryTask">Prepare io.reactivex.rxjava2:rxandroid:2.0.1&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="cleanIdeaModule" type="org.gradle.api.tasks.Delete">&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="transformClassesWithDexForDebug" type="com.android.build.gradle.internal.pipeline.TransformTask">&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="preDebugAndroidTestBuild">&lt;i&gt;Task group: other&lt;i&gt;</task>
@@ -509,6 +514,7 @@
             <task name="assembleAndroidTest">Assembles all the Test applications.&lt;p&gt;&lt;i&gt;Task group: build&lt;i&gt;</task>
             <task name="processDebugAndroidTestResources" type="com.android.build.gradle.tasks.ProcessAndroidResources">&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="transformNative_libsWithMergeJniLibsForDebug" type="com.android.build.gradle.internal.pipeline.TransformTask">&lt;i&gt;Task group: other&lt;i&gt;</task>
+            <task name="prepareComOrhanobutLogger211Library" type="com.android.build.gradle.internal.tasks.PrepareLibraryTask">Prepare com.orhanobut:logger:2.1.1&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="packageRelease" type="com.android.build.gradle.tasks.PackageApplication">&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="validateSigningDebug" type="com.android.build.gradle.internal.tasks.ValidateSigningTask">&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="compileDebugAidl" type="com.android.build.gradle.tasks.AidlCompile">&lt;i&gt;Task group: other&lt;i&gt;</task>

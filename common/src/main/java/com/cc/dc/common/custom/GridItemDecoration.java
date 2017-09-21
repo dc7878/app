@@ -2,7 +2,6 @@ package com.cc.dc.common.custom;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
 import com.cc.dc.common.bean.MultipleColumnBean;
@@ -77,7 +76,6 @@ public class GridItemDecoration<T extends MultipleColumnBean> extends RecyclerVi
             for (int j = 0; j < spanCount; j ++) {
                 if (firstPosition[j] == -1) {
                     firstPosition[j] = i;
-                    Log.e("GridItemDecoration", "-->" + j + ">>>" + i);
                 }
                 if (getMaxHeight() == heights[j]) {
                     heights[j] += height + rowSpace;

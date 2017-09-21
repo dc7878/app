@@ -1,4 +1,4 @@
-package com.cc.dc.ui.main.fragment;
+package com.cc.dc.ui.user.fragment;
 
 import com.cc.dc.common.ui.BaseFragment;
 import com.cc.dc.dc.R;

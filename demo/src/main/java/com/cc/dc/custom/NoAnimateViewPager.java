@@ -17,13 +17,6 @@ public class NoAnimateViewPager extends ViewPager {
 
     public NoAnimateViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
-
-        setOnTouchListener(new OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
     }
 
     @Override
@@ -34,5 +27,15 @@ public class NoAnimateViewPager extends ViewPager {
     @Override
     public void setCurrentItem(int item, boolean smoothScroll) {
         super.setCurrentItem(item, smoothScroll);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        return false;
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        return false;
     }
 }

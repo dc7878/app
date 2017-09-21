@@ -1,13 +1,11 @@
 package com.cc.dc.ui.main.fragment;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.view.ViewPager;
 
-import com.cc.dc.bean.InfoBean;
 import com.cc.dc.common.ui.BaseFragment;
-import com.cc.dc.common.custom.LinearItemDecoration;
 import com.cc.dc.dc.R;
-import com.cc.dc.ui.main.adapter.HomeRecyclerViewAdapter;
+import com.cc.dc.ui.main.adapter.HomeViewPagerAdapter;
+import com.flyco.tablayout.SlidingTabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +17,16 @@ import butterknife.Bind;
  */
 public class HomeFragment extends BaseFragment {
 
-    @Bind(R.id.recycler_view_home)
-    RecyclerView recyclerViewHome;
+    @Bind(R.id.sliding_tab_layout_home)
+    SlidingTabLayout tabLayout;
+    @Bind(R.id.view_pager_home)
+    ViewPager viewPager;
 
-    private List<InfoBean> data = new ArrayList<>();
+    private List<BaseFragment> fragments = new ArrayList<>();
 
-    private HomeRecyclerViewAdapter adapter;
+    private String[] titles = new String[]{"推荐", "深度", "快讯"};
+
+    private HomeViewPagerAdapter adapter;
 
     @Override
     public int getLayoutId() {
@@ -33,20 +35,17 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void initView() {
-        adapter = new HomeRecyclerViewAdapter(getActivity(), data);
-        recyclerViewHome.setAdapter(adapter);
-        recyclerViewHome.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerViewHome.addItemDecoration(new LinearItemDecoration(getActivity(), R.drawable.item_decoration_home, LinearItemDecoration.VERTICAL));
+        fragments.add(new HomeRecommend());
+        fragments.add(new HomeOtherFragment());
+        fragments.add(new HomeOtherFragment());
+
+        adapter = new HomeViewPagerAdapter(getActivity().getSupportFragmentManager(), fragments);
+        viewPager.setAdapter(adapter);
+
+        tabLayout.setViewPager(viewPager, titles);
     }
 
     @Override
     public void lazyLoadData() {
-        for (int i = 0; i < 100; i++) {
-            InfoBean bean = new InfoBean();
-            bean.setName("name->" + i);
-            bean.setDesc("desc-->" + i * 10);
-            data.add(bean);
-        }
-        adapter.notifyDataSetChanged();
     }
 }

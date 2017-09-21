@@ -4,13 +4,13 @@ import com.cc.dc.common.ui.BaseFragment;
 import com.cc.dc.dc.R;
 
 /**
- * Created by dc on 2017/9/19.
+ * Created by dc on 2017/9/21.
  */
-public class FollowFragment extends BaseFragment {
+public class HomeOtherFragment extends BaseFragment {
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_follow;
+        return R.layout.fragment_home_other;
     }
 
     @Override

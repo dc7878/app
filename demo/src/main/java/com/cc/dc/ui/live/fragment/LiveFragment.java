@@ -1,4 +1,4 @@
-package com.cc.dc.ui.main.fragment;
+package com.cc.dc.ui.live.fragment;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;

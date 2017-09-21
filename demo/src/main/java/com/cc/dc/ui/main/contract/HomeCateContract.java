@@ -5,20 +5,19 @@ import com.cc.dc.common.presenter.BasePresenter;
 import com.cc.dc.common.presenter.BaseView;
 
 /**
- * Created by dc on 2017/9/18.
+ * Created by dc on 2017/9/21.
  */
-
-public interface AboutContract {
+public interface HomeCateContract {
 
     interface Model extends BaseModel {
-        int getInfo();
+        void getCateList();
     }
 
     interface View extends BaseView {
-        void click();
+
     }
 
     abstract class Presenter extends BasePresenter<View, Model> {
-        public abstract void loadRequest();
+        public abstract void loadData();
     }
 }

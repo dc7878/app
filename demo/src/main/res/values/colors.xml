@@ -2,4 +2,9 @@
 <resources>
     <color name="white">#fff</color>
     <color name="yellow">#FF7700</color>
+
+    <color name="gray_666">#666</color>
+    <color name="gray_999">#999</color>
+    <color name="gray_ddd">#ddd</color>
+    <color name="gray_eee">#eee</color>
 </resources>

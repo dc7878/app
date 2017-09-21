@@ -5,9 +5,9 @@ package com.cc.dc.common.presenter;
  */
 public abstract class BasePresenter<T, E> {
 
-    private T view;
+    protected T view;
 
-    private E model;
+    protected E model;
 
     public void setVM(T view, E model) {
         this.view = view;

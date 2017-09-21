@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -9,9 +9,25 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_bar_height">
     </LinearLayout>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_home"
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/sliding_tab_layout_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        tl:tl_textBold="SELECT"
+        tl:tl_tab_space_equal="true"
+        tl:tl_indicator_color="@color/yellow"
+        tl:tl_indicator_height="3dp"
+        tl:tl_underline_color="@color/gray_ddd"
+        tl:tl_underline_gravity="BOTTOM"
+        tl:tl_underline_height="2dp"
+        tl:tl_textSelectColor="@color/yellow"
+        tl:tl_textUnselectColor="#333"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </android.support.v7.widget.RecyclerView>
+    </android.support.v4.view.ViewPager>
 </LinearLayout>
