@@ -2,6 +2,7 @@ package com.cc.dc.common.custom;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.cc.dc.common.bean.MultipleColumnBean;
@@ -26,7 +27,9 @@ public class GridItemDecoration<T extends MultipleColumnBean> extends RecyclerVi
 
     private HashMap<Integer, Integer>[] maps;
     private int[] heights;
-    // 存储最后四个位置上的position
+    // 存储start位置上的position
+    private int[] firstPosition;
+    // 存储最后位置上的position
     private int[] lastPosition;
 
     private GridItemDecoration(int spanCount, List<T> data, int leftSpace, int topSpace, int rightSpace, int bottomSpace, int rowSpace, int columnSpace) {
@@ -45,6 +48,7 @@ public class GridItemDecoration<T extends MultipleColumnBean> extends RecyclerVi
         }
         heights = new int[spanCount];
         lastPosition = new int[spanCount];
+        firstPosition = new int[spanCount];
     }
 
     /**
@@ -62,6 +66,7 @@ public class GridItemDecoration<T extends MultipleColumnBean> extends RecyclerVi
         for (int i = 0; i < spanCount; i++) {
             maps[i].clear();
             lastPosition[i] = 0;
+            firstPosition[i] = -1;
             heights[i] = 0;
         }
     }
@@ -70,8 +75,12 @@ public class GridItemDecoration<T extends MultipleColumnBean> extends RecyclerVi
         for (int i = 0; i < data.size(); i ++) {
             int height = data.get(i).getHeight();
             for (int j = 0; j < spanCount; j ++) {
+                if (firstPosition[j] == -1) {
+                    firstPosition[j] = i;
+                    Log.e("GridItemDecoration", "-->" + j + ">>>" + i);
+                }
                 if (getMaxHeight() == heights[j]) {
-                    heights[j] += height + topSpace;
+                    heights[j] += height + rowSpace;
                     maps[j].put(i, height);
                     lastPosition[j] = i;
                     break;
@@ -95,19 +104,24 @@ public class GridItemDecoration<T extends MultipleColumnBean> extends RecyclerVi
         //该View在整个RecyclerView中位置。
         pos = parent.getChildAdapterPosition(view);
         // 设置顶部的距离
-        outRect.top = topSpace;
+        outRect.top = rowSpace;
+        for (int i = 0; i < firstPosition.length; i++) {
+            if (pos == firstPosition[i]) {
+                outRect.top = topSpace;
+            }
+        }
         if (maps[spanCount - 1].containsKey(pos)) {
             // 右边
-            outRect.left = rowSpace / 2;
+            outRect.left = columnSpace / 2;
             outRect.right = rightSpace;
         } else if (maps[0].containsKey(pos)){
             // 左边
             outRect.left = leftSpace;
-            outRect.right = rowSpace / 2;
+            outRect.right = columnSpace / 2;
         } else {
             // 中间位置
-            outRect.left = rowSpace / 2;
-            outRect.right = rowSpace / 2;
+            outRect.left = columnSpace / 2;
+            outRect.right = columnSpace / 2;
         }
         // 设置底部的距离
         for (int i = 0; i < lastPosition.length; i++) {

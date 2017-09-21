@@ -55,7 +55,7 @@ public class VideoFragment extends BaseFragment {
                 .rightSpace(10)
                 .rowSpace(20)
                 .columnSpace(20)
-                .topSpace(20)
+                .topSpace(0)
                 .bottomSpace(20)
                 .spanCount(spanCount)
                 .data(data)
