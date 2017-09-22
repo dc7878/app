@@ -1,13 +1,11 @@
 package com.cc.dc.ui;
 
-import com.cc.dc.common.presenter.BaseModel;
-import com.cc.dc.common.presenter.BasePresenter;
 import com.cc.dc.common.ui.BaseActivity;
 
 /**
  * Created by dc on 2017/9/18.
  */
-public class AboutActivity extends BaseActivity<BasePresenter, BaseModel> implements AboutContract.View {
+public class AboutActivity extends BaseActivity {
 
     @Override
     public int getLayoutId() {
@@ -21,21 +19,6 @@ public class AboutActivity extends BaseActivity<BasePresenter, BaseModel> implem
 
     @Override
     public void initView() {
-
-    }
-
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
-
-    }
-
-    @Override
-    public void click() {
 
     }
 }

@@ -39,4 +39,6 @@ dependencies {
     compile 'com.alibaba:fastjson:1.1.59.android'
 
     compile 'com.orhanobut:logger:2.1.1'
+
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 }

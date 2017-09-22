@@ -1,6 +1,7 @@
 package com.cc.dc.api.apiservice;
 
 import com.cc.dc.bean.HomeCateBean;
+import com.cc.dc.bean.HomeRecommendSliderBean;
 import com.cc.dc.common.http.BaseResponse;
 
 import java.util.List;
@@ -13,6 +14,9 @@ import retrofit2.http.GET;
  */
 public interface HomeApiService {
 
-    @GET("getCateList")
+    @GET("homeCate/getCateList")
     Observable<BaseResponse<List<HomeCateBean>>> getCateList();
+
+    @GET("v1/slide/6")
+    Observable<BaseResponse<List<HomeRecommendSliderBean>>> getHomeSlides();
 }

@@ -16,7 +16,7 @@ import retrofit2.Retrofit;
  */
 public class ApiHelper {
 
-    private final String BASE_URL = "http://capi.douyucdn.cn/api/homeCate/";
+    private final String BASE_URL = "http://capi.douyucdn.cn/api/";
 
     /**
      * 超时时间 默认为15s

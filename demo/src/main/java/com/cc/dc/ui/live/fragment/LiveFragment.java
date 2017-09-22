@@ -50,6 +50,11 @@ public class LiveFragment extends BaseFragment {
     }
 
     @Override
+    public void initPresenter() {
+
+    }
+
+    @Override
     public void lazyLoadData() {
         Random random = new Random();
         for (int i = 0; i < 100; i++) {

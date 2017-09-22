@@ -19,6 +19,11 @@ public class UserFragment extends BaseFragment {
     }
 
     @Override
+    public void initPresenter() {
+
+    }
+
+    @Override
     public void lazyLoadData() {
 
     }

@@ -25,9 +25,9 @@
         tl:tl_underline_height="2dp"
         tl:tl_textSelectColor="@color/yellow"
         tl:tl_textUnselectColor="#333"/>
-    <android.support.v4.view.ViewPager
+    <com.cc.dc.custom.ParentViewPager
         android:id="@+id/view_pager_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </android.support.v4.view.ViewPager>
+    </com.cc.dc.custom.ParentViewPager>
 </LinearLayout>

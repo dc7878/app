@@ -9,8 +9,11 @@ public abstract class BasePresenter<T, E> {
 
     protected E model;
 
-    public void setVM(T view, E model) {
+    public void attachView(T view) {
         this.view = view;
-        this.model = model;
+    }
+
+    public void detachView(T view) {
+
     }
 }

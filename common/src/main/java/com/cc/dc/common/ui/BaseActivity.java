@@ -12,11 +12,9 @@ import butterknife.ButterKnife;
 /**
  * Created by dc on 2017/9/18.
  */
-public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel> extends AppCompatActivity  {
+public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity  {
 
     private T presenter;
-
-    private E model;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

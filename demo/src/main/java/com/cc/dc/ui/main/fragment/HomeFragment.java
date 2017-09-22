@@ -1,10 +1,12 @@
 package com.cc.dc.ui.main.fragment;
 
-import android.support.v4.view.ViewPager;
-
+import com.cc.dc.bean.HomeCateBean;
 import com.cc.dc.common.ui.BaseFragment;
+import com.cc.dc.custom.ParentViewPager;
 import com.cc.dc.dc.R;
 import com.cc.dc.ui.main.adapter.HomeViewPagerAdapter;
+import com.cc.dc.ui.main.contract.HomeCateContract;
+import com.cc.dc.ui.main.presenter.HomePresenter;
 import com.flyco.tablayout.SlidingTabLayout;
 
 import java.util.ArrayList;
@@ -14,17 +16,18 @@ import butterknife.Bind;
 
 /**
  * Created by dc on 2017/9/19.
+ * 首页
  */
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCateContract.View {
 
     @Bind(R.id.sliding_tab_layout_home)
     SlidingTabLayout tabLayout;
     @Bind(R.id.view_pager_home)
-    ViewPager viewPager;
+    ParentViewPager viewPager;
 
     private List<BaseFragment> fragments = new ArrayList<>();
 
-    private String[] titles = new String[]{"推荐", "深度", "快讯"};
+    private String[] titles;
 
     private HomeViewPagerAdapter adapter;
 
@@ -35,9 +38,33 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void initView() {
+
+    }
+
+    @Override
+    public void initPresenter() {
+        presenter = new HomePresenter();
+        presenter.attachView(this);
+
+        presenter.loadData();
+    }
+
+    @Override
+    public void lazyLoadData() {
+    }
+
+    @Override
+    public void showHomeCateList(List<HomeCateBean> cateList) {
+        int count = cateList.size();
+        titles = new String[count + 1];
+        titles[0] = "推荐";
+        for (int i = 0; i < count; i++) {
+            titles[i + 1] = cateList.get(i).getTitle();
+        }
         fragments.add(new HomeRecommend());
-        fragments.add(new HomeOtherFragment());
-        fragments.add(new HomeOtherFragment());
+        for (int i = 0; i < count; i++) {
+            fragments.add(new HomeOtherFragment());
+        }
 
         adapter = new HomeViewPagerAdapter(getActivity().getSupportFragmentManager(), fragments);
         viewPager.setAdapter(adapter);
@@ -46,6 +73,12 @@ public class HomeFragment extends BaseFragment {
     }
 
     @Override
-    public void lazyLoadData() {
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
     }
 }

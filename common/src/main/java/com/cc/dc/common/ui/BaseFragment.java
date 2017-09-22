@@ -8,12 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cc.dc.common.presenter.BasePresenter;
+
 import butterknife.ButterKnife;
 
 /**
  * Created by dc on 2017/9/18.
  */
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
+
+    protected T presenter;
 
     private View rootView;
 
@@ -42,6 +46,7 @@ public abstract class BaseFragment extends Fragment {
             ButterKnife.bind(this, rootView);
         }
         initView();
+        initPresenter();
         return rootView;
     }
 
@@ -57,6 +62,8 @@ public abstract class BaseFragment extends Fragment {
     public abstract void initView();
 
     public abstract void lazyLoadData();
+
+    public abstract void initPresenter();
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {

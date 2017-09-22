@@ -19,6 +19,11 @@ public class FollowFragment extends BaseFragment {
     }
 
     @Override
+    public void initPresenter() {
+
+    }
+
+    @Override
     public void lazyLoadData() {
 
     }
