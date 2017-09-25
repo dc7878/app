@@ -1,5 +1,7 @@
 package com.cc.dc.ui;
 
+import android.os.Bundle;
+
 import com.cc.dc.common.ui.BaseActivity;
 
 /**
@@ -18,7 +20,7 @@ public class AboutActivity extends BaseActivity {
     }
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
 
     }
 }

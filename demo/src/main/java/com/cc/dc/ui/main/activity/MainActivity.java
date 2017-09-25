@@ -1,7 +1,10 @@
 package com.cc.dc.ui.main.activity;
 
+import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 
+import com.cc.dc.Constant;
 import com.cc.dc.common.ui.BaseActivity;
 import com.cc.dc.common.ui.BaseFragment;
 import com.cc.dc.custom.NoAnimateViewPager;
@@ -11,6 +14,7 @@ import com.cc.dc.ui.main.adapter.MainViewPagerAdapter;
 import com.cc.dc.ui.follow.fragment.FollowFragment;
 import com.cc.dc.ui.main.fragment.HomeFragment;
 import com.cc.dc.ui.live.fragment.LiveFragment;
+import com.cc.dc.ui.main.fragment.HomeRecommend;
 import com.cc.dc.ui.user.fragment.UserFragment;
 import com.cc.dc.ui.video.fragment.VideoFragment;
 import com.flyco.tablayout.CommonTabLayout;
@@ -18,14 +22,11 @@ import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.Bind;
 
 public class MainActivity extends BaseActivity {
 
-    @Bind(R.id.view_pager_main)
-    NoAnimateViewPager viewPager;
     @Bind(R.id.common_tab_layout_main)
     CommonTabLayout tabLayout;
 
@@ -39,8 +40,10 @@ public class MainActivity extends BaseActivity {
 
     private ArrayList<CustomTabEntity> tabEntities;
 
-    private List<BaseFragment> fragments = new ArrayList<>();
-    private MainViewPagerAdapter adapter;
+    private HomeFragment homeFragment;
+    private HomeRecommend[] homeRecommends;
+
+    private final int count = 4;
 
     @Override
     public int getLayoutId() {
@@ -52,47 +55,77 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         tabEntities = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < count + 1; i++) {
             tabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnSelectIds[i]));
         }
         tabLayout.setTabData(tabEntities);
 
-        fragments.add(new HomeFragment());
-        fragments.add(new LiveFragment());
-        fragments.add(new VideoFragment());
-        fragments.add(new FollowFragment());
-        fragments.add(new UserFragment());
-
-        adapter = new MainViewPagerAdapter(getSupportFragmentManager(), fragments);
-        viewPager.setAdapter(adapter);
-
         tabLayout.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
-                viewPager.setCurrentItem(position);
+                switchTab(position);
             }
 
             @Override
             public void onTabReselect(int position) {
             }
         });
+        initFragments(savedInstanceState);
+    }
 
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    private void initFragments(Bundle savedInstanceState) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        int currentTabPosition = 0;
+        if (savedInstanceState != null) {
+            homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag("homeFragment");
+            homeRecommends = new HomeRecommend[count];
+            for (int i = 0; i < homeRecommends.length; i ++) {
+                homeRecommends[i] = (HomeRecommend) getSupportFragmentManager().findFragmentByTag("HomeRecommend" + i);
             }
-
-            @Override
-            public void onPageSelected(int position) {
-                tabLayout.setCurrentTab(position);
+            currentTabPosition = savedInstanceState.getInt(Constant.MAIN_CURRENT_POSITION);
+        } else {
+            homeFragment = new HomeFragment();
+            transaction.add(R.id.container, homeFragment, "homeFragment");
+            homeRecommends = new HomeRecommend[count];
+            for (int i = 0; i < homeRecommends.length; i ++) {
+                homeRecommends[i] = new HomeRecommend();
+                transaction.add(R.id.container, homeRecommends[i], "homeRecommends" + i);
             }
+        }
+        transaction.commit();
+        switchTab(currentTabPosition);
+        tabLayout.setCurrentTab(currentTabPosition);
+    }
 
-            @Override
-            public void onPageScrollStateChanged(int state) {
-            }
-        });
+    private void switchTab(int position) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        switch (position) {
+            case 0:
+                for (int i = 0; i < count; i++) {
+                    transaction.hide(homeRecommends[i]);
+                }
+                transaction.show(homeFragment);
+                break;
+            default:
+                transaction.hide(homeFragment);
+                for (int i = 0; i < count; i++) {
+                    if (i != position) {
+                        transaction.hide(homeRecommends[i]);
+                    }
+                }
+                transaction.show(homeRecommends[position]);
+                break;
+        }
+        transaction.commitAllowingStateLoss();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (tabLayout != null) {
+            outState.putInt(Constant.MAIN_CURRENT_POSITION, tabLayout.getCurrentTab());
+        }
     }
 }

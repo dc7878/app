@@ -24,7 +24,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         }
         setContentView(getLayoutId());
         ButterKnife.bind(this);
-        initView();
+        initView(savedInstanceState);
         initPresenter();
 //        EventBus.getDefault().register(this);
     }
@@ -33,7 +33,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
     public abstract void initPresenter();
 
-    public abstract void initView();
+    public abstract void initView(Bundle savedInstanceState);
 
     @Override
     protected void onStart() {
