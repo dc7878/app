@@ -2,19 +2,14 @@ package com.cc.dc.ui.main.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
 
 import com.cc.dc.Constant;
 import com.cc.dc.common.ui.BaseActivity;
-import com.cc.dc.common.ui.BaseFragment;
-import com.cc.dc.custom.NoAnimateViewPager;
 import com.cc.dc.entity.TabEntity;
 import com.cc.dc.dc.R;
-import com.cc.dc.ui.main.adapter.MainViewPagerAdapter;
 import com.cc.dc.ui.follow.fragment.FollowFragment;
 import com.cc.dc.ui.main.fragment.HomeFragment;
 import com.cc.dc.ui.live.fragment.LiveFragment;
-import com.cc.dc.ui.main.fragment.HomeRecommend;
 import com.cc.dc.ui.user.fragment.UserFragment;
 import com.cc.dc.ui.video.fragment.VideoFragment;
 import com.flyco.tablayout.CommonTabLayout;
@@ -41,9 +36,12 @@ public class MainActivity extends BaseActivity {
     private ArrayList<CustomTabEntity> tabEntities;
 
     private HomeFragment homeFragment;
-    private HomeRecommend[] homeRecommends;
+    private LiveFragment liveFragment;
+    private VideoFragment videoFragment;
+    private FollowFragment followFragment;
+    private UserFragment userFragment;
 
-    private final int count = 4;
+    private final int TAB_SIZE = 5;
 
     @Override
     public int getLayoutId() {
@@ -57,7 +55,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initView(Bundle savedInstanceState) {
         tabEntities = new ArrayList<>();
-        for (int i = 0; i < count + 1; i++) {
+        for (int i = 0; i < TAB_SIZE; i++) {
             tabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnSelectIds[i]));
         }
         tabLayout.setTabData(tabEntities);
@@ -80,19 +78,23 @@ public class MainActivity extends BaseActivity {
         int currentTabPosition = 0;
         if (savedInstanceState != null) {
             homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag("homeFragment");
-            homeRecommends = new HomeRecommend[count];
-            for (int i = 0; i < homeRecommends.length; i ++) {
-                homeRecommends[i] = (HomeRecommend) getSupportFragmentManager().findFragmentByTag("HomeRecommend" + i);
-            }
+            liveFragment = (LiveFragment) getSupportFragmentManager().findFragmentByTag("liveFragment");
+            videoFragment = (VideoFragment) getSupportFragmentManager().findFragmentByTag("videoFragment");
+            followFragment = (FollowFragment) getSupportFragmentManager().findFragmentByTag("followFragment");
+            userFragment = (UserFragment) getSupportFragmentManager().findFragmentByTag("userFragment");
             currentTabPosition = savedInstanceState.getInt(Constant.MAIN_CURRENT_POSITION);
         } else {
             homeFragment = new HomeFragment();
+            liveFragment = new LiveFragment();
+            videoFragment = new VideoFragment();
+            followFragment = new FollowFragment();
+            userFragment = new UserFragment();
+
             transaction.add(R.id.container, homeFragment, "homeFragment");
-            homeRecommends = new HomeRecommend[count];
-            for (int i = 0; i < homeRecommends.length; i ++) {
-                homeRecommends[i] = new HomeRecommend();
-                transaction.add(R.id.container, homeRecommends[i], "homeRecommends" + i);
-            }
+            transaction.add(R.id.container, liveFragment, "liveFragment");
+            transaction.add(R.id.container, videoFragment, "videoFragment");
+            transaction.add(R.id.container, followFragment, "followFragment");
+            transaction.add(R.id.container, userFragment, "userFragment");
         }
         transaction.commit();
         switchTab(currentTabPosition);
@@ -103,19 +105,41 @@ public class MainActivity extends BaseActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch (position) {
             case 0:
-                for (int i = 0; i < count; i++) {
-                    transaction.hide(homeRecommends[i]);
-                }
+                transaction.hide(liveFragment);
+                transaction.hide(videoFragment);
+                transaction.hide(followFragment);
+                transaction.hide(userFragment);
                 transaction.show(homeFragment);
                 break;
-            default:
+            case 1:
                 transaction.hide(homeFragment);
-                for (int i = 0; i < count; i++) {
-                    if (i != position) {
-                        transaction.hide(homeRecommends[i]);
-                    }
-                }
-                transaction.show(homeRecommends[position]);
+                transaction.hide(videoFragment);
+                transaction.hide(followFragment);
+                transaction.hide(userFragment);
+                transaction.show(liveFragment);
+                break;
+            case 2:
+                transaction.hide(homeFragment);
+                transaction.hide(liveFragment);
+                transaction.hide(followFragment);
+                transaction.hide(userFragment);
+                transaction.show(videoFragment);
+                break;
+            case 3:
+                transaction.hide(homeFragment);
+                transaction.hide(liveFragment);
+                transaction.hide(videoFragment);
+                transaction.hide(userFragment);
+                transaction.show(followFragment);
+                break;
+            case 4:
+                transaction.hide(homeFragment);
+                transaction.hide(liveFragment);
+                transaction.hide(videoFragment);
+                transaction.hide(followFragment);
+                transaction.show(userFragment);
+                break;
+            default:
                 break;
         }
         transaction.commitAllowingStateLoss();
