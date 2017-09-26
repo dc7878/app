@@ -1,4 +1,4 @@
-package com.cc.dc.ui.main.adapter;
+package com.cc.dc.ui.video.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

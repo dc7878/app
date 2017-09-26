@@ -8,7 +8,7 @@ import com.cc.dc.common.custom.GridItemDecoration;
 import com.cc.dc.common.custom.LoadMoreRecyclerView;
 import com.cc.dc.common.ui.BaseFragment;
 import com.cc.dc.dc.R;
-import com.cc.dc.ui.main.adapter.VideoRecyclerViewAdapter;
+import com.cc.dc.ui.video.adapter.VideoRecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +49,6 @@ public class VideoFragment extends BaseFragment {
         adapter = new VideoRecyclerViewAdapter(getActivity(), data);
         recyclerViewHome.setAdapter(adapter);
         recyclerViewHome.setLayoutManager(new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL));
-//        recyclerViewHome.setLayoutManager(new GridLayoutManager(getActivity(), spanCount));
         itemDecoration = new GridItemDecoration.Builder()
                 .leftSpace(10)
                 .rightSpace(10)
@@ -61,8 +60,6 @@ public class VideoFragment extends BaseFragment {
                 .data(data)
                 .build();
         recyclerViewHome.addItemDecoration(itemDecoration);
-//        recyclerViewHome.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        recyclerViewHome.addItemDecoration(new LinearItemDecoration(getActivity(), R.drawable.item_decoration_video, LinearItemDecoration.VERTICAL));
         recyclerViewHome.setOnLoadMoreListener(new LoadMoreRecyclerView.OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
