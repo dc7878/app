@@ -1,9 +1,9 @@
-package com.cc.dc.ui.main.presenter;
+package com.cc.dc.ui.home.presenter;
 
 import com.cc.dc.bean.HomeCateBean;
 import com.cc.dc.common.listener.HttpCallBack;
-import com.cc.dc.ui.main.contract.HomeCateContract;
-import com.cc.dc.ui.main.model.HomeModel;
+import com.cc.dc.ui.home.contract.HomeCateContract;
+import com.cc.dc.ui.home.model.HomeModel;
 
 import java.util.List;
 

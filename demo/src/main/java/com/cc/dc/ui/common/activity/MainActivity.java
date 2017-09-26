@@ -1,4 +1,4 @@
-package com.cc.dc.ui.main.activity;
+package com.cc.dc.ui.common.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -8,7 +8,7 @@ import com.cc.dc.common.ui.BaseActivity;
 import com.cc.dc.entity.TabEntity;
 import com.cc.dc.dc.R;
 import com.cc.dc.ui.follow.fragment.FollowFragment;
-import com.cc.dc.ui.main.fragment.HomeFragment;
+import com.cc.dc.ui.home.fragment.HomeFragment;
 import com.cc.dc.ui.live.fragment.LiveFragment;
 import com.cc.dc.ui.user.fragment.UserFragment;
 import com.cc.dc.ui.video.fragment.VideoFragment;

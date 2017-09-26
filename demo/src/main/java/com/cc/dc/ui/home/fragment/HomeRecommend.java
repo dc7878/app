@@ -1,9 +1,6 @@
-package com.cc.dc.ui.main.fragment;
+package com.cc.dc.ui.home.fragment;
 
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -12,8 +9,8 @@ import com.cc.dc.common.custom.ViewPagerAdapter;
 import com.cc.dc.common.ui.BaseFragment;
 import com.cc.dc.common.utils.DensityUtil;
 import com.cc.dc.dc.R;
-import com.cc.dc.ui.main.contract.HomeRecommendContract;
-import com.cc.dc.ui.main.presenter.HomeRecommendPresenter;
+import com.cc.dc.ui.home.contract.HomeRecommendContract;
+import com.cc.dc.ui.home.presenter.HomeRecommendPresenter;
 
 
 import java.util.ArrayList;

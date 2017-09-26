@@ -1,4 +1,4 @@
-package com.cc.dc.ui.main.contract;
+package com.cc.dc.ui.home.contract;
 
 import com.cc.dc.bean.HomeRecommendSliderBean;
 import com.cc.dc.common.listener.HttpCallBack;

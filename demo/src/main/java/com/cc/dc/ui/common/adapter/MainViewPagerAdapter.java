@@ -1,4 +1,4 @@
-package com.cc.dc.ui.main.adapter;
+package com.cc.dc.ui.common.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,13 +10,13 @@ import java.util.List;
 
 
 /**
- * Created by dc on 2017/9/21.
+ * Created by dc on 2017/9/19.
  */
-public class HomeViewPagerAdapter extends FragmentPagerAdapter {
+public class MainViewPagerAdapter extends FragmentPagerAdapter {
 
     private List<BaseFragment> fragments;
 
-    public HomeViewPagerAdapter(FragmentManager fm, List<BaseFragment> fragments) {
+    public MainViewPagerAdapter(FragmentManager fm, List<BaseFragment> fragments) {
         super(fm);
         this.fragments = fragments;
     }

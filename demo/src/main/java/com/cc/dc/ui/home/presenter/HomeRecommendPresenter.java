@@ -1,9 +1,9 @@
-package com.cc.dc.ui.main.presenter;
+package com.cc.dc.ui.home.presenter;
 
 import com.cc.dc.bean.HomeRecommendSliderBean;
 import com.cc.dc.common.listener.HttpCallBack;
-import com.cc.dc.ui.main.contract.HomeRecommendContract;
-import com.cc.dc.ui.main.model.HomeRecommendModel;
+import com.cc.dc.ui.home.contract.HomeRecommendContract;
+import com.cc.dc.ui.home.model.HomeRecommendModel;
 
 import java.util.List;
 

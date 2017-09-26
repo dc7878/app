@@ -1,12 +1,12 @@
-package com.cc.dc.ui.main.fragment;
+package com.cc.dc.ui.home.fragment;
 
 import com.cc.dc.bean.HomeCateBean;
 import com.cc.dc.common.ui.BaseFragment;
 import com.cc.dc.custom.ParentViewPager;
 import com.cc.dc.dc.R;
-import com.cc.dc.ui.main.adapter.HomeViewPagerAdapter;
-import com.cc.dc.ui.main.contract.HomeCateContract;
-import com.cc.dc.ui.main.presenter.HomePresenter;
+import com.cc.dc.ui.home.adapter.HomeViewPagerAdapter;
+import com.cc.dc.ui.home.contract.HomeCateContract;
+import com.cc.dc.ui.home.presenter.HomePresenter;
 import com.flyco.tablayout.SlidingTabLayout;
 
 import java.util.ArrayList;
