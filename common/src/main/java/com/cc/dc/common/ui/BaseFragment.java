@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cc.dc.common.presenter.BasePresenter;
+import com.cc.dc.common.utils.LUtil;
 
 import butterknife.ButterKnife;
 
@@ -21,6 +22,8 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
 
     private View rootView;
 
+    // 用户是否可见
+    private boolean isVisible;
     // 标识fragment视图是否已经初始化完毕
     private boolean isViewPrepared;
     // 标识是否已经触发过懒加载数据
@@ -53,6 +56,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        LUtil.e("BaseFragment", getClass().getSimpleName() + ">>>onViewCreated>>>");
         isViewPrepared = true;
         lazyLoadDataPrepared();
     }
@@ -69,12 +73,25 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
+            isVisible = true;
+            lazyLoadDataPrepared();
+        } else {
+            isVisible = false;
+        }
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        isVisible = !hidden;
+        if (!hidden) {
             lazyLoadDataPrepared();
         }
     }
 
     private void lazyLoadDataPrepared() {
-        if (getUserVisibleHint() && !hasLoadData && isViewPrepared) {
+        LUtil.e("BaseFragment", getClass().getSimpleName() + ">>>" + isVisible + ">>>" + !hasLoadData + "--" + isViewPrepared);
+        if (isVisible && !hasLoadData && isViewPrepared) {
             hasLoadData = true;
             lazyLoadData();
         }

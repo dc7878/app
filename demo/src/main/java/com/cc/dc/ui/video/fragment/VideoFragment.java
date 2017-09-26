@@ -29,7 +29,7 @@ public class VideoFragment extends BaseFragment {
     private VideoRecyclerViewAdapter adapter;
     private GridItemDecoration itemDecoration;
 
-    private int spanCount = 3;
+    private int spanCount = 2;
 
     @Override
     public int getLayoutId() {

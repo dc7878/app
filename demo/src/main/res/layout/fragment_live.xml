@@ -9,10 +9,15 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_bar_height">
     </LinearLayout>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_live"
-        android:background="#ff00ff"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_layout_live"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content">
+        <com.cc.dc.common.custom.LoadMoreRecyclerView
+            android:id="@+id/recycler_view_live"
+            android:background="#ffff00"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </com.cc.dc.common.custom.LoadMoreRecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>
