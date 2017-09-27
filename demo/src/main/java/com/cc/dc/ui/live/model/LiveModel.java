@@ -3,6 +3,7 @@ package com.cc.dc.ui.live.model;
 import com.cc.dc.api.ApiHelper;
 import com.cc.dc.api.apiservice.LiveApiService;
 import com.cc.dc.bean.LiveBean;
+import com.cc.dc.bean.LiveColumnBean;
 import com.cc.dc.common.http.function.HttpFunction;
 import com.cc.dc.common.listener.HttpCallBack;
 import com.cc.dc.ui.live.contract.LiveContract;
@@ -36,6 +37,37 @@ public class LiveModel implements LiveContract.Model {
 
                     @Override
                     public void onNext(List<LiveBean> value) {
+                        callBack.onResult(value);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callBack.onError();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @Override
+    public void getLiveColumnList(final HttpCallBack<List<LiveColumnBean>> callBack) {
+        ApiHelper.getInstance()
+                .create(LiveApiService.class)
+                .getColumnList()
+                .map(new HttpFunction<List<LiveColumnBean>>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<List<LiveColumnBean>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        callBack.onStart(d);
+                    }
+
+                    @Override
+                    public void onNext(List<LiveColumnBean> value) {
                         callBack.onResult(value);
                     }
 

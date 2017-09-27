@@ -4,14 +4,20 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import com.cc.dc.bean.LiveBean;
+import com.cc.dc.bean.LiveColumnBean;
 import com.cc.dc.common.custom.LoadMoreRecyclerView;
 import com.cc.dc.common.ui.BaseFragment;
 import com.cc.dc.common.custom.GridItemDecoration;
 import com.cc.dc.common.utils.LUtil;
+import com.cc.dc.custom.ParentViewPager;
 import com.cc.dc.dc.R;
+import com.cc.dc.ui.home.adapter.HomeViewPagerAdapter;
+import com.cc.dc.ui.home.fragment.HomeOtherFragment;
+import com.cc.dc.ui.home.fragment.HomeRecommend;
 import com.cc.dc.ui.live.contract.LiveContract;
 import com.cc.dc.ui.live.presenter.LivePresenter;
 import com.cc.dc.ui.live.adapter.LiveRecyclerViewAdapter;
+import com.flyco.tablayout.SlidingTabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +29,10 @@ import butterknife.Bind;
  */
 public class LiveFragment extends BaseFragment<LivePresenter> implements LiveContract.View, LoadMoreRecyclerView.OnLoadMoreListener {
 
+    @Bind(R.id.sliding_tab_layout_live)
+    SlidingTabLayout tabLayout;
+    @Bind(R.id.view_pager_live)
+    ParentViewPager viewPager;
     @Bind(R.id.refresh_layout_live)
     SwipeRefreshLayout refreshLayout;
     @Bind(R.id.recycler_view_live)
@@ -32,8 +42,13 @@ public class LiveFragment extends BaseFragment<LivePresenter> implements LiveCon
     private LiveRecyclerViewAdapter adapter;
     private GridItemDecoration itemDecoration;
 
-    private int spanCount = 2;
+    private List<BaseFragment> fragments = new ArrayList<>();
 
+    private String[] titles;
+
+    private HomeViewPagerAdapter homeViewPagerAdapter;
+
+    private int spanCount = 2;
     private final int LIMIT = 20;
 
     @Override
@@ -72,7 +87,8 @@ public class LiveFragment extends BaseFragment<LivePresenter> implements LiveCon
 
     @Override
     public void lazyLoadData() {
-        LUtil.e("LiveFragment", "lazyLoadData");
+        presenter.loadLiveColumnList();
+
         refreshLayout.setRefreshing(true);
         loadData(true);
     }
@@ -98,6 +114,27 @@ public class LiveFragment extends BaseFragment<LivePresenter> implements LiveCon
         data.addAll(list);
         adapter.notifyDataSetChanged();
         itemDecoration.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showLiveColumnList(List<LiveColumnBean> list) {
+        int count = list.size();
+        titles = new String[count + 2];
+        titles[0] = "常用";
+        titles[1] = "全部";
+        for (int i = 0; i < count; i++) {
+            titles[i + 2] = list.get(i).getCateName();
+        }
+        fragments.add(new CommonUsedFragment());
+        fragments.add(new HomeOtherFragment());
+        for (int i = 0; i < count; i++) {
+            fragments.add(new HomeOtherFragment());
+        }
+
+        homeViewPagerAdapter = new HomeViewPagerAdapter(getActivity().getSupportFragmentManager(), fragments);
+        viewPager.setAdapter(homeViewPagerAdapter);
+
+        tabLayout.setViewPager(viewPager, titles);
     }
 
     @Override

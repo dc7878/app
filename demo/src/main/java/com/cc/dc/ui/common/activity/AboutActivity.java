@@ -1,4 +1,4 @@
-package com.cc.dc.ui;
+package com.cc.dc.ui.common.activity;
 
 import android.os.Bundle;
 

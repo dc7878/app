@@ -1,16 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
-        android:background="@color/yellow"
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/sliding_tab_layout_live"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/title_bar_height">
-    </LinearLayout>
+        android:layout_height="@dimen/title_bar_height"
+        android:background="@color/yellow"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        tl:tl_textBold="SELECT"
+        tl:tl_tab_space_equal="true"
+        tl:tl_indicator_color="@color/white"
+        tl:tl_indicator_height="3dp"
+        tl:tl_underline_color="@color/white"
+        tl:tl_underline_gravity="BOTTOM"
+        tl:tl_underline_height="2dp"
+        tl:tl_tab_padding="22dp"
+        tl:tl_textSelectColor="@color/white"
+        tl:tl_textUnselectColor="@color/gray_eee"/>
+    <com.cc.dc.custom.ParentViewPager
+        android:id="@+id/view_pager_live"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.cc.dc.custom.ParentViewPager>
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refresh_layout_live"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.cc.dc.common.custom.LoadMoreRecyclerView
