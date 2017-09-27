@@ -8,12 +8,10 @@ import com.cc.dc.bean.LiveColumnBean;
 import com.cc.dc.common.custom.LoadMoreRecyclerView;
 import com.cc.dc.common.ui.BaseFragment;
 import com.cc.dc.common.custom.GridItemDecoration;
-import com.cc.dc.common.utils.LUtil;
 import com.cc.dc.custom.ParentViewPager;
 import com.cc.dc.dc.R;
 import com.cc.dc.ui.home.adapter.HomeViewPagerAdapter;
 import com.cc.dc.ui.home.fragment.HomeOtherFragment;
-import com.cc.dc.ui.home.fragment.HomeRecommend;
 import com.cc.dc.ui.live.contract.LiveContract;
 import com.cc.dc.ui.live.presenter.LivePresenter;
 import com.cc.dc.ui.live.adapter.LiveRecyclerViewAdapter;
@@ -126,9 +124,9 @@ public class LiveFragment extends BaseFragment<LivePresenter> implements LiveCon
             titles[i + 2] = list.get(i).getCateName();
         }
         fragments.add(new CommonUsedFragment());
-        fragments.add(new HomeOtherFragment());
+        fragments.add(LiveCateFragment.getInstance("aaa"));
         for (int i = 0; i < count; i++) {
-            fragments.add(new HomeOtherFragment());
+            fragments.add(LiveCateFragment.getInstance(list.get(i).getCateId()));
         }
 
         homeViewPagerAdapter = new HomeViewPagerAdapter(getActivity().getSupportFragmentManager(), fragments);
