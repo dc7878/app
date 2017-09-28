@@ -19,6 +19,7 @@ public class LiveBean extends MultipleColumnBean {
     @JSONField(name = "room_src")
     private String roomSrc;
 
+    @JSONField(name = "online_num")
     private int online;
 
     @JSONField(name = "nickname")
