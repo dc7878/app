@@ -4,17 +4,13 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import com.cc.dc.bean.LiveBean;
-import com.cc.dc.bean.LiveColumnBean;
+import com.cc.dc.common.custom.GridItemDecoration;
 import com.cc.dc.common.custom.LoadMoreRecyclerView;
 import com.cc.dc.common.ui.BaseFragment;
-import com.cc.dc.common.custom.GridItemDecoration;
-import com.cc.dc.custom.ParentViewPager;
 import com.cc.dc.dc.R;
-import com.cc.dc.ui.home.adapter.HomeViewPagerAdapter;
-import com.cc.dc.ui.live.contract.LiveContract;
-import com.cc.dc.ui.live.presenter.LivePresenter;
 import com.cc.dc.ui.live.adapter.LiveRecyclerViewAdapter;
-import com.flyco.tablayout.SlidingTabLayout;
+import com.cc.dc.ui.live.contract.LiveAllContract;
+import com.cc.dc.ui.live.presenter.LiveAllPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,39 +18,33 @@ import java.util.List;
 import butterknife.Bind;
 
 /**
- * Created by dc on 2017/9/19.
+ * Created by dc on 2017/9/28.
+ * 全部直播页面
  */
-public class LiveFragment extends BaseFragment<LivePresenter> implements LiveContract.View, LoadMoreRecyclerView.OnLoadMoreListener {
+public class LiveAllFragment extends BaseFragment<LiveAllPresenter> implements  LiveAllContract.View, SwipeRefreshLayout.OnRefreshListener, LoadMoreRecyclerView.OnLoadMoreListener {
 
-    @Bind(R.id.sliding_tab_layout_live)
-    SlidingTabLayout tabLayout;
-    @Bind(R.id.view_pager_live)
-    ParentViewPager viewPager;
-    @Bind(R.id.refresh_layout_live)
+    @Bind(R.id.refresh_layout_live_all)
     SwipeRefreshLayout refreshLayout;
-    @Bind(R.id.recycler_view_live)
+    @Bind(R.id.recycler_view_live_all)
     LoadMoreRecyclerView recyclerView;
 
     private List<LiveBean> data;
     private LiveRecyclerViewAdapter adapter;
     private GridItemDecoration itemDecoration;
 
-    private List<BaseFragment> fragments = new ArrayList<>();
-
-    private String[] titles;
-
-    private HomeViewPagerAdapter homeViewPagerAdapter;
-
     private int spanCount = 2;
     private final int LIMIT = 20;
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_live;
+        return R.layout.fragment_live_all;
     }
 
     @Override
     public void initView() {
+        refreshLayout.setOnRefreshListener(this);
+        recyclerView.setOnLoadMoreListener(this);
+
         data = new ArrayList<>();
         adapter = new LiveRecyclerViewAdapter(getActivity(), data);
         recyclerView.setAdapter(adapter);
@@ -65,29 +55,28 @@ public class LiveFragment extends BaseFragment<LivePresenter> implements LiveCon
                 .data(data)
                 .build();
         recyclerView.addItemDecoration(itemDecoration);
-
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                loadData(true);
-            }
-        });
-
-        recyclerView.setOnLoadMoreListener(this);
     }
 
     @Override
     public void initPresenter() {
-        presenter = new LivePresenter();
+        presenter = new LiveAllPresenter();
         presenter.attachView(this);
     }
 
     @Override
     public void lazyLoadData() {
-        presenter.loadLiveColumnList();
-
         refreshLayout.setRefreshing(true);
         loadData(true);
+    }
+
+    @Override
+    public void onRefresh() {
+        loadData(true);
+    }
+
+    @Override
+    public void onLoadMore() {
+        loadData(false);
     }
 
     @Override
@@ -111,32 +100,6 @@ public class LiveFragment extends BaseFragment<LivePresenter> implements LiveCon
         data.addAll(list);
         adapter.notifyDataSetChanged();
         itemDecoration.notifyDataSetChanged();
-    }
-
-    @Override
-    public void showLiveColumnList(List<LiveColumnBean> list) {
-        int count = list.size();
-        titles = new String[count + 2];
-        titles[0] = "常用";
-        titles[1] = "全部";
-        for (int i = 0; i < count; i++) {
-            titles[i + 2] = list.get(i).getCateName();
-        }
-        fragments.add(new LiveUsedFragment());
-        fragments.add(new LiveAllFragment());
-        for (int i = 0; i < count; i++) {
-            fragments.add(LiveCateFragment.getInstance(list.get(i).getCateId()));
-        }
-
-        homeViewPagerAdapter = new HomeViewPagerAdapter(getActivity().getSupportFragmentManager(), fragments);
-        viewPager.setAdapter(homeViewPagerAdapter);
-
-        tabLayout.setViewPager(viewPager, titles);
-    }
-
-    @Override
-    public void onLoadMore() {
-        loadData(false);
     }
 
     private void loadData(boolean isRefresh) {

@@ -7,11 +7,11 @@ import com.cc.dc.dc.R;
  * Created by dc on 2017/9/27.
  * 直播中的常用页面
  */
-public class CommonUsedFragment extends BaseFragment {
+public class LiveUsedFragment extends BaseFragment {
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_common_used;
+        return R.layout.fragment_live_used;
     }
 
     @Override

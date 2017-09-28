@@ -21,7 +21,6 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     protected T presenter;
 
     private View rootView;
-
     // 用户是否可见
     private boolean isVisible;
     // 标识fragment视图是否已经初始化完毕
@@ -65,9 +64,9 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
 
     public abstract void initView();
 
-    public abstract void lazyLoadData();
-
     public abstract void initPresenter();
+
+    public abstract void lazyLoadData();
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
