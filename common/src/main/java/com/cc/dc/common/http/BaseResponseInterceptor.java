@@ -17,7 +17,7 @@ public class BaseResponseInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
 //
-//        LUtil.e("BaseResponseInterceptor", "BaseResponseInterceptor>>>" + request.url().toString());
+        LUtil.e("BaseResponseInterceptor", "BaseResponseInterceptor>>>" + request.url().toString());
 //
 //        String name = request.header("Test");
 //        String realUrl = "http://www.learn2sleep.com";

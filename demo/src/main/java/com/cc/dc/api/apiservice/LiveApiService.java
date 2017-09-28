@@ -20,4 +20,7 @@ public interface LiveApiService {
 
     @GET("v1/live?")
     Observable<BaseResponse<List<LiveBean>>> getLiveList(@Query("offset") int offset, @Query("limit") int limit);
+
+    @GET("Live/Roomlist/getCate2RoomList")
+    Observable<BaseResponse<List<LiveBean>>> getCate2RoomList(@Query("cate2_id") String cateId, @Query("offset") int offset, @Query("limit") int limit, @Query("client_sys") String cys);
 }
