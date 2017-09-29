@@ -4,12 +4,15 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.cc.dc.bean.LiveBean;
 import com.cc.dc.bean.LiveGameCateBean;
 import com.cc.dc.common.custom.GridItemDecoration;
 import com.cc.dc.common.custom.LoadMoreRecyclerView;
 import com.cc.dc.common.ui.BaseFragment;
+import com.cc.dc.common.utils.DensityUtil;
 import com.cc.dc.common.utils.LUtil;
 import com.cc.dc.dc.R;
 import com.cc.dc.ui.live.adapter.LiveGameCateAdapter;
@@ -21,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 /**
  * Created by dc on 2017/9/27.
@@ -28,6 +32,8 @@ import butterknife.Bind;
  */
 public class LiveCateFragment extends BaseFragment<LiveCatePresenter> implements LiveCateContract.View, SwipeRefreshLayout.OnRefreshListener, LoadMoreRecyclerView.OnLoadMoreListener {
 
+    @Bind(R.id.layout_game_cate)
+    LinearLayout layoutGame;
     @Bind(R.id.recycler_game_list)
     RecyclerView recyclerViewGame;
     @Bind(R.id.refresh_layout_live_cate)
@@ -41,6 +47,7 @@ public class LiveCateFragment extends BaseFragment<LiveCatePresenter> implements
 
     private List<LiveGameCateBean> liveGameCateBeans;
     private LiveGameCateAdapter gameCateAdapter;
+    private final int gameColumnCount = 3;
 
     private int spanCount = 2;
     private final int LIMIT = 20;
@@ -48,6 +55,8 @@ public class LiveCateFragment extends BaseFragment<LiveCatePresenter> implements
     private String cateId;
     private int level;
     private String shortName;
+
+    private boolean isShowAll = false;
 
     public static LiveCateFragment getInstance(String cateId, int level, String shortName) {
         LiveCateFragment fragment = new LiveCateFragment();
@@ -111,12 +120,20 @@ public class LiveCateFragment extends BaseFragment<LiveCatePresenter> implements
 
     @Override
     public void showLiveGameCateList(List<LiveGameCateBean> list) {
-        if (list.size() <= 0) {
-            recyclerViewGame.setVisibility(View.GONE);
+        int totalLine  = list.size() / gameColumnCount + (list.size() % gameColumnCount == 0 ? 0 : 1);
+        LUtil.e("LiveCateFragmentInfo", "LiveCateFragmentInfo>>>" + list.size() + ">>>" + totalLine);
+        if (totalLine > 6) {
+            // 大于6行最多显示6行
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) recyclerViewGame.getLayoutParams();
+            params.height = DensityUtil.dip2px(getActivity(), 40) * 6;
+            recyclerViewGame.requestLayout();
         }
-        LUtil.e("LiveCateFragmentInfo", "LiveCateFragmentInfo>>>" + list.size());
         liveGameCateBeans.addAll(list);
         gameCateAdapter.notifyDataSetChanged();
+        if (list.size() > 1) {
+            // 至少有一行
+            layoutGame.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -132,12 +149,27 @@ public class LiveCateFragment extends BaseFragment<LiveCatePresenter> implements
         itemDecoration.notifyDataSetChanged();
     }
 
+    @OnClick(R.id.btn_change)
+    protected void hideOrShow() {
+        // isShowAll为false时显示一行
+        int showLine = 1;
+        int totalLine = liveGameCateBeans.size() / gameColumnCount + (liveGameCateBeans.size() % gameColumnCount == 0 ? 0 : 1);
+        if (isShowAll) {
+            // 显示最多行
+            showLine = totalLine > 6 ? 6 : totalLine;
+        }
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) recyclerViewGame.getLayoutParams();
+        params.height = DensityUtil.dip2px(getActivity(), 40) * showLine;
+        recyclerViewGame.requestLayout();
+        isShowAll = !isShowAll;
+    }
+
     private void initGameCate() {
-        recyclerViewGame.setVisibility(View.VISIBLE);
+        layoutGame.setVisibility(View.GONE);
         liveGameCateBeans = new ArrayList<>();
         gameCateAdapter = new LiveGameCateAdapter(getActivity(), liveGameCateBeans);
         recyclerViewGame.setAdapter(gameCateAdapter);
-        recyclerViewGame.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
+        recyclerViewGame.setLayoutManager(new StaggeredGridLayoutManager(gameColumnCount, StaggeredGridLayoutManager.VERTICAL));
     }
 
     private void loadData(boolean isRefresh) {

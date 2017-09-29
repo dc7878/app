@@ -6,6 +6,7 @@ import com.cc.dc.bean.LiveBean;
 import com.cc.dc.bean.LiveGameCateBean;
 import com.cc.dc.common.http.function.HttpFunction;
 import com.cc.dc.common.listener.HttpCallBack;
+import com.cc.dc.common.utils.LUtil;
 import com.cc.dc.json.LiveGameCateInfo;
 import com.cc.dc.ui.live.contract.LiveCateContract;
 
@@ -22,7 +23,7 @@ import io.reactivex.schedulers.Schedulers;
 public class LiveCateModel implements LiveCateContract.Model {
 
     @Override
-    public void getLiveGameCateList(final HttpCallBack<List<LiveGameCateBean>> callBack, String
+    public void getLiveGameCateList(final HttpCallBack<List<LiveGameCateBean>> callBack, final String
             shortName) {
         ApiHelper.getInstanceApiV2()
                 .create(LiveApiService.class)
@@ -34,20 +35,24 @@ public class LiveCateModel implements LiveCateContract.Model {
                     @Override
                     public void onSubscribe(Disposable d) {
                         callBack.onStart(d);
+                        LUtil.e("LiveCateFragmentInfo", "onSubscribe>>>" + shortName);
                     }
 
                     @Override
                     public void onNext(LiveGameCateInfo value) {
                         callBack.onResult(value.getList());
+                        LUtil.e("LiveCateFragmentInfo", "onNext>>>" + shortName);
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         callBack.onError();
+                        LUtil.e("LiveCateFragmentInfo", "onError>>>" + shortName + ">>>" + e.getMessage());
                     }
 
                     @Override
                     public void onComplete() {
+                        LUtil.e("LiveCateFragmentInfo", "onComplete>>>" + shortName);
                     }
                 });
     }
