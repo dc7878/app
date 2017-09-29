@@ -100,16 +100,6 @@ public class LiveCateFragment extends BaseFragment<LiveCatePresenter> implements
         itemDecoration.notifyDataSetChanged();
     }
 
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
-
-    }
-
     private void loadData(boolean isRefresh) {
         if (isRefresh) {
             presenter.loadCateLiveList("181", 0, LIMIT, isRefresh);

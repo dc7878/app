@@ -5,7 +5,4 @@ package com.cc.dc.common.presenter;
  */
 public interface BaseView {
 
-    void showLoading();
-
-    void hideLoading();
 }

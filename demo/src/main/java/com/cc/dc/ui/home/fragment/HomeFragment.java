@@ -71,14 +71,4 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCat
 
         tabLayout.setViewPager(viewPager, titles);
     }
-
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
-
-    }
 }

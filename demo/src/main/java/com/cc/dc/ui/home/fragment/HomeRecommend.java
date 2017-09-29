@@ -63,14 +63,4 @@ public class HomeRecommend extends BaseFragment<HomeRecommendPresenter> implemen
         adapter = new ViewPagerAdapter(data);
         slider.setAdapter(adapter);
     }
-
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
-
-    }
 }

@@ -91,16 +91,6 @@ public class LiveFragment extends BaseFragment<LivePresenter> implements LiveCon
     }
 
     @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
-
-    }
-
-    @Override
     public void showLiveList(List<LiveBean> list, boolean isRefresh) {
         if (isRefresh) {
             data.clear();
