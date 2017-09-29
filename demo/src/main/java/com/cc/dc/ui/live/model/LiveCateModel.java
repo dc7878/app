@@ -3,8 +3,10 @@ package com.cc.dc.ui.live.model;
 import com.cc.dc.api.ApiHelper;
 import com.cc.dc.api.apiservice.LiveApiService;
 import com.cc.dc.bean.LiveBean;
+import com.cc.dc.bean.LiveGameCateBean;
 import com.cc.dc.common.http.function.HttpFunction;
 import com.cc.dc.common.listener.HttpCallBack;
+import com.cc.dc.json.LiveGameCateInfo;
 import com.cc.dc.ui.live.contract.LiveCateContract;
 
 import java.util.List;
@@ -18,6 +20,37 @@ import io.reactivex.schedulers.Schedulers;
  * Created by dc on 2017/9/28.
  */
 public class LiveCateModel implements LiveCateContract.Model {
+
+    @Override
+    public void getLiveGameCateList(final HttpCallBack<List<LiveGameCateBean>> callBack, String
+            shortName) {
+        ApiHelper.getInstanceApiV2()
+                .create(LiveApiService.class)
+                .getGameCateList(shortName)
+                .map(new HttpFunction<LiveGameCateInfo>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<LiveGameCateInfo>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        callBack.onStart(d);
+                    }
+
+                    @Override
+                    public void onNext(LiveGameCateInfo value) {
+                        callBack.onResult(value.getList());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callBack.onError();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
+    }
 
     @Override
     public void getLiveCateList(final HttpCallBack<List<LiveBean>> callBack, int level, String cateId, int offset, int limit, boolean

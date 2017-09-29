@@ -1,6 +1,7 @@
 package com.cc.dc.ui.live.contract;
 
 import com.cc.dc.bean.LiveBean;
+import com.cc.dc.bean.LiveGameCateBean;
 import com.cc.dc.common.listener.HttpCallBack;
 import com.cc.dc.common.presenter.BaseModel;
 import com.cc.dc.common.presenter.BasePresenter;
@@ -14,15 +15,22 @@ import java.util.List;
 public interface LiveCateContract {
 
     interface Model extends BaseModel {
-        void getLiveCateList(HttpCallBack<List<LiveBean>> callBack, int level, String careId, int offset, int limit, boolean
-                isRefresh);
+
+        void getLiveGameCateList(HttpCallBack<List<LiveGameCateBean>> callBack, String shortName);
+
+        void getLiveCateList(HttpCallBack<List<LiveBean>> callBack, int level, String careId, int offset, int limit, boolean isRefresh);
     }
 
     interface View extends BaseView {
+        void showLiveGameCateList(List<LiveGameCateBean> cateList);
+
         void showLiveCateList(List<LiveBean> cateList, boolean isRefresh);
     }
 
     abstract class Presenter extends BasePresenter<View, Model> {
+
+        public abstract void loadGameCateList(String shortName);
+
         public abstract void loadCateLiveList(int level, String careId, int offset, int limit, boolean isRefresh);
     }
 }
