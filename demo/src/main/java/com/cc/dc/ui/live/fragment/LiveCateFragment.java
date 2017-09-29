@@ -4,6 +4,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.cc.dc.bean.LiveBean;
@@ -132,6 +133,8 @@ public class LiveCateFragment extends BaseFragment<LiveCatePresenter> implements
         if (list.size() > 1) {
             // 至少有一行
             layoutGame.setVisibility(View.VISIBLE);
+            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) refreshLayout.getLayoutParams();
+            params.setMargins(0, DensityUtil.dip2px(getActivity(), 70), 0, 0);
         }
     }
 
