@@ -9,6 +9,8 @@
         android:background="@drawable/bg_live_game_cate"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:gravity="center"
         android:textColor="@color/white"
         android:layout_width="100dp"

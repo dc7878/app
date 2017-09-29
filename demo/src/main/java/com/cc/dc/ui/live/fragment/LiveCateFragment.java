@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.cc.dc.bean.LiveBean;
 import com.cc.dc.bean.LiveGameCateBean;
@@ -170,6 +169,13 @@ public class LiveCateFragment extends BaseFragment<LiveCatePresenter> implements
         gameCateAdapter = new LiveGameCateAdapter(getActivity(), liveGameCateBeans);
         recyclerViewGame.setAdapter(gameCateAdapter);
         recyclerViewGame.setLayoutManager(new StaggeredGridLayoutManager(gameColumnCount, StaggeredGridLayoutManager.VERTICAL));
+
+        gameCateAdapter.setOnItemOnClickListener(new LiveGameCateAdapter.OnItemOnClickListener() {
+            @Override
+            public void onItemOnClick(View view, int position) {
+                LUtil.e("LiveCateFragmentInfo", "LiveCateFragmentInfo>>>" + liveGameCateBeans.get(position).getTagName());
+            }
+        });
     }
 
     private void loadData(boolean isRefresh) {
