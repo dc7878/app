@@ -19,8 +19,8 @@ public class LiveAllPresenter extends LiveAllContract.Presenter {
     }
 
     @Override
-    public void loadLiveList(int offset, int limit, final boolean isRefresh) {
-        model.getLiveList(new HttpCallBack<List<LiveBean>>() {
+    public void loadLiveAllList(int offset, int limit, final boolean isRefresh) {
+        model.getLiveAllList(new HttpCallBack<List<LiveBean>>() {
             @Override
             public void onStart(Disposable disposable) {
 
@@ -28,7 +28,7 @@ public class LiveAllPresenter extends LiveAllContract.Presenter {
 
             @Override
             public void onResult(List<LiveBean> result) {
-                view.showLiveList(result, isRefresh);
+                view.showLiveAllList(result, isRefresh);
             }
 
             @Override

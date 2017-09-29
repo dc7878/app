@@ -62,6 +62,7 @@ public class ApiHelper {
 
             //设置拦截器
             builder.addInterceptor(new BaseResponseInterceptor());
+            builder.addInterceptor(new BaseParamsInterceptor());
             builder.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
             OkHttpClient okHttpClient = builder.build();
             retrofit2 = new Retrofit.Builder()

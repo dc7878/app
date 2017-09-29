@@ -18,9 +18,15 @@ public interface LiveApiService {
     @GET("v1/getColumnList")
     Observable<BaseResponse<List<LiveColumnBean>>> getColumnList();
 
-    @GET("v1/live?")
-    Observable<BaseResponse<List<LiveBean>>> getLiveList(@Query("offset") int offset, @Query("limit") int limit);
+    /**
+     * 获取直播中的全部item下的直播列表
+     * @param offset
+     * @param limit
+     * @return
+     */
+    @GET("Live/Roomlist/getAllCateRoomList")
+    Observable<BaseResponse<List<LiveBean>>> getLiveAllList(@Query("offset") int offset, @Query("limit") int limit);
 
     @GET("Live/Roomlist/getCate2RoomList")
-    Observable<BaseResponse<List<LiveBean>>> getCate2RoomList(@Query("cate2_id") String cateId, @Query("offset") int offset, @Query("limit") int limit, @Query("client_sys") String cys);
+    Observable<BaseResponse<List<LiveBean>>> getCate2RoomList(@Query("cate2_id") String cateId, @Query("offset") int offset, @Query("limit") int limit);
 }

@@ -21,38 +21,6 @@ import io.reactivex.schedulers.Schedulers;
 public class LiveModel implements LiveContract.Model {
 
     @Override
-    public void getLiveList(final HttpCallBack<List<LiveBean>> callBack, int offset, int limit, boolean
-            isRefresh) {
-        ApiHelper.getInstance()
-                .create(LiveApiService.class)
-                .getLiveList(offset, limit)
-                .map(new HttpFunction<List<LiveBean>>())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<List<LiveBean>>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        callBack.onStart(d);
-                    }
-
-                    @Override
-                    public void onNext(List<LiveBean> value) {
-                        callBack.onResult(value);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        callBack.onError();
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-    }
-
-    @Override
     public void getLiveColumnList(final HttpCallBack<List<LiveColumnBean>> callBack) {
         ApiHelper.getInstance()
                 .create(LiveApiService.class)

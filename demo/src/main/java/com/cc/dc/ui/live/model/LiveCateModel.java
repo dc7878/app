@@ -24,7 +24,7 @@ public class LiveCateModel implements LiveCateContract.Model {
             isRefresh) {
         ApiHelper.getInstanceApiV2()
                 .create(LiveApiService.class)
-                .getCate2RoomList(cateId, offset, limit, "android")
+                .getCate2RoomList(cateId, offset, limit)
                 .map(new HttpFunction<List<LiveBean>>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

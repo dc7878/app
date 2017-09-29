@@ -20,11 +20,11 @@ import io.reactivex.schedulers.Schedulers;
 public class LiveAllModel implements LiveAllContract.Model {
 
     @Override
-    public void getLiveList(final HttpCallBack<List<LiveBean>> callBack, int offset, int limit, boolean
+    public void getLiveAllList(final HttpCallBack<List<LiveBean>> callBack, int offset, int limit, boolean
             isRefresh) {
-        ApiHelper.getInstance()
+        ApiHelper.getInstanceApiV2()
                 .create(LiveApiService.class)
-                .getLiveList(offset, limit)
+                .getLiveAllList(offset, limit)
                 .map(new HttpFunction<List<LiveBean>>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

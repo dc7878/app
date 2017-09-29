@@ -14,15 +14,15 @@ import java.util.List;
 public interface LiveAllContract {
 
     interface Model extends BaseModel {
-        void getLiveList(HttpCallBack<List<LiveBean>> callBack, int offset, int limit, boolean
+        void getLiveAllList(HttpCallBack<List<LiveBean>> callBack, int offset, int limit, boolean
                 isRefresh);
     }
 
     interface View extends BaseView {
-        void showLiveList(List<LiveBean> cateList, boolean isRefresh);
+        void showLiveAllList(List<LiveBean> cateList, boolean isRefresh);
     }
 
     abstract class Presenter extends BasePresenter<View, Model> {
-        public abstract void loadLiveList(int offset, int limit, boolean isRefresh);
+        public abstract void loadLiveAllList(int offset, int limit, boolean isRefresh);
     }
 }

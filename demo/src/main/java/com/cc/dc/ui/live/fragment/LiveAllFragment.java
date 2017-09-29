@@ -21,16 +21,16 @@ public class LiveAllFragment extends BaseListFragment<LiveAllPresenter> implemen
 
     @Override
     public void refreshData() {
-        presenter.loadLiveList(0, LIMIT, true);
+        presenter.loadLiveAllList(0, LIMIT, true);
     }
 
     @Override
     public void loadMoreData() {
-        presenter.loadLiveList(data.size(), LIMIT, false);
+        presenter.loadLiveAllList(data.size(), LIMIT, false);
     }
 
     @Override
-    public void showLiveList(List<LiveBean> list, boolean isRefresh) {
+    public void showLiveAllList(List<LiveBean> list, boolean isRefresh) {
         if (isRefresh) {
             data.clear();
             refreshLayout.setRefreshing(false);
