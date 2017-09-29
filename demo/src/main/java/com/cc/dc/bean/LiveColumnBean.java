@@ -12,6 +12,8 @@ public class LiveColumnBean {
     @JSONField(name = "cate_name")
     private String cateName;
 
+    private int level;
+
     public String getCateId() {
         return cateId;
     }
@@ -26,5 +28,13 @@ public class LiveColumnBean {
 
     public void setCateName(String cateName) {
         this.cateName = cateName;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }

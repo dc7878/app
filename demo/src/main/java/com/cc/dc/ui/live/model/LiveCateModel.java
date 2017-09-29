@@ -20,8 +20,49 @@ import io.reactivex.schedulers.Schedulers;
 public class LiveCateModel implements LiveCateContract.Model {
 
     @Override
-    public void getLiveCateList(final HttpCallBack<List<LiveBean>> callBack, String cateId, int offset, int limit, boolean
+    public void getLiveCateList(final HttpCallBack<List<LiveBean>> callBack, int level, String cateId, int offset, int limit, boolean
             isRefresh) {
+        switch (level) {
+            case 1:
+                getCate1RoomList(callBack, cateId, offset, limit);
+                break;
+            case 2:
+                getCate2RoomList(callBack, cateId, offset, limit);
+                break;
+        }
+    }
+
+    private void getCate1RoomList(final HttpCallBack<List<LiveBean>> callBack, String cateId, int offset, int limit) {
+        ApiHelper.getInstanceApiV2()
+                .create(LiveApiService.class)
+                .getCate1RoomList(cateId, offset, limit)
+                .map(new HttpFunction<List<LiveBean>>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<List<LiveBean>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        callBack.onStart(d);
+                    }
+
+                    @Override
+                    public void onNext(List<LiveBean> value) {
+                        callBack.onResult(value);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callBack.onError();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    private void getCate2RoomList(final HttpCallBack<List<LiveBean>> callBack, String cateId, int offset, int limit) {
         ApiHelper.getInstanceApiV2()
                 .create(LiveApiService.class)
                 .getCate2RoomList(cateId, offset, limit)

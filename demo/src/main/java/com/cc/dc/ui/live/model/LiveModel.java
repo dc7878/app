@@ -2,7 +2,6 @@ package com.cc.dc.ui.live.model;
 
 import com.cc.dc.api.ApiHelper;
 import com.cc.dc.api.apiservice.LiveApiService;
-import com.cc.dc.bean.LiveBean;
 import com.cc.dc.bean.LiveColumnBean;
 import com.cc.dc.common.http.function.HttpFunction;
 import com.cc.dc.common.listener.HttpCallBack;
@@ -22,7 +21,7 @@ public class LiveModel implements LiveContract.Model {
 
     @Override
     public void getLiveColumnList(final HttpCallBack<List<LiveColumnBean>> callBack) {
-        ApiHelper.getInstance()
+        ApiHelper.getInstanceApiV2()
                 .create(LiveApiService.class)
                 .getColumnList()
                 .map(new HttpFunction<List<LiveColumnBean>>())

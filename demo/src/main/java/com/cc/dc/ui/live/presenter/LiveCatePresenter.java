@@ -19,11 +19,10 @@ public class LiveCatePresenter extends LiveCateContract.Presenter {
     }
 
     @Override
-    public void loadCateLiveList(String careId, int offset, int limit, final boolean isRefresh) {
+    public void loadCateLiveList(int level, String careId, int offset, int limit, final boolean isRefresh) {
         model.getLiveCateList(new HttpCallBack<List<LiveBean>>() {
             @Override
             public void onStart(Disposable disposable) {
-
             }
 
             @Override
@@ -35,6 +34,6 @@ public class LiveCatePresenter extends LiveCateContract.Presenter {
             public void onError() {
 
             }
-        }, careId, offset, limit, isRefresh);
+        }, level, careId, offset, limit, isRefresh);
     }
 }

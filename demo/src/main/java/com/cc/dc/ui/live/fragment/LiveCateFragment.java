@@ -36,10 +36,12 @@ public class LiveCateFragment extends BaseFragment<LiveCatePresenter> implements
     private final int LIMIT = 20;
 
     private String cateId;
+    private int level;
 
-    public static LiveCateFragment getInstance(String cateId) {
+    public static LiveCateFragment getInstance(String cateId, int level) {
         LiveCateFragment fragment = new LiveCateFragment();
         fragment.cateId = cateId;
+        fragment.level = level;
         return fragment;
     }
 
@@ -102,9 +104,9 @@ public class LiveCateFragment extends BaseFragment<LiveCatePresenter> implements
 
     private void loadData(boolean isRefresh) {
         if (isRefresh) {
-            presenter.loadCateLiveList("181", 0, LIMIT, isRefresh);
+            presenter.loadCateLiveList(level, cateId, 0, LIMIT, isRefresh);
         } else {
-            presenter.loadCateLiveList("181", data.size(), LIMIT, isRefresh);
+            presenter.loadCateLiveList(level, cateId, data.size(), LIMIT, isRefresh);
         }
     }
 }

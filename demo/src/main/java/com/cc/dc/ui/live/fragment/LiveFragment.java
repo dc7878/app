@@ -62,7 +62,7 @@ public class LiveFragment extends BaseFragment<LivePresenter> implements LiveCon
         fragments.add(new LiveUsedFragment());
         fragments.add(new LiveAllFragment());
         for (int i = 0; i < count; i++) {
-            fragments.add(LiveCateFragment.getInstance(list.get(i).getCateId()));
+            fragments.add(LiveCateFragment.getInstance(list.get(i).getCateId(), list.get(i).getLevel()));
         }
 
         homeViewPagerAdapter = new HomeViewPagerAdapter(getActivity().getSupportFragmentManager(), fragments);

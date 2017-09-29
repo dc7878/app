@@ -14,7 +14,7 @@ import java.util.List;
 public interface LiveCateContract {
 
     interface Model extends BaseModel {
-        void getLiveCateList(HttpCallBack<List<LiveBean>> callBack, String careId, int offset, int limit, boolean
+        void getLiveCateList(HttpCallBack<List<LiveBean>> callBack, int level, String careId, int offset, int limit, boolean
                 isRefresh);
     }
 
@@ -23,6 +23,6 @@ public interface LiveCateContract {
     }
 
     abstract class Presenter extends BasePresenter<View, Model> {
-        public abstract void loadCateLiveList(String careId, int offset, int limit, boolean isRefresh);
+        public abstract void loadCateLiveList(int level, String careId, int offset, int limit, boolean isRefresh);
     }
 }

@@ -15,7 +15,7 @@ import retrofit2.http.Query;
  */
 public interface LiveApiService {
 
-    @GET("v1/getColumnList")
+    @GET("live/TabCate/custom")
     Observable<BaseResponse<List<LiveColumnBean>>> getColumnList();
 
     /**
@@ -29,4 +29,7 @@ public interface LiveApiService {
 
     @GET("Live/Roomlist/getCate2RoomList")
     Observable<BaseResponse<List<LiveBean>>> getCate2RoomList(@Query("cate2_id") String cateId, @Query("offset") int offset, @Query("limit") int limit);
+
+    @GET("Live/Roomlist/getCate1RoomList")
+    Observable<BaseResponse<List<LiveBean>>> getCate1RoomList(@Query("cate1_id") String cateId, @Query("offset") int offset, @Query("limit") int limit);
 }
