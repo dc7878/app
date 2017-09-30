@@ -3,7 +3,6 @@ package com.cc.dc.ui.home.presenter;
 import com.cc.dc.bean.HomeCateDataBean;
 import com.cc.dc.bean.HomeRecommendSliderBean;
 import com.cc.dc.common.listener.HttpCallBack;
-import com.cc.dc.common.utils.LUtil;
 import com.cc.dc.ui.home.contract.HomeRecommendContract;
 import com.cc.dc.ui.home.model.HomeRecommendModel;
 
@@ -47,7 +46,7 @@ public class HomeRecommendPresenter extends HomeRecommendContract.Presenter {
 
             @Override
             public void onResult(List<HomeCateDataBean> result) {
-                LUtil.e("HomeRecommendPresenter", "loadBigDataRoomList>>>" + result.size());
+                view.showBigDataRoomList(result);
             }
 
             @Override
@@ -66,7 +65,7 @@ public class HomeRecommendPresenter extends HomeRecommendContract.Presenter {
 
             @Override
             public void onResult(List<HomeCateDataBean> result) {
-                LUtil.e("HomeRecommendPresenter", "loadHomeCustomList>>>" + result.size());
+                view.showHomeCustomList(result);
             }
 
             @Override
@@ -85,7 +84,7 @@ public class HomeRecommendPresenter extends HomeRecommendContract.Presenter {
 
             @Override
             public void onResult(List<HomeCateDataBean> result) {
-                LUtil.e("HomeRecommendPresenter", "loadHotCateList>>>" + result.size());
+                view.showHotCateList(result);
             }
 
             @Override

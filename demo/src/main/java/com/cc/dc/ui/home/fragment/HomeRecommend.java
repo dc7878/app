@@ -54,7 +54,7 @@ public class HomeRecommend extends BaseFragment<HomeRecommendPresenter> implemen
 
     @Override
     public void lazyLoadData() {
-//        presenter.loadSliderList();
+        presenter.loadSliderList();
 
         presenter.loadBigDataRoomList("android1", "", StringUtil.getAuth32());
         presenter.loadHomeCustomList();
