@@ -30,7 +30,7 @@ import butterknife.OnClick;
  * Created by dc on 2017/9/27.
  * 直播Item中的每一个页面(不包括常用页面)
  */
-public class LiveCateFragment extends BaseFragment<LiveCatePresenter> implements LiveCateContract.View, SwipeRefreshLayout.OnRefreshListener, LoadMoreRecyclerView.OnLoadMoreListener {
+public class LiveCateFragment extends BaseFragment<LiveCatePresenter> implements LiveCateContract.View, SwipeRefreshLayout.OnRefreshListener, LoadMoreRecyclerView.OnLoadMoreListener, LoadMoreRecyclerView.OnScrollStateChanged {
 
     @Bind(R.id.layout_game_cate)
     LinearLayout layoutGame;
@@ -120,14 +120,10 @@ public class LiveCateFragment extends BaseFragment<LiveCatePresenter> implements
 
     @Override
     public void showLiveGameCateList(List<LiveGameCateBean> list) {
-        int totalLine  = list.size() / gameColumnCount + (list.size() % gameColumnCount == 0 ? 0 : 1);
-        LUtil.e("LiveCateFragmentInfo", "LiveCateFragmentInfo>>>" + list.size() + ">>>" + totalLine);
-        if (totalLine > 6) {
-            // 大于6行最多显示6行
-            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) recyclerViewGame.getLayoutParams();
-            params.height = DensityUtil.dip2px(getActivity(), 40) * 6;
-            recyclerViewGame.requestLayout();
-        }
+        // 默认显示一行
+        LinearLayout.LayoutParams paramsRecycler = (LinearLayout.LayoutParams) recyclerViewGame.getLayoutParams();
+        paramsRecycler.height = DensityUtil.dip2px(getActivity(), 40) * 1;
+
         liveGameCateBeans.addAll(list);
         gameCateAdapter.notifyDataSetChanged();
         if (list.size() > 1) {
@@ -141,6 +137,7 @@ public class LiveCateFragment extends BaseFragment<LiveCatePresenter> implements
     @Override
     public void showLiveCateList(List<LiveBean> list, boolean isRefresh) {
         if (isRefresh) {
+            recyclerView.setOnScrollStateChanged(this);
             data.clear();
             refreshLayout.setRefreshing(false);
         } else {
@@ -153,6 +150,7 @@ public class LiveCateFragment extends BaseFragment<LiveCatePresenter> implements
 
     @OnClick(R.id.btn_change)
     protected void hideOrShow() {
+        isShowAll = !isShowAll;
         // isShowAll为false时显示一行
         int showLine = 1;
         int totalLine = liveGameCateBeans.size() / gameColumnCount + (liveGameCateBeans.size() % gameColumnCount == 0 ? 0 : 1);
@@ -163,7 +161,14 @@ public class LiveCateFragment extends BaseFragment<LiveCatePresenter> implements
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) recyclerViewGame.getLayoutParams();
         params.height = DensityUtil.dip2px(getActivity(), 40) * showLine;
         recyclerViewGame.requestLayout();
-        isShowAll = !isShowAll;
+    }
+
+    @Override
+    public void scrollStateChanged() {
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) recyclerViewGame.getLayoutParams();
+        params.height = DensityUtil.dip2px(getActivity(), 40) * 1;
+        recyclerViewGame.requestLayout();
+        isShowAll = false;
     }
 
     private void initGameCate() {

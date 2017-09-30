@@ -25,13 +25,13 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.common_tab_layout_main)
     CommonTabLayout tabLayout;
 
-    private String[] mTitles = {"首页", "直播", "视频", "关注", "我的"};
+    private String[] mTitles = {"首页", "直播", "关注", "发现", "我的"};
     private int[] mIconUnSelectIds = {
-            R.mipmap.home_pressed, R.mipmap.live_pressed,
-            R.mipmap.video_pressed, R.mipmap.follow_pressed, R.mipmap.user_pressed};
+            R.mipmap.home_pressed, R.mipmap.live_pressed, R.mipmap.follow_pressed,
+            R.mipmap.video_pressed, R.mipmap.user_pressed};
     private int[] mIconSelectIds = {
-            R.mipmap.home_selected, R.mipmap.live_selected,
-            R.mipmap.video_selected, R.mipmap.follow_selected, R.mipmap.user_selected};
+            R.mipmap.home_selected, R.mipmap.live_selected, R.mipmap.follow_selected,
+            R.mipmap.video_selected, R.mipmap.user_selected};
 
     private ArrayList<CustomTabEntity> tabEntities;
 
@@ -79,21 +79,21 @@ public class MainActivity extends BaseActivity {
         if (savedInstanceState != null) {
             homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag("homeFragment");
             liveFragment = (LiveFragment) getSupportFragmentManager().findFragmentByTag("liveFragment");
-            videoFragment = (VideoFragment) getSupportFragmentManager().findFragmentByTag("videoFragment");
             followFragment = (FollowFragment) getSupportFragmentManager().findFragmentByTag("followFragment");
+            videoFragment = (VideoFragment) getSupportFragmentManager().findFragmentByTag("videoFragment");
             userFragment = (UserFragment) getSupportFragmentManager().findFragmentByTag("userFragment");
             currentTabPosition = savedInstanceState.getInt(Constant.MAIN_CURRENT_POSITION);
         } else {
             homeFragment = new HomeFragment();
             liveFragment = new LiveFragment();
-            videoFragment = new VideoFragment();
             followFragment = new FollowFragment();
+            videoFragment = new VideoFragment();
             userFragment = new UserFragment();
 
             transaction.add(R.id.container, homeFragment, "homeFragment");
             transaction.add(R.id.container, liveFragment, "liveFragment");
-            transaction.add(R.id.container, videoFragment, "videoFragment");
             transaction.add(R.id.container, followFragment, "followFragment");
+            transaction.add(R.id.container, videoFragment, "videoFragment");
             transaction.add(R.id.container, userFragment, "userFragment");
         }
         transaction.commit();
@@ -121,16 +121,16 @@ public class MainActivity extends BaseActivity {
             case 2:
                 transaction.hide(homeFragment);
                 transaction.hide(liveFragment);
-                transaction.hide(followFragment);
+                transaction.hide(videoFragment);
                 transaction.hide(userFragment);
-                transaction.show(videoFragment);
+                transaction.show(followFragment);
                 break;
             case 3:
                 transaction.hide(homeFragment);
                 transaction.hide(liveFragment);
-                transaction.hide(videoFragment);
+                transaction.hide(followFragment);
                 transaction.hide(userFragment);
-                transaction.show(followFragment);
+                transaction.show(videoFragment);
                 break;
             case 4:
                 transaction.hide(homeFragment);

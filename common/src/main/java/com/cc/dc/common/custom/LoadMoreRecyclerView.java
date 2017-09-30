@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
 
+import com.cc.dc.common.utils.LUtil;
+
 /**
  * Created by dc on 2017/9/20.
  */
@@ -16,6 +18,8 @@ public class LoadMoreRecyclerView extends RecyclerView {
     private boolean loading = false;
 
     private OnLoadMoreListener loadMoreListener;
+
+    private OnScrollStateChanged onScrollStateChanged;
 
     public LoadMoreRecyclerView(Context context) {
         this(context, null);
@@ -33,6 +37,10 @@ public class LoadMoreRecyclerView extends RecyclerView {
         this.loadMoreListener = loadMoreListener;
     }
 
+    public void setOnScrollStateChanged(OnScrollStateChanged onScrollStateChanged) {
+        this.onScrollStateChanged = onScrollStateChanged;
+    }
+
     public void loadingFinish() {
         loading = false;
     }
@@ -40,6 +48,7 @@ public class LoadMoreRecyclerView extends RecyclerView {
     @Override
     public void onScrollStateChanged(int state) {
         super.onScrollStateChanged(state);
+        onScrollStateChanged.scrollStateChanged();
         RecyclerView.LayoutManager layoutManager = getLayoutManager();
         int totalItemCount = layoutManager.getItemCount();
         int lastVisibleItem = 0;
@@ -75,5 +84,10 @@ public class LoadMoreRecyclerView extends RecyclerView {
     public interface OnLoadMoreListener {
 
         void onLoadMore();
+    }
+
+    public interface OnScrollStateChanged {
+
+        void scrollStateChanged();
     }
 }
