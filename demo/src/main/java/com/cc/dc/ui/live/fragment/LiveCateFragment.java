@@ -165,6 +165,9 @@ public class LiveCateFragment extends BaseFragment<LiveCatePresenter> implements
 
     @Override
     public void scrollStateChanged() {
+        if (!isShowAll) {
+            return;
+        }
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) recyclerViewGame.getLayoutParams();
         params.height = DensityUtil.dip2px(getActivity(), 40) * 1;
         recyclerViewGame.requestLayout();

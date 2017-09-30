@@ -4,9 +4,24 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <android.support.v4.view.ViewPager
-        android:id="@+id/view_pager_slider"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_layout_recommend"
         android:layout_width="match_parent"
-        android:layout_height="150dp">
-    </android.support.v4.view.ViewPager>
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <android.support.v4.view.ViewPager
+                android:id="@+id/view_pager_slider"
+                android:layout_width="match_parent"
+                android:layout_height="150dp">
+            </android.support.v4.view.ViewPager>
+            <com.cc.dc.common.custom.LoadMoreRecyclerView
+                android:id="@+id/recycler_view_recommend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </com.cc.dc.common.custom.LoadMoreRecyclerView>
+        </LinearLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

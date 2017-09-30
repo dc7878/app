@@ -1,17 +1,19 @@
 package com.cc.dc.ui.home.fragment;
 
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.cc.dc.bean.HomeCateDataBean;
 import com.cc.dc.bean.HomeRecommendSliderBean;
+import com.cc.dc.common.custom.LoadMoreRecyclerView;
 import com.cc.dc.common.custom.ViewPagerAdapter;
 import com.cc.dc.common.ui.BaseFragment;
-import com.cc.dc.common.utils.DensityUtil;
+import com.cc.dc.common.utils.StringUtil;
 import com.cc.dc.dc.R;
 import com.cc.dc.ui.home.contract.HomeRecommendContract;
 import com.cc.dc.ui.home.presenter.HomeRecommendPresenter;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +26,12 @@ import butterknife.Bind;
  */
 public class HomeRecommend extends BaseFragment<HomeRecommendPresenter> implements HomeRecommendContract.View {
 
+    @Bind(R.id.refresh_layout_recommend)
+    SwipeRefreshLayout refreshLayout;
     @Bind(R.id.view_pager_slider)
     ViewPager slider;
+    @Bind(R.id.recycler_view_recommend)
+    LoadMoreRecyclerView recyclerView;
 
     private List<ImageView> data = new ArrayList<>();
     private ViewPagerAdapter adapter;
@@ -44,12 +50,16 @@ public class HomeRecommend extends BaseFragment<HomeRecommendPresenter> implemen
     public void initPresenter() {
         presenter = new HomeRecommendPresenter();
         presenter.attachView(this);
-
     }
 
     @Override
     public void lazyLoadData() {
-        presenter.loadSliderList();
+//        presenter.loadSliderList();
+
+        presenter.loadBigDataRoomList("android1", "", StringUtil.getAuth32());
+        presenter.loadHomeCustomList();
+
+        presenter.loadHotCateList("android1", "", StringUtil.getAuth32());
     }
 
     @Override
@@ -57,10 +67,25 @@ public class HomeRecommend extends BaseFragment<HomeRecommendPresenter> implemen
         for (HomeRecommendSliderBean bean: list) {
             ImageView imageView = new ImageView(getActivity());
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-            Glide.with(this).load(bean.getPicUrl()).override(1000, DensityUtil.dip2px(getActivity(), 150)).into(imageView);
+            Glide.with(this).load(bean.getPicUrl()).into(imageView);
             data.add(imageView);
         }
         adapter = new ViewPagerAdapter(data);
         slider.setAdapter(adapter);
+    }
+
+    @Override
+    public void showBigDataRoomList(List<HomeCateDataBean> list) {
+
+    }
+
+    @Override
+    public void showHomeCustomList(List<HomeCateDataBean> list) {
+
+    }
+
+    @Override
+    public void showHotCateList(List<HomeCateDataBean> list) {
+
     }
 }
