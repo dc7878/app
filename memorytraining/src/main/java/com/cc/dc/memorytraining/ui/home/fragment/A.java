@@ -1,4 +1,4 @@
-package com.cc.dc.memorytraining.activity;
+package com.cc.dc.memorytraining.ui.home.fragment;
 
 /**
  * Created by dc on 17/10/8.
