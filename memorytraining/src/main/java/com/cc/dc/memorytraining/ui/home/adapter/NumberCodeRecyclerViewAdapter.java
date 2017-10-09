@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.cc.dc.memorytraining.R;
 import com.cc.dc.memorytraining.bean.NumberCodeBean;
 
@@ -21,10 +22,12 @@ import butterknife.ButterKnife;
  */
 public class NumberCodeRecyclerViewAdapter extends RecyclerView.Adapter<NumberCodeRecyclerViewAdapter.NumberCodeViewHolder> {
 
+    private Context context;
     private List<NumberCodeBean> data;
     private LayoutInflater inflater;
 
     public NumberCodeRecyclerViewAdapter(Context context, List<NumberCodeBean> data) {
+        this.context = context;
         this.data = data;
         inflater = LayoutInflater.from(context);
     }
@@ -39,7 +42,7 @@ public class NumberCodeRecyclerViewAdapter extends RecyclerView.Adapter<NumberCo
     @Override
     public void onBindViewHolder(NumberCodeViewHolder holder, int position) {
         holder.tvDesc.setText(data.get(position).getDesc());
-        holder.ivImage.setImageResource(data.get(position).getResId());
+        Glide.with(context).load(data.get(position).getResId()).into(holder.ivImage);
     }
 
     @Override
