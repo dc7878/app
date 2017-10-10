@@ -1,5 +1,6 @@
 package com.cc.dc.memorytraining.ui.home.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
 
@@ -95,5 +97,11 @@ public class MainActivity extends BaseActivity {
 
         adapter.notifyDataSetChanged();
         itemDecoration.notifyDataSetChanged();
+    }
+
+    @OnClick(R.id.tv_test)
+    protected void clickTest() {
+        Intent intent = new Intent(this, NumberCodeTestActivity.class);
+        startActivity(intent);
     }
 }
