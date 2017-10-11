@@ -6,7 +6,6 @@
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/demo/demo.iml" filepath="$PROJECT_DIR$/demo/demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/memorytraining/memorytraining.iml" filepath="$PROJECT_DIR$/memorytraining/memorytraining.iml" />
-      <module fileurl="file://E:\work\my code\app\memorytraining\memorytraining.iml" filepath="E:\work\my code\app\memorytraining\memorytraining.iml" />
       <module fileurl="file://$PROJECT_DIR$/share/share.iml" filepath="$PROJECT_DIR$/share/share.iml" />
     </modules>
   </component>

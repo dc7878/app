@@ -104,4 +104,10 @@ public class MainActivity extends BaseActivity {
         Intent intent = new Intent(this, NumberCodeTestActivity.class);
         startActivity(intent);
     }
+
+    @OnClick(R.id.tv_pile_path)
+    protected void clickPile() {
+        Intent intent = new Intent(this, PilePathActivity.class);
+        startActivity(intent);
+    }
 }

@@ -16,7 +16,6 @@ import butterknife.OnClick;
 /**
  * Created by dc on 2017/10/10.
  */
-
 public class NumberCodeTestActivity extends BaseActivity {
 
     @Bind(R.id.tv_code)
