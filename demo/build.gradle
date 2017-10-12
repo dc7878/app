@@ -25,4 +25,6 @@ dependencies {
     compile project(':common')
 
     compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    // https://github.com/hdodenhof/CircleImageView
+    compile 'de.hdodenhof:circleimageview:2.2.0'
 }
