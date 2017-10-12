@@ -18,7 +18,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity {
+public class NumberCodeListActivity extends BaseActivity {
 
     @Bind(R.id.recycler_view_main)
     RecyclerView recyclerView;
