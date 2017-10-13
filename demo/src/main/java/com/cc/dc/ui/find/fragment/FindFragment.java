@@ -1,24 +1,35 @@
-package com.cc.dc.ui.video.fragment;
+package com.cc.dc.ui.find.fragment;
 
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
+import com.bumptech.glide.Glide;
 import com.cc.dc.bean.VideoBean;
 import com.cc.dc.common.custom.GridItemDecoration;
 import com.cc.dc.common.custom.LoadMoreRecyclerView;
 import com.cc.dc.common.ui.BaseFragment;
 import com.cc.dc.dc.R;
-import com.cc.dc.ui.video.adapter.VideoRecyclerViewAdapter;
+import com.cc.dc.ui.find.adapter.FindRecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by dc on 2017/9/19.
  */
-public class VideoFragment extends BaseFragment {
+public class FindFragment extends BaseFragment {
+
+    @Bind(R.id.civ_yb)
+    CircleImageView civYuba;
+    @Bind(R.id.civ_video)
+    CircleImageView civVideo;
+    @Bind(R.id.civ_lrs)
+    CircleImageView civLRS;
+    @Bind(R.id.civ_hot)
+    CircleImageView civHot;
 
     @Bind(R.id.refresh_layout_video)
     SwipeRefreshLayout refreshLayout;
@@ -26,18 +37,23 @@ public class VideoFragment extends BaseFragment {
     LoadMoreRecyclerView recyclerViewHome;
 
     private List<VideoBean> data = new ArrayList<>();
-    private VideoRecyclerViewAdapter adapter;
+    private FindRecyclerViewAdapter adapter;
     private GridItemDecoration itemDecoration;
 
     private int spanCount = 2;
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_video;
+        return R.layout.fragment_find;
     }
 
     @Override
     public void initView() {
+        Glide.with(this).load("http://www.learn2sleep.com/icon.jpg").into(civYuba);
+        Glide.with(this).load("http://www.learn2sleep.com/icon.jpg").into(civVideo);
+        Glide.with(this).load("http://www.learn2sleep.com/icon.jpg").into(civLRS);
+        Glide.with(this).load("http://www.learn2sleep.com/icon.jpg").into(civHot);
+
 
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -46,7 +62,7 @@ public class VideoFragment extends BaseFragment {
             }
         });
 
-        adapter = new VideoRecyclerViewAdapter(getActivity(), data);
+        adapter = new FindRecyclerViewAdapter(getActivity(), data);
         recyclerViewHome.setAdapter(adapter);
         recyclerViewHome.setLayoutManager(new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL));
         itemDecoration = new GridItemDecoration.Builder()
