@@ -18,7 +18,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity {
+public class NumberCodeListActivity extends BaseActivity {
 
     @Bind(R.id.recycler_view_main)
     RecyclerView recyclerView;
@@ -102,6 +102,12 @@ public class MainActivity extends BaseActivity {
     @OnClick(R.id.tv_test)
     protected void clickTest() {
         Intent intent = new Intent(this, NumberCodeTestActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.tv_pile_path)
+    protected void clickPile() {
+        Intent intent = new Intent(this, PilePathActivity.class);
         startActivity(intent);
     }
 }

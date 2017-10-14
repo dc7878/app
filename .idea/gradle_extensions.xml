@@ -60,6 +60,7 @@
             <task name="prepareComAndroidSupportSupportCoreUtils2531Library" type="com.android.build.gradle.internal.tasks.PrepareLibraryTask">Prepare com.android.support:support-core-utils:25.3.1&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="prepareComAndroidSupportSupportV42531Library" type="com.android.build.gradle.internal.tasks.PrepareLibraryTask">Prepare com.android.support:support-v4:25.3.1&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="transformResourcesWithMergeJavaResForReleaseUnitTest" type="com.android.build.gradle.internal.pipeline.TransformTask">&lt;i&gt;Task group: other&lt;i&gt;</task>
+            <task name="prepareDeHdodenhofCircleimageview220Library" type="com.android.build.gradle.internal.tasks.PrepareLibraryTask">Prepare de.hdodenhof:circleimageview:2.2.0&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="prepareIoReactivexRxjava2Rxandroid201Library" type="com.android.build.gradle.internal.tasks.PrepareLibraryTask">Prepare io.reactivex.rxjava2:rxandroid:2.0.1&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="cleanIdeaModule" type="org.gradle.api.tasks.Delete">&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="transformClassesWithDexForDebug" type="com.android.build.gradle.internal.pipeline.TransformTask">&lt;i&gt;Task group: other&lt;i&gt;</task>
@@ -473,6 +474,7 @@
             <task name="compileDebugUnitTestJavaWithJavac" type="com.android.build.gradle.tasks.factory.AndroidJavaCompile">&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="prepareComAndroidSupportSupportCoreUtils2531Library" type="com.android.build.gradle.internal.tasks.PrepareLibraryTask">Prepare com.android.support:support-core-utils:25.3.1&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="prepareComAndroidSupportSupportV42531Library" type="com.android.build.gradle.internal.tasks.PrepareLibraryTask">Prepare com.android.support:support-v4:25.3.1&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
+            <task name="prepareDeHdodenhofCircleimageview220Library" type="com.android.build.gradle.internal.tasks.PrepareLibraryTask">Prepare de.hdodenhof:circleimageview:2.2.0&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="transformResourcesWithMergeJavaResForReleaseUnitTest" type="com.android.build.gradle.internal.pipeline.TransformTask">&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="prepareIoReactivexRxjava2Rxandroid201Library" type="com.android.build.gradle.internal.tasks.PrepareLibraryTask">Prepare io.reactivex.rxjava2:rxandroid:2.0.1&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="cleanIdeaModule" type="org.gradle.api.tasks.Delete">&lt;i&gt;Task group: other&lt;i&gt;</task>

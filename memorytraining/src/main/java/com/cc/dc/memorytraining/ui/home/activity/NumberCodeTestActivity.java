@@ -16,13 +16,12 @@ import butterknife.OnClick;
 /**
  * Created by dc on 2017/10/10.
  */
-
 public class NumberCodeTestActivity extends BaseActivity {
 
     @Bind(R.id.tv_code)
     TextView tvCode;
 
-    private int count = 10;
+    private int count = 20;
     private List<String> list;
     private List<String> currentList;
     private List<String> tempList;
@@ -75,7 +74,7 @@ public class NumberCodeTestActivity extends BaseActivity {
         tempList.clear();
         currentList.clear();
         tempList.addAll(list);
-        count = 10;
+        count = 20;
         while (count > 0) {
             int position = random.nextInt(tempList.size());
             currentList.add(tempList.get(position));

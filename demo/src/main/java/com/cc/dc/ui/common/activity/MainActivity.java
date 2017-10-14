@@ -7,11 +7,11 @@ import com.cc.dc.Constant;
 import com.cc.dc.common.ui.BaseActivity;
 import com.cc.dc.entity.TabEntity;
 import com.cc.dc.dc.R;
+import com.cc.dc.ui.find.fragment.FindFragment;
 import com.cc.dc.ui.follow.fragment.FollowFragment;
 import com.cc.dc.ui.home.fragment.HomeFragment;
 import com.cc.dc.ui.live.fragment.LiveFragment;
 import com.cc.dc.ui.user.fragment.UserFragment;
-import com.cc.dc.ui.video.fragment.VideoFragment;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
@@ -37,7 +37,7 @@ public class MainActivity extends BaseActivity {
 
     private HomeFragment homeFragment;
     private LiveFragment liveFragment;
-    private VideoFragment videoFragment;
+    private FindFragment videoFragment;
     private FollowFragment followFragment;
     private UserFragment userFragment;
 
@@ -80,14 +80,14 @@ public class MainActivity extends BaseActivity {
             homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag("homeFragment");
             liveFragment = (LiveFragment) getSupportFragmentManager().findFragmentByTag("liveFragment");
             followFragment = (FollowFragment) getSupportFragmentManager().findFragmentByTag("followFragment");
-            videoFragment = (VideoFragment) getSupportFragmentManager().findFragmentByTag("videoFragment");
+            videoFragment = (FindFragment) getSupportFragmentManager().findFragmentByTag("videoFragment");
             userFragment = (UserFragment) getSupportFragmentManager().findFragmentByTag("userFragment");
             currentTabPosition = savedInstanceState.getInt(Constant.MAIN_CURRENT_POSITION);
         } else {
             homeFragment = new HomeFragment();
             liveFragment = new LiveFragment();
             followFragment = new FollowFragment();
-            videoFragment = new VideoFragment();
+            videoFragment = new FindFragment();
             userFragment = new UserFragment();
 
             transaction.add(R.id.container, homeFragment, "homeFragment");

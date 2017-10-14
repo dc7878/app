@@ -1,4 +1,4 @@
-package com.cc.dc.ui.video.adapter;
+package com.cc.dc.ui.find.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -18,12 +18,12 @@ import butterknife.ButterKnife;
 /**
  * Created by dc on 2017/9/20.
  */
-public class VideoRecyclerViewAdapter extends RecyclerView.Adapter<VideoRecyclerViewAdapter.VideoViewHolder> {
+public class FindRecyclerViewAdapter extends RecyclerView.Adapter<FindRecyclerViewAdapter.VideoViewHolder> {
 
     private List<VideoBean> data;
     private LayoutInflater inflater;
 
-    public VideoRecyclerViewAdapter(Context context, List<VideoBean> data) {
+    public FindRecyclerViewAdapter(Context context, List<VideoBean> data) {
         this.data = data;
         inflater = LayoutInflater.from(context);
     }
