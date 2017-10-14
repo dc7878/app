@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by dc on 2017/10/13.
  */
-public class FindDigistInfo {
+public class FindDigestInfo {
 
     private List<FindDigestBean> list;
 

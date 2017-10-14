@@ -9,3 +9,5 @@
 .externalNativeBuild
 .dea/
 .dea/misc.xml
+/.idea/misc.xml
+/.idea

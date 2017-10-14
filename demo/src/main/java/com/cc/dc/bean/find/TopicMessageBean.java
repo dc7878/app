@@ -6,4 +6,12 @@ package com.cc.dc.bean.find;
  */
 public class TopicMessageBean {
     private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

@@ -5,11 +5,17 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import com.bumptech.glide.Glide;
 import com.cc.dc.bean.VideoBean;
+import com.cc.dc.bean.find.FindDigestBean;
+import com.cc.dc.bean.find.FindTopicBean;
+import com.cc.dc.bean.find.TopicMessageBean;
 import com.cc.dc.common.custom.GridItemDecoration;
 import com.cc.dc.common.custom.LoadMoreRecyclerView;
 import com.cc.dc.common.ui.BaseFragment;
+import com.cc.dc.common.utils.LUtil;
 import com.cc.dc.dc.R;
 import com.cc.dc.ui.find.adapter.FindRecyclerViewAdapter;
+import com.cc.dc.ui.find.contract.FindContract;
+import com.cc.dc.ui.find.presenter.FindPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +26,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 /**
  * Created by dc on 2017/9/19.
  */
-public class FindFragment extends BaseFragment {
+public class FindFragment extends BaseFragment<FindPresenter> implements FindContract.View {
 
     @Bind(R.id.civ_yb)
     CircleImageView civYuba;
@@ -86,6 +92,8 @@ public class FindFragment extends BaseFragment {
 
     @Override
     public void initPresenter() {
+        presenter = new FindPresenter();
+        presenter.attachView(this);
 
     }
 
@@ -93,6 +101,25 @@ public class FindFragment extends BaseFragment {
     public void lazyLoadData() {
         refreshLayout.setRefreshing(true);
         refresh();
+
+        presenter.loadTopicMessageList();
+        presenter.loadDigestList(0);
+        presenter.loadTopicList(0);
+    }
+
+    @Override
+    public void showTopicMessageList(List<TopicMessageBean> list) {
+        LUtil.e("FindFragment", "showTopicMessageList>>>" + list.size());
+    }
+
+    @Override
+    public void showDigestList(List<FindDigestBean> list) {
+        LUtil.e("FindFragment", "showDigestList>>>" + list.size());
+    }
+
+    @Override
+    public void showTopicList(List<FindTopicBean> list) {
+        LUtil.e("FindFragment", "showTopicList>>>" + list.size());
     }
 
     private void refresh() {

@@ -27,6 +27,6 @@ public class BaseResponse<T> {
     }
 
     public boolean isSuccess() {
-        return error == ConstantCode.RESPONSE_SUCCESS;
+        return error == ConstantCode.RESPONSE_SUCCESS || error == 200;
     }
 }
