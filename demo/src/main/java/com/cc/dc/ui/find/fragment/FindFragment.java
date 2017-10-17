@@ -2,6 +2,7 @@ package com.cc.dc.ui.find.fragment;
 
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.cc.dc.bean.VideoBean;
@@ -36,6 +37,15 @@ public class FindFragment extends BaseFragment<FindPresenter> implements FindCon
     CircleImageView civLRS;
     @Bind(R.id.civ_hot)
     CircleImageView civHot;
+
+    @Bind(R.id.tv_info_1)
+    TextView tvInfo1;
+    @Bind(R.id.tv_info_2)
+    TextView tvInfo2;
+    @Bind(R.id.tv_info_3)
+    TextView tvInfo3;
+    @Bind(R.id.tv_info_4)
+    TextView tvInfo4;
 
     @Bind(R.id.refresh_layout_video)
     SwipeRefreshLayout refreshLayout;
@@ -110,6 +120,10 @@ public class FindFragment extends BaseFragment<FindPresenter> implements FindCon
     @Override
     public void showTopicMessageList(List<TopicMessageBean> list) {
         LUtil.e("FindFragment", "showTopicMessageList>>>" + list.size());
+
+        tvInfo1.setText(list.get(0).getName());
+        tvInfo2.setText(list.get(1).getName());
+        tvInfo3.setText(list.get(2).getName());
     }
 
     @Override
