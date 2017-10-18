@@ -42,6 +42,9 @@ public class FindModel implements FindContract.Model {
 
                     @Override
                     public void onNext(List<TopicMessageBean> value) {
+                        for (TopicMessageBean bean: value) {
+                            bean.setName("#" + bean.getName() + "#");
+                        }
                         callBack.onResult(value);
                     }
 

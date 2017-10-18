@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/gray_ddd"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
@@ -10,6 +11,7 @@
         android:layout_height="@dimen/title_bar_height">
     </LinearLayout>
     <LinearLayout
+        android:background="@color/white"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -91,6 +93,7 @@
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
+        android:background="@color/white"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -103,30 +106,64 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tv_info_1"
-                android:textColor="@color/gray_999"
-                android:singleLine="true"
-                android:ellipsize="end"
-                android:gravity="center_horizontal"
+            <LinearLayout
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/find_hot_talk_img_padding"
+                android:paddingBottom="@dimen/find_hot_talk_img_padding"
                 android:layout_weight="1"
-                android:padding="5dp"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content">
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/riv_info_1"
+                    android:layout_marginLeft="@dimen/padding_10"
+                    android:scaleType="fitXY"
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
+                    app:riv_corner_radius="@dimen/find_riv_corner_radius" />
+                <TextView
+                    android:id="@+id/tv_info_1"
+                    android:textColor="@color/gray_999"
+                    android:text="1111"
+                    android:singleLine="true"
+                    android:layout_marginLeft="5dp"
+                    android:ellipsize="end"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
             <View
                 android:background="@color/yellow"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
                 android:layout_width="1px"
                 android:layout_height="match_parent"/>
-            <TextView
-                android:id="@+id/tv_info_2"
-                android:textColor="@color/gray_999"
-                android:gravity="center_horizontal"
-                android:padding="5dp"
+            <LinearLayout
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/find_hot_talk_img_padding"
+                android:paddingBottom="@dimen/find_hot_talk_img_padding"
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content">
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/riv_info_2"
+                    android:layout_marginLeft="@dimen/padding_10"
+                    android:scaleType="fitXY"
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
+                    app:riv_corner_radius="@dimen/find_riv_corner_radius" />
+                <TextView
+                    android:id="@+id/tv_info_2"
+                    android:textColor="@color/gray_999"
+                    android:text="1111"
+                    android:singleLine="true"
+                    android:layout_marginLeft="5dp"
+                    android:ellipsize="end"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
         </LinearLayout>
         <View
             android:background="@color/yellow"
@@ -136,35 +173,88 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tv_info_3"
-                android:textColor="@color/gray_999"
-                android:gravity="center_horizontal"
-                android:padding="5dp"
+            <LinearLayout
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/find_hot_talk_img_padding"
+                android:paddingBottom="@dimen/find_hot_talk_img_padding"
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content">
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/riv_info_3"
+                    android:layout_marginLeft="@dimen/padding_10"
+                    android:scaleType="fitXY"
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
+                    app:riv_corner_radius="@dimen/find_riv_corner_radius" />
+                <TextView
+                    android:id="@+id/tv_info_3"
+                    android:textColor="@color/gray_999"
+                    android:text="1111"
+                    android:singleLine="true"
+                    android:layout_marginLeft="5dp"
+                    android:ellipsize="end"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
             <View
                 android:background="@color/yellow"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
                 android:layout_width="1px"
                 android:layout_height="match_parent"/>
-            <TextView
-                android:id="@+id/tv_info_4"
-                android:textColor="@color/gray_999"
-                android:gravity="center_horizontal"
-                android:padding="5dp"
+            <LinearLayout
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/find_hot_talk_img_padding"
+                android:paddingBottom="@dimen/find_hot_talk_img_padding"
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content">
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/riv_info_4"
+                    android:src="@drawable/number_code_0"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="@dimen/padding_10"
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"/>
+                <TextView
+                    android:id="@+id/tv_info_4"
+                    android:textColor="@color/gray_999"
+                    android:text="1111"
+                    android:singleLine="true"
+                    android:layout_marginLeft="5dp"
+                    android:ellipsize="end"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
         </LinearLayout>
-        <View
-            android:layout_marginBottom="5dp"
-            android:background="@color/yellow"
-            android:layout_width="match_parent"
-            android:layout_height="1px"/>
     </LinearLayout>
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/sliding_tab_layout_find"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/padding_5"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        app:tl_textBold="SELECT"
+        app:tl_tab_space_equal="true"
+        app:tl_indicator_color="@color/yellow"
+        app:tl_indicator_height="3dp"
+        app:tl_underline_color="@color/gray_ddd"
+        app:tl_underline_gravity="BOTTOM"
+        app:tl_underline_height="2dp"
+        app:tl_textSelectColor="@color/yellow"
+        app:tl_textUnselectColor="#333"/>
+    <com.cc.dc.custom.ParentViewPager
+        android:id="@+id/view_pager_find"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.cc.dc.custom.ParentViewPager>
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refresh_layout_video"
         android:visibility="gone"

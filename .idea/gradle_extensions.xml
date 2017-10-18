@@ -10,6 +10,7 @@
             <task name="projects" type="org.gradle.api.tasks.diagnostics.ProjectReportTask">Displays the sub-projects of root project 'app'.&lt;p&gt;&lt;i&gt;Task group: help&lt;i&gt;</task>
             <task name="packageReleaseResources" type="com.android.build.gradle.tasks.MergeResources">&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="validateSigningDebugAndroidTest" type="com.android.build.gradle.internal.tasks.ValidateSigningTask">&lt;i&gt;Task group: other&lt;i&gt;</task>
+            <task name="prepareComMakeramenRoundedimageview230Library" type="com.android.build.gradle.internal.tasks.PrepareLibraryTask">Prepare com.makeramen:roundedimageview:2.3.0&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="assembleReleaseUnitTest">&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="prepareDebugDependencies" type="com.android.build.gradle.internal.tasks.PrepareDependenciesTask">&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="bundleDebug" type="org.gradle.api.tasks.bundling.Zip">Assembles a bundle containing the library in debug.&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
@@ -435,6 +436,7 @@
             <ext name="android" type="com.android.build.gradle.AppExtension" />
             <task name="projects" type="org.gradle.api.tasks.diagnostics.ProjectReportTask">Displays the sub-projects of project ':demo'.&lt;p&gt;&lt;i&gt;Task group: help&lt;i&gt;</task>
             <task name="validateSigningDebugAndroidTest" type="com.android.build.gradle.internal.tasks.ValidateSigningTask">&lt;i&gt;Task group: other&lt;i&gt;</task>
+            <task name="prepareComMakeramenRoundedimageview230Library" type="com.android.build.gradle.internal.tasks.PrepareLibraryTask">Prepare com.makeramen:roundedimageview:2.3.0&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="assembleReleaseUnitTest">&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="prepareDebugDependencies" type="com.android.build.gradle.internal.tasks.PrepareDependenciesTask">&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="processReleaseJavaRes" type="org.gradle.api.tasks.Sync">&lt;i&gt;Task group: other&lt;i&gt;</task>

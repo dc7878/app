@@ -7,7 +7,7 @@
 /build
 /captures
 .externalNativeBuild
-.dea/
-.dea/misc.xml
+.idea/
 /.idea/misc.xml
 /.idea
+/.idea/grandle_extensions.xml

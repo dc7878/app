@@ -13,10 +13,14 @@ import com.cc.dc.common.custom.GridItemDecoration;
 import com.cc.dc.common.custom.LoadMoreRecyclerView;
 import com.cc.dc.common.ui.BaseFragment;
 import com.cc.dc.common.utils.LUtil;
+import com.cc.dc.custom.ParentViewPager;
 import com.cc.dc.dc.R;
 import com.cc.dc.ui.find.adapter.FindRecyclerViewAdapter;
 import com.cc.dc.ui.find.contract.FindContract;
 import com.cc.dc.ui.find.presenter.FindPresenter;
+import com.cc.dc.ui.home.adapter.HomeViewPagerAdapter;
+import com.flyco.tablayout.SlidingTabLayout;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +34,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class FindFragment extends BaseFragment<FindPresenter> implements FindContract.View {
 
     @Bind(R.id.civ_yb)
-    CircleImageView civYuba;
+    CircleImageView civYuBa;
     @Bind(R.id.civ_video)
     CircleImageView civVideo;
     @Bind(R.id.civ_lrs)
@@ -46,17 +50,33 @@ public class FindFragment extends BaseFragment<FindPresenter> implements FindCon
     TextView tvInfo3;
     @Bind(R.id.tv_info_4)
     TextView tvInfo4;
+    @Bind(R.id.riv_info_1)
+    RoundedImageView ivInfo1;
+    @Bind(R.id.riv_info_2)
+    RoundedImageView ivInfo2;
+    @Bind(R.id.riv_info_3)
+    RoundedImageView ivInfo3;
+    @Bind(R.id.riv_info_4)
+    RoundedImageView ivInfo4;
 
     @Bind(R.id.refresh_layout_video)
     SwipeRefreshLayout refreshLayout;
     @Bind(R.id.recycler_view_video)
     LoadMoreRecyclerView recyclerViewHome;
 
+    @Bind(R.id.sliding_tab_layout_find)
+    SlidingTabLayout tabLayout;
+    @Bind(R.id.view_pager_find)
+    ParentViewPager viewPager;
+
     private List<VideoBean> data = new ArrayList<>();
     private FindRecyclerViewAdapter adapter;
     private GridItemDecoration itemDecoration;
-
     private int spanCount = 2;
+
+    private List<BaseFragment> fragments = new ArrayList<>();
+    private String[] titles;
+    private HomeViewPagerAdapter pagerAdapter;
 
     @Override
     public int getLayoutId() {
@@ -65,7 +85,7 @@ public class FindFragment extends BaseFragment<FindPresenter> implements FindCon
 
     @Override
     public void initView() {
-        Glide.with(this).load("http://www.learn2sleep.com/icon.jpg").into(civYuba);
+        Glide.with(this).load("http://www.learn2sleep.com/icon.jpg").into(civYuBa);
         Glide.with(this).load("http://www.learn2sleep.com/icon.jpg").into(civVideo);
         Glide.with(this).load("http://www.learn2sleep.com/icon.jpg").into(civLRS);
         Glide.with(this).load("http://www.learn2sleep.com/icon.jpg").into(civHot);
@@ -98,13 +118,14 @@ public class FindFragment extends BaseFragment<FindPresenter> implements FindCon
                 loadMore();
             }
         });
+
+        initPagerAdapter();
     }
 
     @Override
     public void initPresenter() {
         presenter = new FindPresenter();
         presenter.attachView(this);
-
     }
 
     @Override
@@ -119,11 +140,14 @@ public class FindFragment extends BaseFragment<FindPresenter> implements FindCon
 
     @Override
     public void showTopicMessageList(List<TopicMessageBean> list) {
-        LUtil.e("FindFragment", "showTopicMessageList>>>" + list.size());
-
         tvInfo1.setText(list.get(0).getName());
         tvInfo2.setText(list.get(1).getName());
         tvInfo3.setText(list.get(2).getName());
+        tvInfo4.setText(getResources().getString(R.string.find_more_hot_talk));
+
+        Glide.with(this).load(list.get(0).getAvatar()).into(ivInfo1);
+        Glide.with(this).load(list.get(1).getAvatar()).into(ivInfo2);
+        Glide.with(this).load(list.get(2).getAvatar()).into(ivInfo3);
     }
 
     @Override
@@ -134,6 +158,20 @@ public class FindFragment extends BaseFragment<FindPresenter> implements FindCon
     @Override
     public void showTopicList(List<FindTopicBean> list) {
         LUtil.e("FindFragment", "showTopicList>>>" + list.size());
+    }
+
+    private void initPagerAdapter() {
+        titles = new String[4];
+        titles[0] = "精选";
+        titles[1] = "榜单";
+        titles[2] = "鱼塘";
+        titles[3] = "小组";
+        for (int i = 0; i < 4; i++) {
+            fragments.add(new FindOtherFragment());
+        }
+        pagerAdapter = new HomeViewPagerAdapter(getActivity().getSupportFragmentManager(), fragments);
+        viewPager.setAdapter(pagerAdapter);
+        tabLayout.setViewPager(viewPager, titles);
     }
 
     private void refresh() {
