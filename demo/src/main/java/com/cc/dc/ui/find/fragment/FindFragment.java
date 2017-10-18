@@ -2,6 +2,8 @@ package com.cc.dc.ui.find.fragment;
 
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -42,6 +44,8 @@ public class FindFragment extends BaseFragment<FindPresenter> implements FindCon
     @Bind(R.id.civ_hot)
     CircleImageView civHot;
 
+    @Bind(R.id.layout_info)
+    LinearLayout layoutInfo;
     @Bind(R.id.tv_info_1)
     TextView tvInfo1;
     @Bind(R.id.tv_info_2)
@@ -140,6 +144,11 @@ public class FindFragment extends BaseFragment<FindPresenter> implements FindCon
 
     @Override
     public void showTopicMessageList(List<TopicMessageBean> list) {
+        if (list.size() >= 3) {
+            layoutInfo.setVisibility(View.VISIBLE);
+        } else {
+            return;
+        }
         tvInfo1.setText(list.get(0).getName());
         tvInfo2.setText(list.get(1).getName());
         tvInfo3.setText(list.get(2).getName());

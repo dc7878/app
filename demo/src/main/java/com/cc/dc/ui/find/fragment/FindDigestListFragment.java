@@ -2,6 +2,7 @@ package com.cc.dc.ui.find.fragment;
 
 import android.support.v7.widget.LinearLayoutManager;
 
+import com.cc.dc.bean.find.FindDigestBean;
 import com.cc.dc.common.custom.LinearItemDecoration;
 import com.cc.dc.common.custom.LoadMoreRecyclerView;
 import com.cc.dc.common.ui.BaseFragment;
@@ -44,6 +45,11 @@ public class FindDigestListFragment extends BaseFragment {
 
     @Override
     public void lazyLoadData() {
-
+        for (int i = 0; i < 50; i++) {
+            FindDigestBean bean = new FindDigestBean();
+            bean.setNickName("name>>>" + i);
+            data.add(bean);
+        }
+        adapter.notifyDataSetChanged();
     }
 }

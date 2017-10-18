@@ -93,6 +93,8 @@
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/layout_info"
+        android:visibility="gone"
         android:background="@color/white"
         android:orientation="vertical"
         android:layout_width="match_parent"
