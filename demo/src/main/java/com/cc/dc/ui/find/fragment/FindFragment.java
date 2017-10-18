@@ -167,7 +167,7 @@ public class FindFragment extends BaseFragment<FindPresenter> implements FindCon
         titles[2] = "鱼塘";
         titles[3] = "小组";
         for (int i = 0; i < 4; i++) {
-            fragments.add(new FindOtherFragment());
+            fragments.add(new FindDigestListFragment());
         }
         pagerAdapter = new HomeViewPagerAdapter(getActivity().getSupportFragmentManager(), fragments);
         viewPager.setAdapter(pagerAdapter);

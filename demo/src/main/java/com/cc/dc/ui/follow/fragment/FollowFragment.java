@@ -2,7 +2,6 @@ package com.cc.dc.ui.follow.fragment;
 
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
-import com.bumptech.glide.Glide;
 import com.cc.dc.bean.follow.FollowBean;
 import com.cc.dc.bean.follow.FollowCommentBean;
 import com.cc.dc.common.custom.GridItemDecoration;
@@ -16,15 +15,11 @@ import java.util.List;
 import java.util.Random;
 
 import butterknife.Bind;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by dc on 2017/9/19.
  */
 public class FollowFragment extends BaseFragment {
-
-    @Bind(R.id.profile_image)
-    CircleImageView circleImageView;
 
     @Bind(R.id.lrv_view_follow)
     LoadMoreRecyclerView recyclerView;
@@ -70,8 +65,6 @@ public class FollowFragment extends BaseFragment {
 
     @Override
     public void lazyLoadData() {
-        Glide.with(this).load("http://www.learn2sleep.com/icon.jpg").into(circleImageView);
-
         Random random = new Random();
         for (int i = 0; i < 50; i++) {
             FollowBean bean = new FollowBean();

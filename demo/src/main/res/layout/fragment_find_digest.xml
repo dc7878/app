@@ -4,14 +4,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
-        android:background="@color/yellow"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/title_bar_height">
-    </LinearLayout>
     <com.cc.dc.common.custom.LoadMoreRecyclerView
-        android:id="@+id/lrv_view_follow"
+        android:id="@+id/recycler_view_find_digest"
+        android:background="#ffff00"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
     </com.cc.dc.common.custom.LoadMoreRecyclerView>
 </LinearLayout>
