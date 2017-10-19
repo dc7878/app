@@ -23,11 +23,11 @@ public class HomeRecommendAdapter extends RecyclerView.Adapter<HomeRecommendAdap
 
     private Context context;
 
-    private List<HomeCateListBean> data;
+    private List<Object> data;
 
     private LayoutInflater inflater;
 
-    public HomeRecommendAdapter(Context context, List<HomeCateListBean> data) {
+    public HomeRecommendAdapter(Context context, List<Object> data) {
         this.context = context;
         this.data = data;
         inflater = LayoutInflater.from(context);
@@ -41,7 +41,7 @@ public class HomeRecommendAdapter extends RecyclerView.Adapter<HomeRecommendAdap
 
     @Override
     public void onBindViewHolder(HomeRecommendViewHolder holder, int position) {
-        holder.tvName.setText(data.get(position).getGameName());
+//        holder.tvName.setText(data.get(position).getGameName());
     }
 
     @Override

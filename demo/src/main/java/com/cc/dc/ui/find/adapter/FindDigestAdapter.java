@@ -25,6 +25,10 @@ public class FindDigestAdapter extends RecyclerView.Adapter {
     private LayoutInflater inflater;
     private Context context;
 
+    private View headerView;
+
+    private final int ITEM_TYPE_HEADER = 0;
+
     private final int ITEM_TYPE_NORMAL = 1;
 
     private final int ITEM_TYPE_MORE = 2;
@@ -33,6 +37,11 @@ public class FindDigestAdapter extends RecyclerView.Adapter {
         this.context = context;
         this.data = data;
         inflater = LayoutInflater.from(context);
+    }
+
+    public void setHeaderView(View headerView) {
+        this.headerView = headerView;
+        notifyItemInserted(0);
     }
 
     @Override
@@ -48,6 +57,9 @@ public class FindDigestAdapter extends RecyclerView.Adapter {
                 view = inflater.inflate(R.layout.item_fragment_find_comment, parent, false);
                 holder = new FindCommentViewHolder(view);
                 break;
+            case ITEM_TYPE_HEADER:
+                holder = new FindCommentViewHolder(headerView);
+                break;
         }
         return holder;
     }
@@ -58,24 +70,39 @@ public class FindDigestAdapter extends RecyclerView.Adapter {
         switch (itemType) {
             case ITEM_TYPE_NORMAL:
                 FindNormalViewHolder normalViewHolder = (FindNormalViewHolder) holder;
+                if (headerView != null) {
+                    position = position - 1;
+                }
                 FindDigestBean bean = (FindDigestBean) data.get(position);
                 normalViewHolder.tvName.setText(bean.getNickName());
                 break;
             case ITEM_TYPE_MORE:
                 FindCommentViewHolder moreViewHolder = (FindCommentViewHolder) holder;
+                if (headerView != null) {
+                    position = position - 1;
+                }
                 FindCommentBean commentBean = (FindCommentBean) data.get(position);
                 moreViewHolder.tvInfo.setText(commentBean.getContent());
+                break;
+            case ITEM_TYPE_HEADER:
                 break;
         }
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return headerView == null ? data.size() : data.size() + 1;
     }
 
     @Override
     public int getItemViewType(int position) {
+        if (headerView == null) {
+        } else {
+            if (position == 0) {
+                return ITEM_TYPE_HEADER;
+            }
+            position = position - 1;
+        }
         if (data.get(position) instanceof FindDigestBean) {
             return ITEM_TYPE_NORMAL;
         } else if (data.get(position) instanceof FindCommentBean) {
@@ -104,6 +131,9 @@ public class FindDigestAdapter extends RecyclerView.Adapter {
 
         public FindCommentViewHolder(View itemView) {
             super(itemView);
+            if (itemView == headerView) {
+                return;
+            }
             ButterKnife.bind(this, itemView);
         }
     }

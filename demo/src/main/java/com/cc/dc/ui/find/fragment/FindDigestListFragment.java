@@ -1,6 +1,8 @@
 package com.cc.dc.ui.find.fragment;
 
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.LayoutInflater;
+import android.view.View;
 
 import com.cc.dc.bean.find.FindDigestBean;
 import com.cc.dc.common.custom.LinearItemDecoration;
@@ -51,5 +53,8 @@ public class FindDigestListFragment extends BaseFragment {
             data.add(bean);
         }
         adapter.notifyDataSetChanged();
+
+        View headerView = LayoutInflater.from(getActivity()).inflate(R.layout.recycler_view_footer, null);
+        adapter.setHeaderView(headerView);
     }
 }
