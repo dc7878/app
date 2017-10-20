@@ -1,27 +1,21 @@
 package com.cc.dc.ui.find.fragment;
 
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.support.design.widget.TabLayout;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.cc.dc.bean.VideoBean;
 import com.cc.dc.bean.find.FindDigestBean;
 import com.cc.dc.bean.find.FindTopicBean;
 import com.cc.dc.bean.find.TopicMessageBean;
-import com.cc.dc.common.custom.GridItemDecoration;
-import com.cc.dc.common.custom.LoadMoreRecyclerView;
 import com.cc.dc.common.ui.BaseFragment;
 import com.cc.dc.common.utils.LUtil;
 import com.cc.dc.custom.ParentViewPager;
 import com.cc.dc.dc.R;
-import com.cc.dc.ui.find.adapter.FindRecyclerViewAdapter;
+import com.cc.dc.ui.find.adapter.FindViewPagerAdapter;
 import com.cc.dc.ui.find.contract.FindContract;
 import com.cc.dc.ui.find.presenter.FindPresenter;
-import com.cc.dc.ui.home.adapter.HomeViewPagerAdapter;
-import com.flyco.tablayout.SlidingTabLayout;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.ArrayList;
@@ -34,6 +28,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by dc on 2017/9/19.
  */
 public class FindFragment extends BaseFragment<FindPresenter> implements FindContract.View {
+
+    @Bind(R.id.tabLayout)
+    TabLayout mTabLayout;
 
     @Bind(R.id.civ_yb)
     CircleImageView civYuBa;
@@ -63,14 +60,11 @@ public class FindFragment extends BaseFragment<FindPresenter> implements FindCon
     @Bind(R.id.riv_info_4)
     RoundedImageView ivInfo4;
 
-    @Bind(R.id.sliding_tab_layout_find)
-    SlidingTabLayout tabLayout;
     @Bind(R.id.view_pager_find)
     ParentViewPager viewPager;
 
     private List<BaseFragment> fragments = new ArrayList<>();
-    private String[] titles;
-    private HomeViewPagerAdapter pagerAdapter;
+    private FindViewPagerAdapter pagerAdapter;
 
     @Override
     public int getLayoutId() {
@@ -128,16 +122,22 @@ public class FindFragment extends BaseFragment<FindPresenter> implements FindCon
     }
 
     private void initPagerAdapter() {
-        titles = new String[4];
-        titles[0] = "精选";
-        titles[1] = "榜单";
-        titles[2] = "鱼塘";
-        titles[3] = "小组";
+        mTabLayout.addTab(mTabLayout.newTab().setText("精选"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("榜单"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("鱼塘"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("小组"));
+
+        List<String> list = new ArrayList<>();
+        list.add("精选");
+        list.add("榜单");
+        list.add("鱼塘");
+        list.add("小组");
+
         for (int i = 0; i < 4; i++) {
             fragments.add(new FindDigestListFragment());
         }
-        pagerAdapter = new HomeViewPagerAdapter(getActivity().getSupportFragmentManager(), fragments);
+        pagerAdapter = new FindViewPagerAdapter(getActivity().getSupportFragmentManager(), fragments, list);
         viewPager.setAdapter(pagerAdapter);
-        tabLayout.setViewPager(viewPager, titles);
+        mTabLayout.setupWithViewPager(viewPager);
     }
 }
