@@ -12,8 +12,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button
-        android:id="@+id/btn_create"
-        android:text="生成随机数"
+        android:id="@+id/btn_create_1"
+        android:text="生成带空格随机数"
+        android:layout_marginTop="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_create_2"
+        android:text="生成不带空格随机数"
         android:layout_marginTop="150dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

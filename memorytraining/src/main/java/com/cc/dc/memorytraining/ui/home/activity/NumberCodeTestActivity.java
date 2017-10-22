@@ -57,13 +57,25 @@ public class NumberCodeTestActivity extends BaseActivity {
         }
     }
 
-    @OnClick(R.id.btn_create)
-    protected void clickCreate() {
+    @OnClick(R.id.btn_create_1)
+    protected void clickCreate1() {
         createCurrentList();
         StringBuffer buffer = new StringBuffer();
         for (int i = 0; i < currentList.size(); i++) {
             buffer.append(currentList.get(i));
             buffer.append(" ");
+        }
+        String info = buffer.toString();
+        info = info.substring(0, info.length() - 1);
+        tvCode.setText(info);
+    }
+
+    @OnClick(R.id.btn_create_2)
+    protected void clickCreate2() {
+        createCurrentList();
+        StringBuffer buffer = new StringBuffer();
+        for (int i = 0; i < currentList.size(); i++) {
+            buffer.append(currentList.get(i));
         }
         String info = buffer.toString();
         info = info.substring(0, info.length() - 1);
