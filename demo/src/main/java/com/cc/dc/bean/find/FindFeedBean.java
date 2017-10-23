@@ -3,11 +3,9 @@ package com.cc.dc.bean.find;
 import com.alibaba.fastjson.annotation.JSONField;
 
 /**
- * Created by dc on 2017/10/13.
- * 榜单
+ * Created by dc on 2017/10/23.
  */
-public class FindTopicBean {
-
+public class FindFeedBean {
     @JSONField(name = "nick_name")
     private String nickName;
 

@@ -7,8 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.cc.dc.bean.find.FindCommentBean;
-import com.cc.dc.bean.find.FindDigestBean;
+import com.cc.dc.bean.find.FindFeedBean;
 import com.cc.dc.dc.R;
 
 import java.util.List;
@@ -73,7 +72,7 @@ public class FindDigestAdapter extends RecyclerView.Adapter {
                 if (headerView != null) {
                     position = position - 1;
                 }
-                FindDigestBean bean = (FindDigestBean) data.get(position);
+                FindFeedBean bean = (FindFeedBean) data.get(position);
                 normalViewHolder.tvName.setText(bean.getNickName());
                 break;
             case ITEM_TYPE_MORE:
@@ -81,8 +80,8 @@ public class FindDigestAdapter extends RecyclerView.Adapter {
                 if (headerView != null) {
                     position = position - 1;
                 }
-                FindCommentBean commentBean = (FindCommentBean) data.get(position);
-                moreViewHolder.tvInfo.setText(commentBean.getContent());
+                FindFeedBean commentBean = (FindFeedBean) data.get(position);
+                moreViewHolder.tvInfo.setText(commentBean.getNickName());
                 break;
             case ITEM_TYPE_HEADER:
                 break;
@@ -103,9 +102,9 @@ public class FindDigestAdapter extends RecyclerView.Adapter {
             }
             position = position - 1;
         }
-        if (data.get(position) instanceof FindDigestBean) {
+        if (data.get(position) instanceof FindFeedBean) {
             return ITEM_TYPE_NORMAL;
-        } else if (data.get(position) instanceof FindCommentBean) {
+        } else if (data.get(position) instanceof FindFeedBean) {
             return ITEM_TYPE_MORE;
         }
         return ITEM_TYPE_NORMAL;

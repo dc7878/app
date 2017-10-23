@@ -6,8 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.cc.dc.bean.find.FindDigestBean;
-import com.cc.dc.bean.find.FindTopicBean;
+import com.cc.dc.bean.find.FindFeedBean;
 import com.cc.dc.bean.find.TopicMessageBean;
 import com.cc.dc.common.ui.BaseFragment;
 import com.cc.dc.common.utils.LUtil;
@@ -112,20 +111,20 @@ public class FindFragment extends BaseFragment<FindPresenter> implements FindCon
     }
 
     @Override
-    public void showDigestList(List<FindDigestBean> list) {
+    public void showDigestList(List<FindFeedBean> list) {
         LUtil.e("FindFragment", "showDigestList>>>" + list.size());
     }
 
     @Override
-    public void showTopicList(List<FindTopicBean> list) {
+    public void showTopicList(List<FindFeedBean> list) {
         LUtil.e("FindFragment", "showTopicList>>>" + list.size());
     }
 
     private void initPagerAdapter() {
-        mTabLayout.addTab(mTabLayout.newTab().setText("精选"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("榜单"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("鱼塘"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("小组"));
+        mTabLayout.addTab(mTabLayout.newTab());
+        mTabLayout.addTab(mTabLayout.newTab());
+        mTabLayout.addTab(mTabLayout.newTab());
+        mTabLayout.addTab(mTabLayout.newTab());
 
         List<String> list = new ArrayList<>();
         list.add("精选");

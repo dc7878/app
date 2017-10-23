@@ -1,7 +1,6 @@
 package com.cc.dc.ui.find.presenter;
 
-import com.cc.dc.bean.find.FindDigestBean;
-import com.cc.dc.bean.find.FindTopicBean;
+import com.cc.dc.bean.find.FindFeedBean;
 import com.cc.dc.bean.find.TopicMessageBean;
 import com.cc.dc.common.listener.HttpCallBack;
 import com.cc.dc.ui.find.contract.FindContract;
@@ -40,13 +39,13 @@ public class FindPresenter extends FindContract.Presenter {
 
     @Override
     public void loadDigestList(int page) {
-        model.getDigestList(new HttpCallBack<List<FindDigestBean>>() {
+        model.getDigestList(new HttpCallBack<List<FindFeedBean>>() {
             @Override
             public void onStart(Disposable disposable) {
             }
 
             @Override
-            public void onResult(List<FindDigestBean> result) {
+            public void onResult(List<FindFeedBean> result) {
                 view.showDigestList(result);
             }
 
@@ -58,13 +57,13 @@ public class FindPresenter extends FindContract.Presenter {
 
     @Override
     public void loadTopicList(int page) {
-        model.getTopicList(new HttpCallBack<List<FindTopicBean>>() {
+        model.getTopicList(new HttpCallBack<List<FindFeedBean>>() {
             @Override
             public void onStart(Disposable disposable) {
             }
 
             @Override
-            public void onResult(List<FindTopicBean> result) {
+            public void onResult(List<FindFeedBean> result) {
                 view.showTopicList(result);
             }
 

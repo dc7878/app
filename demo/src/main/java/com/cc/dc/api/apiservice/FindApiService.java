@@ -1,8 +1,7 @@
 package com.cc.dc.api.apiservice;
 
 import com.cc.dc.api.BaseYuBaResponse;
-import com.cc.dc.bean.find.FindDigestInfo;
-import com.cc.dc.bean.find.FindTopicInfo;
+import com.cc.dc.bean.find.FindFeedInfo;
 import com.cc.dc.bean.find.TopicMessageBean;
 
 import java.util.List;
@@ -29,12 +28,12 @@ public interface FindApiService {
      * @param page
      */
     @GET("digest")
-    Observable<BaseYuBaResponse<FindDigestInfo>> getDigestList(@Header("client") String header, @Query("page") int page);
+    Observable<BaseYuBaResponse<FindFeedInfo>> getDigestList(@Header("client") String header, @Query("page") int page);
 
     /**
      * 榜单
      * @param page
      */
     @GET("toplist")
-    Observable<BaseYuBaResponse<FindTopicInfo>> getTopicList(@Header("client") String header, @Query("page") int page);
+    Observable<BaseYuBaResponse<FindFeedInfo>> getTopicList(@Header("client") String header, @Query("page") int page);
 }
