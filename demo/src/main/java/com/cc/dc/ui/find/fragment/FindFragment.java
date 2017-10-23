@@ -89,7 +89,7 @@ public class FindFragment extends BaseFragment<FindPresenter> implements FindCon
     @Override
     public void lazyLoadData() {
         presenter.loadTopicMessageList();
-        presenter.loadDigestList(0);
+        presenter.loadDigestList(1);
         presenter.loadTopicList(0);
     }
 
@@ -133,7 +133,7 @@ public class FindFragment extends BaseFragment<FindPresenter> implements FindCon
         list.add("小组");
 
         for (int i = 0; i < 4; i++) {
-            fragments.add(new FindDigestListFragment());
+            fragments.add(new FindFeedListFragment());
         }
         pagerAdapter = new FindViewPagerAdapter(getActivity().getSupportFragmentManager(), fragments, list);
         viewPager.setAdapter(pagerAdapter);
