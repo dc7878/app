@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 import com.cc.dc.Constant;
 import com.cc.dc.common.ui.BaseActivity;
 import com.cc.dc.entity.TabEntity;
-import com.cc.dc.dc.R;
+import com.cc.dc.R;
 import com.cc.dc.ui.find.fragment.FindFragment;
 import com.cc.dc.ui.follow.fragment.FollowFragment;
 import com.cc.dc.ui.home.fragment.HomeFragment;

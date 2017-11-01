@@ -1,104 +1,271 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator_layout"
+    android:background="@color/gray_ddd"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
-        android:background="@color/yellow"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/title_bar_height">
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
+    <android.support.design.widget.AppBarLayout
+        android:fitsSystemWindows="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
+            app:layout_scrollFlags="scroll"
             android:orientation="vertical"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/civ_yb"
-                android:padding="@dimen/padding_10"
-                android:layout_width="@dimen/circle_image_size"
-                android:layout_height="@dimen/circle_image_size"/>
-            <TextView
-                android:text="鱼吧"
-                android:textSize="13sp"
-                android:textColor="#333"
-                android:gravity="center_horizontal"
+            <LinearLayout
+                android:background="@color/yellow"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/civ_video"
-                android:padding="@dimen/padding_10"
-                android:layout_width="@dimen/circle_image_size"
-                android:layout_height="@dimen/circle_image_size"/>
-            <TextView
-                android:text="斗鱼视频"
-                android:textSize="13sp"
-                android:textColor="#333"
-                android:gravity="center_horizontal"
+                android:layout_height="@dimen/title_bar_height">
+            </LinearLayout>
+            <LinearLayout
+                android:background="@color/white"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/civ_lrs"
-                android:padding="@dimen/padding_10"
-                android:layout_width="@dimen/circle_image_size"
-                android:layout_height="@dimen/circle_image_size"/>
-            <TextView
-                android:text="狼人杀"
-                android:textSize="13sp"
-                android:textColor="#333"
-                android:gravity="center_horizontal"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/civ_yb"
+                        android:padding="@dimen/padding_10"
+                        android:layout_width="@dimen/circle_image_size"
+                        android:layout_height="@dimen/circle_image_size"/>
+                    <TextView
+                        android:text="鱼吧"
+                        android:textSize="13sp"
+                        android:textColor="#333"
+                        android:gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/civ_video"
+                        android:padding="@dimen/padding_10"
+                        android:layout_width="@dimen/circle_image_size"
+                        android:layout_height="@dimen/circle_image_size"/>
+                    <TextView
+                        android:text="斗鱼视频"
+                        android:textSize="13sp"
+                        android:textColor="#333"
+                        android:gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/civ_lrs"
+                        android:padding="@dimen/padding_10"
+                        android:layout_width="@dimen/circle_image_size"
+                        android:layout_height="@dimen/circle_image_size"/>
+                    <TextView
+                        android:text="狼人杀"
+                        android:textSize="13sp"
+                        android:textColor="#333"
+                        android:gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/civ_hot"
+                        android:padding="@dimen/padding_10"
+                        android:layout_width="@dimen/circle_image_size"
+                        android:layout_height="@dimen/circle_image_size"/>
+                    <TextView
+                        android:text="热门小组"
+                        android:textSize="13sp"
+                        android:textColor="#333"
+                        android:gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layout_info"
+                android:visibility="gone"
+                android:background="@color/white"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content">
+                <View
+                    android:layout_marginTop="5dp"
+                    android:background="@color/yellow"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/find_hot_talk_img_padding"
+                        android:paddingBottom="@dimen/find_hot_talk_img_padding"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/riv_info_1"
+                            android:layout_marginLeft="@dimen/padding_10"
+                            android:scaleType="fitXY"
+                            android:layout_height="30dp"
+                            android:layout_width="30dp"
+                            app:riv_corner_radius="@dimen/find_riv_corner_radius" />
+                        <TextView
+                            android:id="@+id/tv_info_1"
+                            android:textColor="@color/gray_999"
+                            android:text="1111"
+                            android:singleLine="true"
+                            android:layout_marginLeft="5dp"
+                            android:ellipsize="end"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <View
+                        android:background="@color/yellow"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_width="1px"
+                        android:layout_height="match_parent"/>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/find_hot_talk_img_padding"
+                        android:paddingBottom="@dimen/find_hot_talk_img_padding"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/riv_info_2"
+                            android:layout_marginLeft="@dimen/padding_10"
+                            android:scaleType="fitXY"
+                            android:layout_height="30dp"
+                            android:layout_width="30dp"
+                            app:riv_corner_radius="@dimen/find_riv_corner_radius" />
+                        <TextView
+                            android:id="@+id/tv_info_2"
+                            android:textColor="@color/gray_999"
+                            android:text="1111"
+                            android:singleLine="true"
+                            android:layout_marginLeft="5dp"
+                            android:ellipsize="end"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </LinearLayout>
+                <View
+                    android:background="@color/yellow"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/find_hot_talk_img_padding"
+                        android:paddingBottom="@dimen/find_hot_talk_img_padding"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/riv_info_3"
+                            android:layout_marginLeft="@dimen/padding_10"
+                            android:scaleType="fitXY"
+                            android:layout_height="30dp"
+                            android:layout_width="30dp"
+                            app:riv_corner_radius="@dimen/find_riv_corner_radius" />
+                        <TextView
+                            android:id="@+id/tv_info_3"
+                            android:textColor="@color/gray_999"
+                            android:text="1111"
+                            android:singleLine="true"
+                            android:layout_marginLeft="5dp"
+                            android:ellipsize="end"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <View
+                        android:background="@color/yellow"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_width="1px"
+                        android:layout_height="match_parent"/>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/find_hot_talk_img_padding"
+                        android:paddingBottom="@dimen/find_hot_talk_img_padding"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/riv_info_4"
+                            android:src="@drawable/number_code_0"
+                            android:scaleType="fitXY"
+                            android:layout_marginLeft="@dimen/padding_10"
+                            android:layout_height="30dp"
+                            android:layout_width="30dp"/>
+                        <TextView
+                            android:id="@+id/tv_info_4"
+                            android:textColor="@color/gray_999"
+                            android:text="1111"
+                            android:singleLine="true"
+                            android:layout_marginLeft="5dp"
+                            android:ellipsize="end"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/civ_hot"
-                android:padding="@dimen/padding_10"
-                android:layout_width="@dimen/circle_image_size"
-                android:layout_height="@dimen/circle_image_size"/>
-            <TextView
-                android:text="热门小组"
-                android:textSize="13sp"
-                android:textColor="#333"
-                android:gravity="center_horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-    </LinearLayout>
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/refresh_layout_video"
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:tabGravity="fill"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/yellow"
+            app:tabTextColor="#333" />
+    </android.support.design.widget.AppBarLayout>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.cc.dc.common.custom.LoadMoreRecyclerView
-            android:id="@+id/recycler_view_video"
-            android:background="#ffff00"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <com.cc.dc.custom.ParentViewPager
+            android:id="@+id/view_pager_find"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        </com.cc.dc.common.custom.LoadMoreRecyclerView>
-    </android.support.v4.widget.SwipeRefreshLayout>
-</LinearLayout>
+        </com.cc.dc.custom.ParentViewPager>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

@@ -48,7 +48,9 @@ public class LoadMoreRecyclerView extends RecyclerView {
     @Override
     public void onScrollStateChanged(int state) {
         super.onScrollStateChanged(state);
-        onScrollStateChanged.scrollStateChanged();
+        if (null != onScrollStateChanged) {
+            onScrollStateChanged.scrollStateChanged();
+        }
         RecyclerView.LayoutManager layoutManager = getLayoutManager();
         int totalItemCount = layoutManager.getItemCount();
         int lastVisibleItem = 0;

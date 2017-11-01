@@ -1,3 +1,7 @@
 <resources>
     <string name="appName">demo</string>
+    
+    <string name="find_more_hot_talk">更多热门话题</string>
+
+    <string name="find_un_follow">+ 关注</string>
 </resources>

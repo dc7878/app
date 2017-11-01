@@ -1,13 +1,11 @@
 package com.cc.dc.ui.find.model;
 
 import com.cc.dc.api.ApiHelper;
+import com.cc.dc.api.HttpYuBaFunction;
 import com.cc.dc.api.apiservice.FindApiService;
-import com.cc.dc.bean.find.FindDigistInfo;
-import com.cc.dc.bean.find.FindDigestBean;
-import com.cc.dc.bean.find.FindTopicBean;
-import com.cc.dc.bean.find.FindTopicInfo;
+import com.cc.dc.bean.find.FindFeedBean;
+import com.cc.dc.bean.find.FindFeedInfo;
 import com.cc.dc.bean.find.TopicMessageBean;
-import com.cc.dc.common.http.function.HttpFunction;
 import com.cc.dc.common.listener.HttpCallBack;
 import com.cc.dc.common.utils.LUtil;
 import com.cc.dc.ui.find.contract.FindContract;
@@ -28,10 +26,10 @@ public class FindModel implements FindContract.Model {
 
     @Override
     public void getTopicMessageList(final HttpCallBack<List<TopicMessageBean>> callBack) {
-        ApiHelper.getInstance()
+        ApiHelper.getInstanceApi3()
                 .create(FindApiService.class)
-                .getTopicMessage()
-                .map(new HttpFunction<List<TopicMessageBean>>())
+                .getTopicMessage("android")
+                .map(new HttpYuBaFunction<List<TopicMessageBean>>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<List<TopicMessageBean>>() {
@@ -42,11 +40,15 @@ public class FindModel implements FindContract.Model {
 
                     @Override
                     public void onNext(List<TopicMessageBean> value) {
+                        for (TopicMessageBean bean: value) {
+                            bean.setName("#" + bean.getName() + "#");
+                        }
                         callBack.onResult(value);
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        LUtil.e(TAG,e.getMessage());
                         callBack.onError();
                     }
 
@@ -58,22 +60,23 @@ public class FindModel implements FindContract.Model {
     }
 
     @Override
-    public void getDigestList(final HttpCallBack<List<FindDigestBean>> callBack, int page) {
-        ApiHelper.getInstance()
+    public void getDigestList(final HttpCallBack<List<FindFeedBean>> callBack, int page) {
+        ApiHelper.getInstanceApi3()
                 .create(FindApiService.class)
-                .getDigestList(page)
-                .map(new HttpFunction<FindDigistInfo>())
+                .getDigestList("android", page)
+                .map(new HttpYuBaFunction<FindFeedInfo>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<FindDigistInfo>() {
+                .subscribe(new Observer<FindFeedInfo>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         callBack.onStart(d);
                     }
 
                     @Override
-                    public void onNext(FindDigistInfo value) {
+                    public void onNext(FindFeedInfo value) {
                         callBack.onResult(value.getList());
+                        LUtil.e(TAG, "onNext>>>" + value.getList().size());
                     }
 
                     @Override
@@ -89,21 +92,21 @@ public class FindModel implements FindContract.Model {
     }
 
     @Override
-    public void getTopicList(final HttpCallBack<List<FindTopicBean>> callBack, int page) {
-        ApiHelper.getInstance()
+    public void getTopicList(final HttpCallBack<List<FindFeedBean>> callBack, int page) {
+        ApiHelper.getInstanceApi3()
                 .create(FindApiService.class)
-                .getTopicList(page)
-                .map(new HttpFunction<FindTopicInfo>())
+                .getTopicList("android", page)
+                .map(new HttpYuBaFunction<FindFeedInfo>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<FindTopicInfo>() {
+                .subscribe(new Observer<FindFeedInfo>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         callBack.onStart(d);
                     }
 
                     @Override
-                    public void onNext(FindTopicInfo value) {
+                    public void onNext(FindFeedInfo value) {
                         callBack.onResult(value.getList());
                     }
 

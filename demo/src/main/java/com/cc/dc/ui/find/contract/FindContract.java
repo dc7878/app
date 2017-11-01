@@ -1,7 +1,6 @@
 package com.cc.dc.ui.find.contract;
 
-import com.cc.dc.bean.find.FindDigestBean;
-import com.cc.dc.bean.find.FindTopicBean;
+import com.cc.dc.bean.find.FindFeedBean;
 import com.cc.dc.bean.find.TopicMessageBean;
 import com.cc.dc.common.listener.HttpCallBack;
 import com.cc.dc.common.presenter.BaseModel;
@@ -19,18 +18,18 @@ public interface FindContract {
 
         void getTopicMessageList(HttpCallBack<List<TopicMessageBean>> callBack);
 
-        void getDigestList(HttpCallBack<List<FindDigestBean>> callBack, int page);
+        void getDigestList(HttpCallBack<List<FindFeedBean>> callBack, int page);
 
-        void getTopicList(HttpCallBack<List<FindTopicBean>> callBack, int page);
+        void getTopicList(HttpCallBack<List<FindFeedBean>> callBack, int page);
     }
 
     interface View extends BaseView {
 
         void showTopicMessageList(List<TopicMessageBean> list);
 
-        void showDigestList(List<FindDigestBean> list);
+        void showDigestList(List<FindFeedBean> list);
 
-        void showTopicList(List<FindTopicBean> list);
+        void showTopicList(List<FindFeedBean> list);
     }
 
     abstract class Presenter extends BasePresenter<View, Model> {

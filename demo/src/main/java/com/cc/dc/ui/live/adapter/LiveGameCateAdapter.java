@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.cc.dc.bean.LiveGameCateBean;
-import com.cc.dc.dc.R;
+import com.cc.dc.R;
 
 import java.util.List;
 

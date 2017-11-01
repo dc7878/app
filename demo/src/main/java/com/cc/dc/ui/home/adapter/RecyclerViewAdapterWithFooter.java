@@ -9,7 +9,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.cc.dc.bean.VideoBean;
-import com.cc.dc.dc.R;
+import com.cc.dc.R;
 
 import java.util.List;
 

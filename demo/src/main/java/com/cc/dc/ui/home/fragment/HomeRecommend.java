@@ -12,7 +12,8 @@ import com.cc.dc.common.custom.ViewPagerAdapter;
 import com.cc.dc.common.ui.BaseFragment;
 import com.cc.dc.common.utils.LUtil;
 import com.cc.dc.common.utils.StringUtil;
-import com.cc.dc.dc.R;
+import com.cc.dc.R;
+import com.cc.dc.ui.home.adapter.HomeRecommendAdapter;
 import com.cc.dc.ui.home.contract.HomeRecommendContract;
 import com.cc.dc.ui.home.presenter.HomeRecommendPresenter;
 
@@ -34,8 +35,11 @@ public class HomeRecommend extends BaseFragment<HomeRecommendPresenter> implemen
     @Bind(R.id.recycler_view_recommend)
     LoadMoreRecyclerView recyclerView;
 
-    private List<ImageView> data = new ArrayList<>();
-    private ViewPagerAdapter adapter;
+    private List<ImageView> imageViews = new ArrayList<>();
+    private ViewPagerAdapter pagerAdapter;
+
+    private HomeRecommendAdapter adapter;
+    private List<Object> data = new ArrayList<>();
 
     @Override
     public int getLayoutId() {
@@ -44,7 +48,8 @@ public class HomeRecommend extends BaseFragment<HomeRecommendPresenter> implemen
 
     @Override
     public void initView() {
-
+        adapter = new HomeRecommendAdapter(getActivity(), data);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -69,10 +74,10 @@ public class HomeRecommend extends BaseFragment<HomeRecommendPresenter> implemen
             ImageView imageView = new ImageView(getActivity());
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             Glide.with(this).load(bean.getPicUrl()).into(imageView);
-            data.add(imageView);
+            imageViews.add(imageView);
         }
-        adapter = new ViewPagerAdapter(data);
-        slider.setAdapter(adapter);
+        pagerAdapter = new ViewPagerAdapter(imageViews);
+        slider.setAdapter(pagerAdapter);
     }
 
     @Override
