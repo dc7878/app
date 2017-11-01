@@ -7,6 +7,41 @@
     <TextView
         android:text="User"
         android:padding="10dp"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_show_dialog"
+        android:text="3D-Dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:id="@+id/rl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/black">
+
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:src="@drawable/icon"
+            android:scaleType="centerInside"/>
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="测试i电话卡接口的环境啊大火炬大厦大厦时都会打开啊的实施打击啊的哈萨克大数据爱的世界大厦"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <com.cc.dc.common.custom.WaterView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </LinearLayout>
