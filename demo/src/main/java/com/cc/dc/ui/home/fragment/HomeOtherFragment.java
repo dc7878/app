@@ -1,7 +1,7 @@
 package com.cc.dc.ui.home.fragment;
 
 import com.cc.dc.common.ui.BaseFragment;
-import com.cc.dc.dc.R;
+import com.cc.dc.R;
 
 /**
  * Created by dc on 2017/9/21.

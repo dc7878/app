@@ -7,7 +7,7 @@ import com.cc.dc.common.custom.LinearItemDecoration;
 import com.cc.dc.common.custom.LoadMoreRecyclerView;
 import com.cc.dc.common.ui.BaseFragment;
 import com.cc.dc.common.utils.LUtil;
-import com.cc.dc.dc.R;
+import com.cc.dc.R;
 import com.cc.dc.ui.find.adapter.FindFeedAdapter;
 import com.cc.dc.ui.find.contract.FindFeedContract;
 import com.cc.dc.ui.find.presenter.FindFeedPresenter;

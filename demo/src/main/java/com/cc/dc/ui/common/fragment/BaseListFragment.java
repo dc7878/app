@@ -8,7 +8,7 @@ import com.cc.dc.common.custom.GridItemDecoration;
 import com.cc.dc.common.custom.LoadMoreRecyclerView;
 import com.cc.dc.common.presenter.BasePresenter;
 import com.cc.dc.common.ui.BaseFragment;
-import com.cc.dc.dc.R;
+import com.cc.dc.R;
 import com.cc.dc.ui.live.adapter.LiveRecyclerViewAdapter;
 
 import java.util.ArrayList;

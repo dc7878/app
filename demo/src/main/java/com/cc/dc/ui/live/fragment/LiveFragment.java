@@ -3,7 +3,7 @@ package com.cc.dc.ui.live.fragment;
 import com.cc.dc.bean.LiveColumnBean;
 import com.cc.dc.common.ui.BaseFragment;
 import com.cc.dc.custom.ParentViewPager;
-import com.cc.dc.dc.R;
+import com.cc.dc.R;
 import com.cc.dc.ui.home.adapter.HomeViewPagerAdapter;
 import com.cc.dc.ui.live.contract.LiveContract;
 import com.cc.dc.ui.live.presenter.LivePresenter;

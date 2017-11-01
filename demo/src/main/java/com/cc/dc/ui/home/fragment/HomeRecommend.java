@@ -12,7 +12,7 @@ import com.cc.dc.common.custom.ViewPagerAdapter;
 import com.cc.dc.common.ui.BaseFragment;
 import com.cc.dc.common.utils.LUtil;
 import com.cc.dc.common.utils.StringUtil;
-import com.cc.dc.dc.R;
+import com.cc.dc.R;
 import com.cc.dc.ui.home.adapter.HomeRecommendAdapter;
 import com.cc.dc.ui.home.contract.HomeRecommendContract;
 import com.cc.dc.ui.home.presenter.HomeRecommendPresenter;

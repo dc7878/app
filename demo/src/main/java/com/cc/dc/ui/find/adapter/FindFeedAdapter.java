@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.cc.dc.bean.find.FindFeedBean;
-import com.cc.dc.dc.R;
+import com.cc.dc.R;
 
 import java.util.List;
 

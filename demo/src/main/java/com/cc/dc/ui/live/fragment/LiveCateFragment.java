@@ -14,7 +14,7 @@ import com.cc.dc.common.custom.LoadMoreRecyclerView;
 import com.cc.dc.common.ui.BaseFragment;
 import com.cc.dc.common.utils.DensityUtil;
 import com.cc.dc.common.utils.LUtil;
-import com.cc.dc.dc.R;
+import com.cc.dc.R;
 import com.cc.dc.ui.live.adapter.LiveGameCateAdapter;
 import com.cc.dc.ui.live.adapter.LiveRecyclerViewAdapter;
 import com.cc.dc.ui.live.contract.LiveCateContract;

@@ -11,7 +11,7 @@ import com.cc.dc.bean.find.TopicMessageBean;
 import com.cc.dc.common.ui.BaseFragment;
 import com.cc.dc.common.utils.LUtil;
 import com.cc.dc.custom.ParentViewPager;
-import com.cc.dc.dc.R;
+import com.cc.dc.R;
 import com.cc.dc.ui.find.adapter.FindViewPagerAdapter;
 import com.cc.dc.ui.find.contract.FindContract;
 import com.cc.dc.ui.find.presenter.FindPresenter;

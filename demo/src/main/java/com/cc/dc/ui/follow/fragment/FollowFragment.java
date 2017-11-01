@@ -7,7 +7,7 @@ import com.cc.dc.bean.follow.FollowCommentBean;
 import com.cc.dc.common.custom.GridItemDecoration;
 import com.cc.dc.common.custom.LoadMoreRecyclerView;
 import com.cc.dc.common.ui.BaseFragment;
-import com.cc.dc.dc.R;
+import com.cc.dc.R;
 import com.cc.dc.ui.follow.adapter.FollowRecyclerViewAdapter;
 
 import java.util.ArrayList;
