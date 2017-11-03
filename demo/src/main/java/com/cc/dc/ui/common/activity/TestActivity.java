@@ -5,7 +5,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.cc.dc.R;
-import com.cc.dc.common.custom.StaggeredItemDecoration;
 import com.cc.dc.common.ui.BaseActivity;
 import com.cc.dc.test.TestAdapter;
 import com.cc.dc.test.TestBean;
@@ -59,19 +58,11 @@ public class TestActivity extends BaseActivity {
             }
         });
         recyclerView.setLayoutManager(layoutManager);
-        StaggeredItemDecoration itemDecoration = new StaggeredItemDecoration.Builder()
-                .eachEqual(20)
-                .spanCount(6)
-                .data(data)
-                .build();
-//        recyclerView.addItemDecoration(itemDecoration);
-
         loadData();
     }
 
     private void loadData() {
         Random random = new Random();
-        // TODO: 2017/11/2 数据填充
         for (int k = 0; k < 50; k++) {
             TestBean testBean1 = new TestBean();
             testBean1.setType(TestBean.TYPE.TYPE_TITLE);

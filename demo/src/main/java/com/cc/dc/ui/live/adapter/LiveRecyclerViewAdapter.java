@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
 /**
  * Created by dc on 2017/9/19.
  */
-public class LiveRecyclerViewAdapter extends RecyclerView.Adapter<LiveRecyclerViewAdapter.LiveViewHolder> {
+public class LiveRecyclerViewAdapter extends RecyclerView.Adapter<LiveRecyclerViewAdapter.LiveViewHolder> implements View.OnClickListener {
 
     private Context context;
 
@@ -29,10 +29,16 @@ public class LiveRecyclerViewAdapter extends RecyclerView.Adapter<LiveRecyclerVi
 
     private LayoutInflater inflater;
 
+    private OnItemClickListener listener;
+
     public LiveRecyclerViewAdapter(Context context, List<LiveBean> data) {
         this.context = context;
         this.data = data;
         inflater = LayoutInflater.from(context);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
     @Override
@@ -43,14 +49,25 @@ public class LiveRecyclerViewAdapter extends RecyclerView.Adapter<LiveRecyclerVi
 
     @Override
     public void onBindViewHolder(LiveViewHolder holder, int position) {
-        holder.tvNickName.setText(data.get(position).getNickName());
+        holder.tvNickName.setText(data.get(position).getNickName() +  ">>>" + data.get(position).getRoomId());
         holder.tvOnline.setText(StringUtil.getOnlineStr(data.get(position).getOnline()));
         Glide.with(context).load(data.get(position).getRoomSrc()).into(holder.imageRoom);
+
+        holder.itemView.setTag(position);
+        holder.itemView.setOnClickListener(this);
     }
 
     @Override
     public int getItemCount() {
         return data.size();
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (null != listener) {
+            int position = (int) v.getTag();
+            listener.onItemClick(position);
+        }
     }
 
     public class LiveViewHolder extends RecyclerView.ViewHolder {
@@ -62,9 +79,16 @@ public class LiveRecyclerViewAdapter extends RecyclerView.Adapter<LiveRecyclerVi
         @Bind(R.id.tv_online)
         TextView tvOnline;
 
+        View itemView;
+
         public LiveViewHolder(View itemView) {
             super(itemView);
+            this.itemView = itemView;
             ButterKnife.bind(this, itemView);
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
     }
 }
