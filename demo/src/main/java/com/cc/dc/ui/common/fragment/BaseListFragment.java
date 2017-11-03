@@ -4,7 +4,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import com.cc.dc.bean.LiveBean;
-import com.cc.dc.common.custom.GridItemDecoration;
+import com.cc.dc.common.custom.StaggeredItemDecoration;
 import com.cc.dc.common.custom.LoadMoreRecyclerView;
 import com.cc.dc.common.presenter.BasePresenter;
 import com.cc.dc.common.ui.BaseFragment;
@@ -29,7 +29,7 @@ public abstract class BaseListFragment<P extends BasePresenter> extends BaseFrag
 
     protected List<LiveBean> data;
     protected LiveRecyclerViewAdapter adapter;
-    protected GridItemDecoration itemDecoration;
+    protected StaggeredItemDecoration itemDecoration;
 
     protected P presenter;
 
@@ -50,7 +50,7 @@ public abstract class BaseListFragment<P extends BasePresenter> extends BaseFrag
         adapter = new LiveRecyclerViewAdapter(getActivity(), data);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL));
-        itemDecoration = new GridItemDecoration.Builder()
+        itemDecoration = new StaggeredItemDecoration.Builder()
                 .eachEqual(20)
                 .spanCount(spanCount)
                 .data(data)

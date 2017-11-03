@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 
 import com.cc.dc.bean.LiveBean;
 import com.cc.dc.bean.LiveGameCateBean;
-import com.cc.dc.common.custom.GridItemDecoration;
+import com.cc.dc.common.custom.StaggeredItemDecoration;
 import com.cc.dc.common.custom.LoadMoreRecyclerView;
 import com.cc.dc.common.ui.BaseFragment;
 import com.cc.dc.common.utils.DensityUtil;
@@ -43,7 +43,7 @@ public class LiveCateFragment extends BaseFragment<LiveCatePresenter> implements
 
     private List<LiveBean> data;
     private LiveRecyclerViewAdapter adapter;
-    private GridItemDecoration itemDecoration;
+    private StaggeredItemDecoration itemDecoration;
 
     private List<LiveGameCateBean> liveGameCateBeans;
     private LiveGameCateAdapter gameCateAdapter;
@@ -84,7 +84,7 @@ public class LiveCateFragment extends BaseFragment<LiveCatePresenter> implements
         adapter = new LiveRecyclerViewAdapter(getActivity(), data);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL));
-        itemDecoration = new GridItemDecoration.Builder()
+        itemDecoration = new StaggeredItemDecoration.Builder()
                 .eachEqual(20)
                 .spanCount(spanCount)
                 .data(data)

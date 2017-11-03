@@ -1,5 +1,6 @@
 package com.cc.dc.ui.user.fragment;
 
+import android.content.Intent;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.cc.dc.common.animation.Rotate3dAnimation;
 import com.cc.dc.common.ui.BaseFragment;
 import com.cc.dc.R;
+import com.cc.dc.ui.common.activity.TestActivity;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -50,6 +52,12 @@ public class UserFragment extends BaseFragment {
 
     @Override
     public void lazyLoadData() {
+    }
+
+    @OnClick(R.id.btn_show_news)
+    public void showNews(View view) {
+        Intent intent = new Intent(getActivity(), TestActivity.class);
+        startActivity(intent);
     }
 
     @OnClick(R.id.btn_show_dialog)

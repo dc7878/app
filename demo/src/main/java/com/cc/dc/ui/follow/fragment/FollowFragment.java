@@ -4,7 +4,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import com.cc.dc.bean.follow.FollowBean;
 import com.cc.dc.bean.follow.FollowCommentBean;
-import com.cc.dc.common.custom.GridItemDecoration;
+import com.cc.dc.common.custom.StaggeredItemDecoration;
 import com.cc.dc.common.custom.LoadMoreRecyclerView;
 import com.cc.dc.common.ui.BaseFragment;
 import com.cc.dc.R;
@@ -26,7 +26,7 @@ public class FollowFragment extends BaseFragment {
 
     private List<Object> data = new ArrayList<>();
     private FollowRecyclerViewAdapter adapter;
-    private GridItemDecoration itemDecoration;
+    private StaggeredItemDecoration itemDecoration;
     private int spanCount = 1;
 
     @Override
@@ -39,7 +39,7 @@ public class FollowFragment extends BaseFragment {
         adapter = new FollowRecyclerViewAdapter(getActivity(), data);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL));
-        itemDecoration = new GridItemDecoration.Builder()
+        itemDecoration = new StaggeredItemDecoration.Builder()
                 .leftSpace(10)
                 .rightSpace(10)
                 .rowSpace(20)

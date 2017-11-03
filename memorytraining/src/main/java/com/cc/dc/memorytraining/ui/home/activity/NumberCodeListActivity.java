@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
-import com.cc.dc.common.custom.GridItemDecoration;
+import com.cc.dc.common.custom.StaggeredItemDecoration;
 import com.cc.dc.common.ui.BaseActivity;
 import com.cc.dc.common.utils.ResourceUtil;
 import com.cc.dc.memorytraining.R;
@@ -23,7 +23,7 @@ public class NumberCodeListActivity extends BaseActivity {
     @Bind(R.id.recycler_view_main)
     RecyclerView recyclerView;
 
-    private GridItemDecoration itemDecoration;
+    private StaggeredItemDecoration itemDecoration;
     private int spanCount = 5;
     private List<NumberCodeBean> data;
     private NumberCodeRecyclerViewAdapter adapter;
@@ -61,7 +61,7 @@ public class NumberCodeListActivity extends BaseActivity {
         adapter = new NumberCodeRecyclerViewAdapter(this, data);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL));
-        itemDecoration = new GridItemDecoration.Builder()
+        itemDecoration = new StaggeredItemDecoration.Builder()
                 .eachEqual(20)
                 .spanCount(spanCount)
                 .data(data)

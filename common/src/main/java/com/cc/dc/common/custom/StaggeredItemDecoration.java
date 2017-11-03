@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by dc on 2017/9/19.
  */
-public class GridItemDecoration<T extends MultipleColumnBean> extends RecyclerView.ItemDecoration {
+public class StaggeredItemDecoration<T extends MultipleColumnBean> extends RecyclerView.ItemDecoration {
 
     private int pos;
     private List<T> data;
@@ -31,7 +31,7 @@ public class GridItemDecoration<T extends MultipleColumnBean> extends RecyclerVi
     // 存储最后位置上的position
     private int[] lastPosition;
 
-    private GridItemDecoration(int spanCount, List<T> data, int leftSpace, int topSpace, int rightSpace, int bottomSpace, int rowSpace, int columnSpace) {
+    private StaggeredItemDecoration(int spanCount, List<T> data, int leftSpace, int topSpace, int rightSpace, int bottomSpace, int rowSpace, int columnSpace) {
         this.spanCount = spanCount;
         this.data = data;
         this.leftSpace = leftSpace;
@@ -196,7 +196,7 @@ public class GridItemDecoration<T extends MultipleColumnBean> extends RecyclerVi
             return this;
         }
 
-        public GridItemDecoration build() {
+        public StaggeredItemDecoration build() {
             if (eachEqual != -1) {
                 leftSpace = eachEqual;
                 rightSpace = eachEqual;
@@ -205,7 +205,7 @@ public class GridItemDecoration<T extends MultipleColumnBean> extends RecyclerVi
                 rowSpace = eachEqual;
                 columnSpace = eachEqual;
             }
-            return new GridItemDecoration(spanCount, data, leftSpace, topSpace, rightSpace, bottomSpace, rowSpace, columnSpace);
+            return new StaggeredItemDecoration(spanCount, data, leftSpace, topSpace, rightSpace, bottomSpace, rowSpace, columnSpace);
         }
     }
 }

@@ -7,7 +7,12 @@
     <TextView
         android:text="User"
         android:padding="10dp"
-        android:visibility="gone"
+        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_show_news"
+        android:text="仿网易"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button
