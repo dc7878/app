@@ -27,11 +27,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.common.activity.AboutActivity"/>
-        <activity android:name=".ui.common.activity.TestActivity"/>
+        <activity
+            android:name=".ui.common.activity.AboutActivity"/>
+        <activity
+            android:name=".ui.common.activity.TestActivity"/>
 
         <!-- 直播视频播放 -->
-        <activity android:name=".ui.common.activity.PlayVideoActivity"/>
+        <activity
+            android:name=".ui.common.activity.PlayVideoActivity"
+            android:windowSoftInputMode="stateHidden"/>
     </application>
 
 </manifest>

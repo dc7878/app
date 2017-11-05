@@ -34,6 +34,44 @@ import java.util.Map;
  */
 public class PlayVideoActivity extends BaseActivity {
 
+    private static final String TAG = PlayVideoActivity.class.getSimpleName();
+
+    private SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss.SS");
+
+    private SurfaceView mSurfaceView;
+
+    private Button playBtn;
+    private Button stopBtn;
+
+
+    private RadioGroup muteGroup;
+    private RadioButton muteOnBtn;
+    private RadioButton muteOffBtn;
+
+    private RadioGroup scaleModeGroup;
+    private RadioButton scaleModeFit;
+    private RadioButton scaleModeFill;
+
+
+    private SeekBar brightnessBar;
+    private SeekBar volumeBar;
+
+    private TextView videoWidthTxt;
+    private TextView videoHeightTxt;
+
+    private EditText maxBufDurationEdit;
+
+    private boolean mMute = false;
+    private List<String> logStrs = new ArrayList<>();
+
+    private AliVcMediaPlayer mPlayer;
+
+    private boolean isCompleted = false;
+
+    private String mUrl = null;
+    private MyTextWatcher watcher = null;
+
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_play_video;
@@ -205,43 +243,6 @@ public class PlayVideoActivity extends BaseActivity {
         initVodPlayer();
         setPlaySource();
     }
-
-    private static final String TAG = PlayVideoActivity.class.getSimpleName();
-
-    private SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss.SS");
-
-    private SurfaceView mSurfaceView;
-
-    private Button playBtn;
-    private Button stopBtn;
-
-
-    private RadioGroup muteGroup;
-    private RadioButton muteOnBtn;
-    private RadioButton muteOffBtn;
-
-    private RadioGroup scaleModeGroup;
-    private RadioButton scaleModeFit;
-    private RadioButton scaleModeFill;
-
-
-    private SeekBar brightnessBar;
-    private SeekBar volumeBar;
-
-    private TextView videoWidthTxt;
-    private TextView videoHeightTxt;
-
-    private EditText maxBufDurationEdit;
-
-    private boolean mMute = false;
-    private List<String> logStrs = new ArrayList<>();
-
-    private AliVcMediaPlayer mPlayer;
-
-    private boolean isCompleted = false;
-
-    private String mUrl = null;
-    private MyTextWatcher watcher = null;
 
 
     private class MyTextWatcher implements TextWatcher {
