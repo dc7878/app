@@ -1,6 +1,7 @@
 package com.cc.dc.ui.live.presenter;
 
 import com.cc.dc.bean.LiveBean;
+import com.cc.dc.bean.live.LiveUrlBean;
 import com.cc.dc.common.listener.HttpCallBack;
 import com.cc.dc.ui.live.contract.LiveAllContract;
 import com.cc.dc.ui.live.model.LiveAllModel;
@@ -38,4 +39,24 @@ public class LiveAllPresenter extends LiveAllContract.Presenter {
         }, offset, limit, isRefresh);
     }
 
+
+    @Override
+    public void loadLiveUrl(String roomId) {
+        model.getLiveUrl(new HttpCallBack<LiveUrlBean>() {
+            @Override
+            public void onStart(Disposable disposable) {
+
+            }
+
+            @Override
+            public void onResult(LiveUrlBean result) {
+                view.showLiveUrl(result);
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        }, roomId);
+    }
 }

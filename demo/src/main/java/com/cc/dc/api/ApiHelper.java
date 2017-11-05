@@ -22,6 +22,8 @@ public class ApiHelper {
 
     private final String BASE_URL_YUBA = "https://mapi-yuba.douyu.com/wb/v3/";
 
+    private final String BASE_URL3 = "https://m.douyu.com/";
+
     /**
      * 超时时间 默认为15s
      */
@@ -32,6 +34,8 @@ public class ApiHelper {
     private Retrofit retrofit2;
 
     private Retrofit retrofit3;
+
+    private Retrofit retrofitLive;
 
     private ApiHelper() {
         if (null == retrofit) {
@@ -105,5 +109,30 @@ public class ApiHelper {
 
     public static Retrofit getInstanceApi3() {
         return new ApiHelper(1).retrofit3;
+    }
+
+    private ApiHelper(int tag, int info) {
+        if (null == retrofitLive) {
+            OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
+            builder.readTimeout(DEFAULT_TIME_OUT, TimeUnit.SECONDS);
+            builder.connectTimeout(DEFAULT_TIME_OUT, TimeUnit.SECONDS);
+            builder.writeTimeout(DEFAULT_TIME_OUT, TimeUnit.SECONDS);
+
+            //设置拦截器
+            builder.addInterceptor(new BaseResponseInterceptor());
+            builder.addInterceptor(new BaseParamsInterceptor());
+            builder.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
+            OkHttpClient okHttpClient = builder.build();
+            retrofitLive = new Retrofit.Builder()
+                    .baseUrl(BASE_URL3)
+                    .client(okHttpClient)
+                    .addConverterFactory(FastJsonConverter.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .build();
+        }
+    }
+
+    public static Retrofit getInstanceApiLive() {
+        return new ApiHelper(1, 1).retrofitLive;
     }
 }

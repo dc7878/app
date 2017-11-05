@@ -20,6 +20,7 @@ import com.alivc.player.AliVcMediaPlayer;
 import com.alivc.player.MediaPlayer;
 import com.cc.dc.R;
 import com.cc.dc.common.ui.BaseActivity;
+import com.cc.dc.common.utils.LUtil;
 
 import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
@@ -366,8 +367,9 @@ public class PlayVideoActivity extends BaseActivity {
     }
 
     private void setPlaySource() {
-//        mUrl = getIntent().getStringExtra("url");
-        mUrl = "http://hls3.douyucdn.cn/live/300165rSNw5Gtf8U_550/playlist.m3u8?wsSecret=31d9ccc2e48330f20486f3dbf23b0f8a&wsTime=1509788424&token=h5-douyu-0-300165-e15104b6ff8258be6d7487b9eb4575e9&did=h5_did";
+        mUrl = getIntent().getStringExtra("url");
+        LUtil.e("PlayVideoActivity", "setPlaySource>>>" + mUrl);
+//        mUrl = "http://hls3.douyucdn.cn/live/300165rSNw5Gtf8U_550/playlist.m3u8?wsSecret=31d9ccc2e48330f20486f3dbf23b0f8a&wsTime=1509788424&token=h5-douyu-0-300165-e15104b6ff8258be6d7487b9eb4575e9&did=h5_did";
     }
 
     private void showVideoSizeInfo() {

@@ -1,9 +1,11 @@
 package com.cc.dc.ui.live.fragment;
 
 import android.content.Intent;
-import android.widget.Toast;
+import android.text.TextUtils;
 
 import com.cc.dc.bean.LiveBean;
+import com.cc.dc.bean.live.LiveUrlBean;
+import com.cc.dc.common.utils.LUtil;
 import com.cc.dc.ui.common.activity.PlayVideoActivity;
 import com.cc.dc.ui.common.fragment.BaseListFragment;
 import com.cc.dc.ui.live.adapter.LiveRecyclerViewAdapter;
@@ -50,10 +52,16 @@ public class LiveAllFragment extends BaseListFragment<LiveAllPresenter> implemen
     }
 
     @Override
-    public void onItemClick(int position) {
-        Toast.makeText(getActivity(), "" + position, Toast.LENGTH_LONG).show();
+    public void showLiveUrl(LiveUrlBean bean) {
+        if (null != bean && !TextUtils.isEmpty(bean.getUrl())) {
+            Intent intent = new Intent(getActivity(), PlayVideoActivity.class);
+            intent.putExtra("url", bean.getUrl());
+            startActivity(intent);
+        }
+    }
 
-        Intent intent = new Intent(getActivity(), PlayVideoActivity.class);
-        startActivity(intent);
+    @Override
+    public void onItemClick(int position) {
+        presenter.loadLiveUrl(data.get(position).getRoomId());
     }
 }

@@ -2,7 +2,7 @@ package com.cc.dc.api.apiservice;
 
 import com.cc.dc.bean.LiveBean;
 import com.cc.dc.bean.LiveColumnBean;
-import com.cc.dc.bean.LiveGameCateBean;
+import com.cc.dc.bean.live.LiveUrlBean;
 import com.cc.dc.common.http.BaseResponse;
 import com.cc.dc.json.LiveGameCateInfo;
 
@@ -37,4 +37,7 @@ public interface LiveApiService {
 
     @GET("Live/Roomlist/getCate1RoomList")
     Observable<BaseResponse<List<LiveBean>>> getCate1RoomList(@Query("cate1_id") String cateId, @Query("offset") int offset, @Query("limit") int limit);
+
+    @GET("html5/live")
+    Observable<BaseResponse<LiveUrlBean>> getLiveUrl(@Query("roomId") String roomId);
 }

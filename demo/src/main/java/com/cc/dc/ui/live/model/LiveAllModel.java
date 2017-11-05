@@ -3,8 +3,10 @@ package com.cc.dc.ui.live.model;
 import com.cc.dc.api.ApiHelper;
 import com.cc.dc.api.apiservice.LiveApiService;
 import com.cc.dc.bean.LiveBean;
+import com.cc.dc.bean.live.LiveUrlBean;
 import com.cc.dc.common.http.function.HttpFunction;
 import com.cc.dc.common.listener.HttpCallBack;
+import com.cc.dc.common.utils.LUtil;
 import com.cc.dc.ui.live.contract.LiveAllContract;
 
 import java.util.List;
@@ -36,6 +38,38 @@ public class LiveAllModel implements LiveAllContract.Model {
 
                     @Override
                     public void onNext(List<LiveBean> value) {
+                        callBack.onResult(value);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callBack.onError();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @Override
+    public void getLiveUrl(final HttpCallBack<LiveUrlBean> callBack, String roomId) {
+        ApiHelper.getInstanceApiLive()
+                .create(LiveApiService.class)
+                .getLiveUrl(roomId)
+                .map(new HttpFunction<LiveUrlBean>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<LiveUrlBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        callBack.onStart(d);
+                    }
+
+                    @Override
+                    public void onNext(LiveUrlBean value) {
+                        LUtil.e("", "");
                         callBack.onResult(value);
                     }
 
