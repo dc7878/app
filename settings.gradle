@@ -1,1 +1,1 @@
-include ':demo', ':share', ':common', ':memorytraining'
+include ':demo', ':share', ':common', ':memorytraining', ':customview'

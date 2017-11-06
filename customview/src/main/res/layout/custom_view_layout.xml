@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#ff0"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.cc.dc.customview.view.CustomLayout
+        android:padding="20dp"
+        android:layout_margin="30dp"
+        android:background="#fff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/icon"
+            android:layout_margin="10dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+        <TextView
+            android:text="Custom Layout"
+            android:textSize="16sp"
+            android:layout_margin="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </com.cc.dc.customview.view.CustomLayout>
+</LinearLayout>
