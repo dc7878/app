@@ -9,6 +9,9 @@
         android:onClick="animationTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <com.cc.dc.customview.view.CustomCircleProgress
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <com.cc.dc.customview.view.CustomVolumeControlBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
