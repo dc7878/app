@@ -1,18 +1,13 @@
 package com.cc.dc.customview.view;
 
-import android.animation.Animator;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.Point;
 import android.os.Build;
 import android.support.annotation.Nullable;
-import android.support.annotation.PluralsRes;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -34,15 +29,9 @@ public class CustomCircleProgress extends View {
 
     private boolean progressStart = false;
 
-    private boolean progressCircle = false;
-
-
     private int progress = 0;
 
-    private int circleSize;
-
-
-    private ObjectAnimator animatorBefore;
+    private int circleSize = 0;
 
     private Path path = new Path();
 
@@ -50,7 +39,8 @@ public class CustomCircleProgress extends View {
 
     private Paint paintNew = new Paint(Paint.ANTI_ALIAS_FLAG);
 
-
+    private int scaleCounter = 60;
+    private Paint paintLast = new Paint(Paint.ANTI_ALIAS_FLAG);
 
     public CustomCircleProgress(Context context) {
         this(context, null);
@@ -83,39 +73,13 @@ public class CustomCircleProgress extends View {
         paintNew.setStyle(Paint.Style.STROKE);
         paintNew.setStrokeCap(Paint.Cap.ROUND);
 
-
-        animatorBefore = ObjectAnimator.ofInt(this, "aa", 0, 100);
-        animatorBefore.setDuration(500);
-        animatorBefore.addListener(new Animator.AnimatorListener() {
+        postDelayed(new Runnable() {
             @Override
-            public void onAnimationStart(Animator animation) {
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
+            public void run() {
                 progressStart = true;
+                postInvalidate();
             }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-            }
-        });
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        animatorBefore.start();
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        animatorBefore.cancel();
+        }, 500);
     }
 
     @Override
@@ -126,30 +90,36 @@ public class CustomCircleProgress extends View {
         if (!progressStart) {
             drawBeforeProgress(canvas);
             drawLines(canvas, paint);
+            return;
+        }
+        drawProgress(canvas);
+        if (progress < 100) {
+            progress += 5;
+            invalidate();
+            return;
+        }
+
+        drawCircle(canvas);
+        if (circleSize >= radiusMax + 40) {
+            if (alphaCount >= 255) {
+                alphaCount = 255;
+            }
+            alphaCount += 20;
+            paintNew.setAlpha(alphaCount);
+            drawLines(canvas, paintNew);
+
+            scaleCounter -= 2;
+            if (scaleCounter <= -60) {
+                scaleCounter = -60;
+            }
+            drawArc(canvas);
+            if (scaleCounter != -60) {
+                invalidate();
+            }
         } else {
-            drawProgress(canvas);
-            if (progress < 100) {
-                progress += 5;
-            } else {
-                progressCircle = true;
-            }
+            circleSize += 10;
+            invalidate();
         }
-
-        if (progressCircle) {
-            drawCircle(canvas);
-            if (circleSize >= radiusMax + 40) {
-                if (alphaCount >= 255) {
-                    alphaCount = 255;
-                }
-                alphaCount += 20;
-                paintNew.setAlpha(alphaCount);
-                drawLines(canvas, paintNew);
-            } else {
-                circleSize += 10;
-            }
-        }
-
-        invalidate();
     }
 
     private void drawBeforeProgress(Canvas canvas) {
@@ -178,6 +148,16 @@ public class CustomCircleProgress extends View {
                 centerX + radiusMax, centerY + radiusMax, 90, progress * 360 / 100, false, paint);
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void drawArc(Canvas canvas) {
+        float strokeWith = paintLast.getStrokeWidth() + (scaleCounter > 0 ? 2 : -2);
+        paintLast.setColor(Color.RED);
+        paintLast.setStyle(Paint.Style.STROKE);
+        paintLast.setStrokeWidth(strokeWith);
+        canvas.drawArc(centerX - radiusMax, centerY - radiusMax,
+                centerX + radiusMax, centerY + radiusMax, 0, 360, false, paintLast);
+    }
+
     private void drawCircle(Canvas canvas) {
         paint.setColor(Color.RED);
         paint.setStyle(Paint.Style.FILL);
@@ -187,13 +167,30 @@ public class CustomCircleProgress extends View {
         canvas.drawCircle(centerX, centerY, radiusMax - circleSize, paint);
     }
 
+    @SuppressWarnings("unused")
     public void setProgress(int progress) {
         this.progress = progress;
         invalidate();
     }
 
+    @SuppressWarnings("unused")
     public void setCircleSize(int circleSize) {
         this.circleSize = circleSize;
         invalidate();
+    }
+
+    public void reset() {
+        progress = 0;
+        circleSize = 0;
+        scaleCounter = 60;
+        progressStart = false;
+        alphaCount = 0;
+        postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progressStart = true;
+                postInvalidate();
+            }
+        }, 500);
     }
 }

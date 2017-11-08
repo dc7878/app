@@ -9,7 +9,13 @@
         android:onClick="animationTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <Button
+        android:text="resetCustomCircleProgress"
+        android:onClick="resetCustomCircleProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <com.cc.dc.customview.view.CustomCircleProgress
+        android:id="@+id/circle_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <com.cc.dc.customview.view.CustomVolumeControlBar
