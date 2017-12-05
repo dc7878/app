@@ -13,6 +13,8 @@
         </activity>
 
         <activity android:name=".activity.TestAnimationActivity"/>
+
+        <activity android:name=".activity.TestAsyncTaskActivity"/>
     </application>
 
 </manifest>

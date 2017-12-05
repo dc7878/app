@@ -1,14 +1,17 @@
 package com.cc.dc.customview.activity;
 
+import android.app.Activity;
+import android.app.IntentService;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.HandlerThread;
+import android.util.Log;
 import android.view.View;
 
 import com.cc.dc.customview.R;
 import com.cc.dc.customview.view.CustomCircleProgress;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private CustomCircleProgress progress;
 
@@ -16,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.custom_view_layout);
-        progress = (CustomCircleProgress) findViewById(R.id.circle_progress);
+        progress = findViewById(R.id.circle_progress);
     }
 
     public void animationTest(View view) {
@@ -26,5 +29,32 @@ public class MainActivity extends AppCompatActivity {
 
     public void resetCustomCircleProgress(View view) {
         progress.reset();
+    }
+
+    public void asyncTaskTest(View view) {
+        Intent intent = new Intent(this, TestAsyncTaskActivity.class);
+        startActivity(intent);
+
+
+        Intent intentService = new Intent(this, TestService.class);
+        startService(intentService);
+    }
+
+    @Override
+    protected void onPause() {
+        Log.e("MainActivity", "onPause");
+        super.onPause();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        Log.e("MainActivity", "onSaveInstanceState");
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onStop() {
+        Log.e("MainActivity", "onStop");
+        super.onStop();
     }
 }
