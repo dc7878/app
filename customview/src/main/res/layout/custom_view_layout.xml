@@ -3,6 +3,15 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <com.cc.dc.customview.view.CustomView5
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <com.cc.dc.customview.view.CustomView4
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <com.cc.dc.customview.view.CustomView3
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <com.cc.dc.customview.view.CustomView2
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
