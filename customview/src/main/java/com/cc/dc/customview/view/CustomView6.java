@@ -9,6 +9,7 @@ import android.graphics.Path;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -22,8 +23,6 @@ public class CustomView6 extends View {
 
     private final String TAG = "CustomView6";
 
-    private float lastX;
-    private float lastY;
     private int lastColumnIndex = -1;
     private int lastRowIndex = -1;
 
@@ -137,8 +136,6 @@ public class CustomView6 extends View {
     private void reset() {
         path.reset();
         realPath.reset();
-        lastX = 0;
-        lastY = 0;
         lastColumnIndex = -1;
         lastRowIndex = -1;
         map.clear();
@@ -178,9 +175,16 @@ public class CustomView6 extends View {
                 return;
             }
         }
+        // 不同行不同列
+        if (column != lastColumnIndex && row != lastRowIndex) {
+            return;
+        }
+        // 已经有了
         if (map.containsKey(row + "" + column)) {
             return;
         }
+
+        Log.e("CustomView6", "CustomView6>>>" + lastRowIndex + ">" + lastColumnIndex + ">" + column + ">" + row);
 
         float centerX = (column - 1) * (cellW + columnSpace) + cellW / 2;
         float centerY = (row - 1) * (cellH + rowSpace) + cellH / 2;
@@ -188,22 +192,11 @@ public class CustomView6 extends View {
         realPath.lineTo(centerX, centerY);
         if (map.size() > 0) {
             path.reset();
-            // TODO: 2017/12/8 绘制目标线 
-            // path.moveTo(centerX, centerY);
-            // path.lineTo(pointX, pointY);
+//            path.moveTo(centerX, centerY);
+//            path.lineTo(pointX, pointY);
         }
-        lastX = centerX;
-        lastY = centerY;
         lastColumnIndex = column;
         lastRowIndex = row;
         map.put(row + "" + column, centerX);
-    }
-
-    private void revisesPoint(float pointX, float pointY) {
-        int column = (int) Math.ceil(pointX / (columnSpace + cellW));
-        int row = (int) Math.ceil(pointY / (rowSpace + cellH));
-
-        float centerX = (column - 1) * (cellW + columnSpace) + cellW / 2;
-        float centerY = (row - 1) * (cellH + rowSpace) + cellH / 2;
     }
 }
