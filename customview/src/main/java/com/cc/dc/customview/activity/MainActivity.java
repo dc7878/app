@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.os.HandlerThread;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.cc.dc.customview.R;
 import com.cc.dc.customview.view.CustomCircleProgress;
