@@ -18,7 +18,7 @@ import java.util.HashMap;
 /**
  * Created by dc on 2017/12/8.
  */
-
+// TODO: 2017/12/11 手势密码
 public class CustomView6 extends View {
 
     private final String TAG = "CustomView6";
