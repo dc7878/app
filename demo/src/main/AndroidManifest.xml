@@ -27,10 +27,11 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".ui.common.activity.AboutActivity"/>
-        <activity
-            android:name=".ui.common.activity.TestActivity"/>
+        <activity android:name=".ui.common.activity.AboutActivity"/>
+
+        <activity android:name=".ui.common.activity.TestActivity"/>
+
+        <activity android:name=".ui.common.activity.EmptyNetErrorActivity"/>
 
         <!-- 直播视频播放 -->
         <activity

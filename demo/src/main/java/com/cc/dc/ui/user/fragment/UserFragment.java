@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.cc.dc.common.animation.Rotate3dAnimation;
 import com.cc.dc.common.ui.BaseFragment;
 import com.cc.dc.R;
+import com.cc.dc.ui.common.activity.EmptyNetErrorActivity;
 import com.cc.dc.ui.common.activity.TestActivity;
 
 import butterknife.Bind;
@@ -54,14 +55,20 @@ public class UserFragment extends BaseFragment {
     public void lazyLoadData() {
     }
 
+    @OnClick(R.id.btn_show_empty)
+    public void showEmptyNetError() {
+        Intent intent = new Intent(getActivity(), EmptyNetErrorActivity.class);
+        startActivity(intent);
+    }
+
     @OnClick(R.id.btn_show_news)
-    public void showNews(View view) {
+    public void showNews() {
         Intent intent = new Intent(getActivity(), TestActivity.class);
         startActivity(intent);
     }
 
     @OnClick(R.id.btn_show_dialog)
-    public void showDialog(View view) {
+    public void showDialog() {
         //以旋转对象的中心点为旋转中心点，这里主要不要再onCreate方法中获取，因为视图初始绘制时，获取的宽高为0
         centerX = content.getWidth()/2;
         centerY = content.getHeight()/2;
