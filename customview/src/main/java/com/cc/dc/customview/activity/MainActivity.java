@@ -8,16 +8,42 @@ import android.view.View;
 
 import com.cc.dc.customview.R;
 import com.cc.dc.customview.view.CustomCircleProgress;
+import com.cc.dc.customview.view.ProgressBarView;
 
 public class MainActivity extends Activity {
 
     private CustomCircleProgress progress;
+
+    private ProgressBarView progressBarView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.custom_view_layout);
         progress = findViewById(R.id.circle_progress);
+        progressBarView = findViewById(R.id.progress_bar);
+
+        updateProgress();
+    }
+
+    private void updateProgress() {
+        new Thread(){
+            @Override
+            public void run() {
+                int currentProgress = 0;
+                while (true) {
+                    try {
+                        Thread.sleep(100);
+                        if (currentProgress <=100) {
+                            progressBarView.updateProgress(currentProgress);
+                        }
+                        currentProgress += 2;
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }.start();
     }
 
     public void animationTest(View view) {
