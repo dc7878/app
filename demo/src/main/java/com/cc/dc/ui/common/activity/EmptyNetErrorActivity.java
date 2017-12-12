@@ -20,7 +20,11 @@ public class EmptyNetErrorActivity extends BaseActivity {
     @Bind(R.id.tv_name)
     TextView tvName;
 
+    @Bind(R.id.tv_name2)
+    TextView tvName2;
+
     private ViewStatusHelper nameHelper;
+    private ViewStatusHelper nameHelper2;
 
     private Handler handler = new Handler() {
         @Override
@@ -39,6 +43,23 @@ public class EmptyNetErrorActivity extends BaseActivity {
         }
     };
 
+    private Handler handler2 = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 0:
+                    nameHelper2.showEmpty();
+                    break;
+                case 1:
+                    nameHelper2.showNetError();
+                    break;
+                case 2:
+                    nameHelper2.showNormal();
+                    break;
+            }
+        }
+    };
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_empty_error;
@@ -51,6 +72,7 @@ public class EmptyNetErrorActivity extends BaseActivity {
     @Override
     public void initView(Bundle savedInstanceState) {
         nameHelper = new ViewStatusHelper(this, tvName);
+        nameHelper2 = new ViewStatusHelper(this, tvName2);
 
         new Thread(){
             @Override
@@ -85,6 +107,44 @@ public class EmptyNetErrorActivity extends BaseActivity {
                     e.printStackTrace();
                 }
                 handler.sendEmptyMessage(2);
+            }
+        }.start();
+
+
+
+        new Thread(){
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                handler2.sendEmptyMessage(0);
+            }
+        }.start();
+
+        new Thread(){
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(4000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                handler2.sendEmptyMessage(1);
+            }
+        }.start();
+
+        new Thread(){
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(7000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                handler2.sendEmptyMessage(2);
             }
         }.start();
     }
