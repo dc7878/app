@@ -3,6 +3,16 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <com.cc.dc.customview.view.CustomRandomTextView
+        android:id="@+id/tv_random"
+        android:text="1233"
+        android:textColor="#ff0000"
+        android:textSize="40sp"
+        android:onClick="clickRandom"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp" />
     <com.cc.dc.customview.view.CustomCreditScore
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

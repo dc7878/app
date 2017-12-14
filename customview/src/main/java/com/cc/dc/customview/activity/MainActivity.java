@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.cc.dc.customview.R;
 import com.cc.dc.customview.view.CustomCircleProgress;
+import com.cc.dc.customview.view.CustomRandomTextView;
 import com.cc.dc.customview.view.ProgressBarView;
 
 public class MainActivity extends Activity {
@@ -16,12 +17,15 @@ public class MainActivity extends Activity {
 
     private ProgressBarView progressBarView;
 
+    private CustomRandomTextView tvRandom;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.custom_view_layout);
         progress = findViewById(R.id.circle_progress);
         progressBarView = findViewById(R.id.progress_bar);
+        tvRandom = findViewById(R.id.tv_random);
 
         updateProgress();
     }
@@ -80,5 +84,9 @@ public class MainActivity extends Activity {
     protected void onStop() {
         Log.e("MainActivity", "onStop");
         super.onStop();
+    }
+
+    public void clickRandom(View view) {
+        tvRandom.reset();
     }
 }
