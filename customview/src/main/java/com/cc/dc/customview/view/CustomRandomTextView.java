@@ -117,7 +117,7 @@ public class CustomRandomTextView extends TextView {
                         }
                     }
                 }
-                // TODO: 2017/12/14 new.length > txtNew.length 
+                // TODO: 2017/12/14 new.length > txtNew.length
             }
         } else {
             for (int i = 0; i < txtNew.length(); i++) {

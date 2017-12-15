@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
     <com.cc.dc.customview.view.CustomRandomTextView
         android:id="@+id/tv_random"
+        android:visibility="gone"
         android:text="1233"
         android:textColor="#ff0000"
         android:textSize="40sp"

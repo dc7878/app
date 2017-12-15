@@ -1,15 +1,21 @@
 package com.cc.dc.customview.view;
 
+import android.animation.ObjectAnimator;
+import android.animation.TimeInterpolator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Interpolator;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
 
 import com.cc.dc.customview.R;
 import com.cc.dc.customview.utils.ScreenUtil;
@@ -53,6 +59,10 @@ public class CustomCreditScore extends View {
 
     private int count;
 
+    private int regionProgress;
+
+    private ObjectAnimator animator = ObjectAnimator.ofInt(this, "regionProgress", 0, 100);
+
     private final int cellWidth = 120;
     private final int cellHeight = 180;
 
@@ -70,6 +80,7 @@ public class CustomCreditScore extends View {
     public CustomCreditScore(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
+        initAnimator();
     }
 
     private void init() {
@@ -105,6 +116,19 @@ public class CustomCreditScore extends View {
         count = 5;
     }
 
+    private void initAnimator() {
+        animator.setDuration(1000);
+        animator.setInterpolator(new AccelerateInterpolator());
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                int progress = (int) animation.getAnimatedValue();
+                regionProgress = progress;
+                invalidate();
+            }
+        });
+    }
+
     private void setData(String[] titles, int score, float[] everyScore, int[] ids) {
         if (titles.length < 3) {
             new IllegalArgumentException("至少需要三个标签");
@@ -130,13 +154,36 @@ public class CustomCreditScore extends View {
         postInvalidate();
     }
 
+    public int getRegionProgress() {
+        return regionProgress;
+    }
+
+    public void setRegionProgress(int regionProgress) {
+        this.regionProgress = regionProgress;
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        animator.start();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        animator.cancel();
+        animator = null;
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawColor(Color.RED);
         drawPolygon(canvas);
         drawRegion(canvas);
-        drawScore(canvas);
+        if (regionProgress >= 100) {
+            drawScore(canvas);
+        }
         drawText(canvas);
     }
 
@@ -162,7 +209,7 @@ public class CustomCreditScore extends View {
         canvas.translate(centerX, centerY);
         double a = 2 * Math.PI / count;
         for (int i = 0; i < count; i++) {
-            int R = (int) (radius * everyScore[i] / 200);
+            int R = (int) (radius * everyScore[i] / 200 * regionProgress / 100);
             float x = (float) (R * Math.sin(a * i));
             float y = (float) (R * Math.cos(a * i)) * -1;
             if (i == 0){
