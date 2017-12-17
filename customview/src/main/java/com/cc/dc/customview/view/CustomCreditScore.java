@@ -253,7 +253,7 @@ public class CustomCreditScore extends View {
                 y -= cellHeight / 2;
             }
             paintTxt.setColor(Color.YELLOW);
-//            canvas.drawRect(x, y, x + cellWidth, y + cellHeight, paintTxt);
+            canvas.drawRect(x, y, x + cellWidth, y + cellHeight, paintTxt);
             float bitmapX = x + (cellWidth - bitmaps[i].getWidth()) / 2;
             float bitmapY = y + (cellHeight - bitmaps[i].getHeight() - height - 10) / 2;
             canvas.drawBitmap(bitmaps[i], bitmapX, bitmapY, paintTxt);
