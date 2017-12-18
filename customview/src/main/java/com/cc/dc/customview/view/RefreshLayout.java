@@ -30,7 +30,9 @@ public class RefreshLayout extends FrameLayout {
 
     private float lastY;
 
-    private boolean intercepted;
+    private FrameLayout.LayoutParams paramsHeader;
+
+    private FrameLayout.LayoutParams paramsContent;
 
     public RefreshLayout(@NonNull Context context) {
         this(context, null);
@@ -52,64 +54,46 @@ public class RefreshLayout extends FrameLayout {
         content = LayoutInflater.from(getContext()).inflate(R.layout.layout_content, null);
         content.setClickable(false);
 
-        FrameLayout.LayoutParams paramsHeader = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, headerHeight);
+        paramsHeader = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, headerHeight);
         header.setLayoutParams(paramsHeader);
 
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+        paramsContent = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
-        params.topMargin = headerHeight;
-        content.setLayoutParams(params);
+        paramsContent.topMargin = headerHeight;
+        content.setLayoutParams(paramsContent);
 
         addView(header, 0);
         addView(content, 1);
     }
 
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        int action = ev.getAction();
-        float y = ev.getY();
-        switch (action) {
-            case MotionEvent.ACTION_DOWN:
-                Log.e("RefreshLayout", "RefreshLayout onInterceptTouchEvent ACTION_DOWN--");
-                intercepted = false;
-                break;
-            case MotionEvent.ACTION_MOVE:
-                Log.e("RefreshLayout", "RefreshLayout onInterceptTouchEvent ACTION_MOVE--");
-                float offsetY = y - lastY;
-                if (offsetY > 0) {
-                    Log.e("RefreshLayout", "RefreshLayout onInterceptTouchEvent ACTION_MOVE-->>>" + offsetY);
-                    intercepted = true;
-                } else if (offsetY < 0) {
-                    Log.e("RefreshLayout", "RefreshLayout onInterceptTouchEvent ACTION_MOVE-->><" + offsetY);
-                    intercepted = true;
-                }
-                break;
-            case MotionEvent.ACTION_UP:
-                Log.e("RefreshLayout", "RefreshLayout onInterceptTouchEvent ACTION_UP--");
-                intercepted = false;
-                break;
-        }
-        lastY = y;
-        boolean flag = intercepted;
-        intercepted = false;
-        return flag;
-    }
-
-    @Override
     public boolean onTouchEvent(MotionEvent event) {
         int action = event.getAction();
+        float  y = event.getY();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 Log.e("RefreshLayout", "RefreshLayout onTouchEvent ACTION_DOWN--" + event.getY());
                 break;
             case MotionEvent.ACTION_MOVE:
+                float offsetY = y - lastY;
+                if (Math.abs(offsetY) > 2) {
+                    updateMarginTop(offsetY);
+                    return true;
+                }
                 Log.e("RefreshLayout", "RefreshLayout onTouchEvent ACTION_MOVE--" + event.getY());
-//                break;
-                return true;
+                break;
             case MotionEvent.ACTION_UP:
                 Log.e("RefreshLayout", "RefreshLayout onTouchEvent ACTION_UP--" + event.getY());
+                updateMarginTop(0);
                 break;
         }
-        return false;
+        lastY = y;
+        return true;
+    }
+
+    private void updateMarginTop(float offseMargin) {
+        paramsHeader.topMargin = (int) offseMargin;
+        paramsContent.topMargin = (int) (headerHeight + offseMargin);
+        requestLayout();
     }
 }

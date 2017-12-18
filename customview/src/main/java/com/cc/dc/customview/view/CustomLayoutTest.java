@@ -72,8 +72,7 @@ public class CustomLayoutTest extends LinearLayout {
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 Log.e("RefreshLayout", "CustomLayoutTest onTouchEvent ACTION_DOWN--");
-//                break;
-                return true;
+                break;
             case MotionEvent.ACTION_MOVE:
                 Log.e("RefreshLayout", "CustomLayoutTest onTouchEvent ACTION_MOVE--");
                 break;
