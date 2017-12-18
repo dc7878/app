@@ -3,6 +3,7 @@ package com.cc.dc.customview.view;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,8 +65,10 @@ public class CustomScrollerView extends ViewGroup {
                     scroller.abortAnimation();
                     intercepted = true;
                 }
+                Log.e("CustomScrollerView", "CustomScrollerView ACTION_DOWN");
                 break;
             case MotionEvent.ACTION_MOVE:
+                Log.e("CustomScrollerView", "CustomScrollerView ACTION_MOVE");
                 float offsetX = currentX - lastInterceptedX;
                 float offsetY = currentY - lastInterceptedY;
                 mXLastMove = event.getX();
@@ -76,6 +79,7 @@ public class CustomScrollerView extends ViewGroup {
                 }
                 break;
             case MotionEvent.ACTION_UP:
+                Log.e("CustomScrollerView", "CustomScrollerView ACTION_UP");
                 intercepted = false;
                 break;
         }

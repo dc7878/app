@@ -16,6 +16,8 @@ import com.cc.dc.customview.utils.DensityUtil;
 
 /**
  * Created by dc on 2017/12/15.
+ * 各种举例说明
+ * http://daemon369.github.io/android/2014/08/17/android-onInterceptTouchEvent-onTouchEvent
  */
 
 public class RefreshLayout extends FrameLayout {
@@ -26,7 +28,9 @@ public class RefreshLayout extends FrameLayout {
 
     private int headerHeight;
 
-    private float currentY;
+    private float lastY;
+
+    private boolean intercepted;
 
     public RefreshLayout(@NonNull Context context) {
         this(context, null);
@@ -46,6 +50,7 @@ public class RefreshLayout extends FrameLayout {
 
         header = LayoutInflater.from(getContext()).inflate(R.layout.layout_header, null);
         content = LayoutInflater.from(getContext()).inflate(R.layout.layout_content, null);
+        content.setClickable(false);
 
         FrameLayout.LayoutParams paramsHeader = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, headerHeight);
         header.setLayoutParams(paramsHeader);
@@ -60,19 +65,34 @@ public class RefreshLayout extends FrameLayout {
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
         int action = ev.getAction();
+        float y = ev.getY();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                Log.e("RefreshLayout", "RefreshLayout ACTION_DOWN--");
+                Log.e("RefreshLayout", "RefreshLayout onInterceptTouchEvent ACTION_DOWN--");
+                intercepted = false;
                 break;
             case MotionEvent.ACTION_MOVE:
-                Log.e("RefreshLayout", "RefreshLayout ACTION_MOVE--");
+                Log.e("RefreshLayout", "RefreshLayout onInterceptTouchEvent ACTION_MOVE--");
+                float offsetY = y - lastY;
+                if (offsetY > 0) {
+                    Log.e("RefreshLayout", "RefreshLayout onInterceptTouchEvent ACTION_MOVE-->>>" + offsetY);
+                    intercepted = true;
+                } else if (offsetY < 0) {
+                    Log.e("RefreshLayout", "RefreshLayout onInterceptTouchEvent ACTION_MOVE-->><" + offsetY);
+                    intercepted = true;
+                }
                 break;
             case MotionEvent.ACTION_UP:
+                Log.e("RefreshLayout", "RefreshLayout onInterceptTouchEvent ACTION_UP--");
+                intercepted = false;
                 break;
         }
-        return true;
+        lastY = y;
+        boolean flag = intercepted;
+        intercepted = false;
+        return flag;
     }
 
     @Override
@@ -80,14 +100,16 @@ public class RefreshLayout extends FrameLayout {
         int action = event.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                Log.e("RefreshLayout", "onTouchEvent ACTION_DOWN--" + event.getY());
+                Log.e("RefreshLayout", "RefreshLayout onTouchEvent ACTION_DOWN--" + event.getY());
                 break;
             case MotionEvent.ACTION_MOVE:
-                Log.e("RefreshLayout", "onTouchEvent ACTION_MOVE--" + event.getY());
-                break;
+                Log.e("RefreshLayout", "RefreshLayout onTouchEvent ACTION_MOVE--" + event.getY());
+//                break;
+                return true;
             case MotionEvent.ACTION_UP:
+                Log.e("RefreshLayout", "RefreshLayout onTouchEvent ACTION_UP--" + event.getY());
                 break;
         }
-        return true;
+        return false;
     }
 }
