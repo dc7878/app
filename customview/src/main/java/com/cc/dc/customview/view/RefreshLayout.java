@@ -76,24 +76,23 @@ public class RefreshLayout extends FrameLayout {
                 break;
             case MotionEvent.ACTION_MOVE:
                 float offsetY = y - lastY;
+//                Log.e("RefreshLayout", "RefreshLayout onTouchEvent ACTION_MOVE--" + offsetY);
                 if (Math.abs(offsetY) > 2) {
-                    updateMarginTop(offsetY);
+                    updateMargin(-offsetY);
+                    lastY = y;
                     return true;
                 }
-                Log.e("RefreshLayout", "RefreshLayout onTouchEvent ACTION_MOVE--" + event.getY());
                 break;
             case MotionEvent.ACTION_UP:
                 Log.e("RefreshLayout", "RefreshLayout onTouchEvent ACTION_UP--" + event.getY());
-                updateMarginTop(0);
+                scrollTo(0, 0);
                 break;
         }
         lastY = y;
         return true;
     }
 
-    private void updateMarginTop(float offseMargin) {
-        paramsHeader.topMargin = (int) offseMargin;
-        paramsContent.topMargin = (int) (headerHeight + offseMargin);
-        requestLayout();
+    private void updateMargin(float offsetMargin) {
+        scrollBy(0, (int) offsetMargin);
     }
 }
