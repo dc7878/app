@@ -1,19 +1,16 @@
 package com.cc.dc.customview.view;
 
 import android.animation.ObjectAnimator;
-import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Interpolator;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 
@@ -253,7 +250,7 @@ public class CustomCreditScore extends View {
                 y -= cellHeight / 2;
             }
             paintTxt.setColor(Color.YELLOW);
-//            canvas.drawRect(x, y, x + cellWidth, y + cellHeight, paintTxt);
+            canvas.drawRect(x, y, x + cellWidth, y + cellHeight, paintTxt);
             float bitmapX = x + (cellWidth - bitmaps[i].getWidth()) / 2;
             float bitmapY = y + (cellHeight - bitmaps[i].getHeight() - height - 10) / 2;
             canvas.drawBitmap(bitmaps[i], bitmapX, bitmapY, paintTxt);
