@@ -21,6 +21,8 @@ public class SwipeLayout extends LinearLayout {
 
     private float deleteW;
 
+    private float currentX;
+
     public SwipeLayout(Context context) {
         super(context);
     }
@@ -39,12 +41,12 @@ public class SwipeLayout extends LinearLayout {
         content = getChildAt(0);
         delete = getChildAt(1);
 
-//        delete.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.e("SwipeLayout", "SwipeLayout>>>onClick");
-//            }
-//        });
+        delete.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("SwipeLayout", "SwipeLayout>>>onClick");
+            }
+        });
     }
 
     @Override
@@ -57,28 +59,33 @@ public class SwipeLayout extends LinearLayout {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         int action = ev.getAction();
-        float currentX = ev.getX();
+
         switch (action) {
             case MotionEvent.ACTION_DOWN:
+                currentX = ev.getX();
+                lastX = currentX;
                 break;
             case MotionEvent.ACTION_MOVE:
+
                 return true;
             case MotionEvent.ACTION_UP:
+
                 break;
         }
-        return super.onInterceptTouchEvent(ev);
+        return false;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int action = event.getAction();
-        float currentX = event.getX();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 Log.e("SwipeLayout", "SwipeLayout>>>down");
                 break;
             case MotionEvent.ACTION_MOVE:
+                currentX = event.getX();
                 float offsetX = currentX - lastX;
+                Log.e("SwipeLayout", "SwipeLayout>>>" + currentX + ">>>" + lastX);
                 Log.e("SwipeLayout", "SwipeLayout>>>" + getScrollX() + ">>offsetX>" + offsetX);
                 scrollBy((int) -offsetX, 0);
                 break;
