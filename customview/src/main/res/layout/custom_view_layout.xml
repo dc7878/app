@@ -3,6 +3,26 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <com.cc.dc.customview.view.SwipeLayout
+        android:background="#f00"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+        <TextView
+            android:id="@+id/tv_content"
+            android:text="Content"
+            android:background="#ff0"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/btn_delete"
+            android:text="Delete"
+            android:background="#0f0"
+            android:layout_width="100dp"
+            android:layout_height="match_parent" />
+    </com.cc.dc.customview.view.SwipeLayout>
     <com.cc.dc.customview.view.RefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
