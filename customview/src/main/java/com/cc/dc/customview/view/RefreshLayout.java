@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 
 import com.cc.dc.customview.R;
 import com.cc.dc.customview.utils.DensityUtil;
+import com.cc.dc.customview.utils.ScreenUtil;
 
 /**
  * Created by dc on 2017/12/15.
@@ -24,13 +25,19 @@ public class RefreshLayout extends FrameLayout {
 
     private View header;
 
+    private View footer;
+
     private View content;
 
     private int headerHeight;
 
+    private int footerHeight;
+
     private float lastY;
 
     private FrameLayout.LayoutParams paramsHeader;
+
+    private FrameLayout.LayoutParams paramsFooter;
 
     private FrameLayout.LayoutParams paramsContent;
 
@@ -49,21 +56,34 @@ public class RefreshLayout extends FrameLayout {
 
     private void init() {
         headerHeight = DensityUtil.dip2px(getContext(), 100);
+        footerHeight = DensityUtil.dip2px(getContext(), 150);
 
         header = LayoutInflater.from(getContext()).inflate(R.layout.layout_header, null);
         content = LayoutInflater.from(getContext()).inflate(R.layout.layout_content, null);
-        content.setClickable(false);
+        footer = LayoutInflater.from(getContext()).inflate(R.layout.layout_footer, null);
 
         paramsHeader = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, headerHeight);
         header.setLayoutParams(paramsHeader);
 
-        paramsContent = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT);
+        paramsContent = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ScreenUtil.getScreenHeight(getContext()));
         paramsContent.topMargin = headerHeight;
         content.setLayoutParams(paramsContent);
 
+        paramsFooter = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, footerHeight);
+        footer.setLayoutParams(paramsFooter);
+
         addView(header, 0);
         addView(content, 1);
+        addView(footer, 2);
+
+        scrollBy(0, headerHeight);
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        paramsFooter.topMargin = headerHeight + content.getMeasuredHeight();
+        requestLayout();
     }
 
     @Override
@@ -76,7 +96,7 @@ public class RefreshLayout extends FrameLayout {
                 break;
             case MotionEvent.ACTION_MOVE:
                 float offsetY = y - lastY;
-//                Log.e("RefreshLayout", "RefreshLayout onTouchEvent ACTION_MOVE--" + offsetY);
+                Log.e("RefreshLayout", "RefreshLayout onTouchEvent ACTION_MOVE--" + offsetY);
                 if (Math.abs(offsetY) > 2) {
                     updateMargin(-offsetY);
                     lastY = y;
@@ -84,8 +104,17 @@ public class RefreshLayout extends FrameLayout {
                 }
                 break;
             case MotionEvent.ACTION_UP:
-                Log.e("RefreshLayout", "RefreshLayout onTouchEvent ACTION_UP--" + event.getY());
-                scrollTo(0, 0);
+                Log.e("RefreshLayout", "RefreshLayout onTouchEvent ACTION_UP--" + getScrollY() + "---" + headerHeight);
+                int scrollY = getScrollY() - headerHeight;
+                if (scrollY > footerHeight / 2) {
+                    // 向上滑动超过1/2
+                    scrollTo(0, footerHeight + headerHeight);
+                } else if (scrollY < -headerHeight / 2) {
+                    // 向下滑动超过1/2
+                    scrollTo(0, 0);
+                }else {
+                    scrollTo(0, 0);
+                }
                 break;
         }
         lastY = y;
