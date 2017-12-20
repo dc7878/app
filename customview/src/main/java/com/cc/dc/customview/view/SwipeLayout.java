@@ -53,23 +53,19 @@ public class SwipeLayout extends LinearLayout {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         deleteW = delete.getMeasuredWidth();
-        Log.e("SwipeLayout", "SwipeLayout>>>" + deleteW);
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         int action = ev.getAction();
-
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 currentX = ev.getX();
                 lastX = currentX;
                 break;
             case MotionEvent.ACTION_MOVE:
-
                 return true;
             case MotionEvent.ACTION_UP:
-
                 break;
         }
         return false;
@@ -80,17 +76,13 @@ public class SwipeLayout extends LinearLayout {
         int action = event.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                Log.e("SwipeLayout", "SwipeLayout>>>down");
                 break;
             case MotionEvent.ACTION_MOVE:
                 currentX = event.getX();
                 float offsetX = currentX - lastX;
-                Log.e("SwipeLayout", "SwipeLayout>>>" + currentX + ">>>" + lastX);
-                Log.e("SwipeLayout", "SwipeLayout>>>" + getScrollX() + ">>offsetX>" + offsetX);
                 scrollBy((int) -offsetX, 0);
                 break;
             case MotionEvent.ACTION_UP:
-                Log.e("SwipeLayout", "SwipeLayout>>>" + getScrollX() + ">>deleteW>" + deleteW);
                 if (getScrollX() >= deleteW) {
                     scrollTo((int)deleteW,0);
                 } else if(getScrollX() < 0){
