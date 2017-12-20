@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#ff0"
+    android:orientation="vertical"
+    android:layout_marginBottom="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tv_title"
+        android:gravity="center"
+        android:text="111"
+        android:textColor="#f00"
+        android:textSize="25sp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+    <com.cc.dc.customview.view.CustomLinearLayout
+        android:id="@+id/layer_player"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.aliyun.vodplayerview.widget.AliyunVodPlayerView
+            android:id="@+id/player_view"
+            android:background="#0f0"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+        </com.aliyun.vodplayerview.widget.AliyunVodPlayerView>
+    </com.cc.dc.customview.view.CustomLinearLayout>
+</LinearLayout>

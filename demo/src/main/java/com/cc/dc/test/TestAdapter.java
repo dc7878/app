@@ -2,14 +2,17 @@ package com.cc.dc.test;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.cc.dc.R;
 
+import java.lang.ref.PhantomReference;
 import java.util.List;
 
 import butterknife.Bind;
@@ -25,10 +28,16 @@ public class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private LayoutInflater inflater;
 
+    private OnItemClickListener listener;
+
     public TestAdapter(Context context, List<TestBean> data) {
         this.context = context;
         this.data = data;
         inflater = LayoutInflater.from(this.context);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
     @Override
@@ -59,6 +68,8 @@ public class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             case TestBean.TYPE.TYPE_TITLE:
                 TitleViewHolder titleViewHolder = (TitleViewHolder) holder;
                 titleViewHolder.tvTitle.setText(bean.getTitle());
+
+                titleViewHolder.itemView.setOnClickListener(new MyListener(position));
                 break;
             case TestBean.TYPE.TYPE_IMAGE:
                 ImageViewHolder imageViewHolder = (ImageViewHolder) holder;
@@ -82,13 +93,35 @@ public class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         return data.size();
     }
 
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
+    class MyListener implements View.OnClickListener {
+
+        private int position;
+
+        public MyListener(int position) {
+            this.position = position;
+        }
+
+        @Override
+        public void onClick(View v) {
+            Log.e("MyListener", "MyListener onClick");
+            listener.onItemClick(v, position);
+        }
+    }
+
     class TitleViewHolder extends RecyclerView.ViewHolder {
 
         @Bind(R.id.tv_title)
         TextView tvTitle;
 
+        View itemView;
+
         public TitleViewHolder(View itemView) {
             super(itemView);
+            this.itemView = itemView;
             ButterKnife.bind(this, itemView);
         }
     }
