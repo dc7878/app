@@ -3,7 +3,6 @@ package com.cc.dc.customview.activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -19,7 +18,7 @@ import java.util.List;
 import butterknife.Bind;
 
 /**
- * Created by dc on 2017/11/9.
+ * Created by dc on 2017/12/20.
  */
 
 public class TestPlayerActivity extends BaseActivity implements TestPlayerAdapter.OnItemClickListener {
@@ -62,15 +61,16 @@ public class TestPlayerActivity extends BaseActivity implements TestPlayerAdapte
     @Override
     public void onItemClickListener(final View view, int position) {
         final ViewGroup viewGroup = (ViewGroup) view.getParent();
-        Log.e("TestPlayerActivity", "before->" + viewGroup.getChildCount());
+        final View holder = viewGroup.findViewById(R.id.tv_title);
+
         viewGroup.removeView(view);
-        Log.e("TestPlayerActivity", "after->" + viewGroup.getChildCount());
+        holder.setVisibility(View.VISIBLE);
 
         TestDialog dialog = new TestDialog(this, R.style.TestDialog, view, new DialogDismissListener() {
             @Override
             public void dialogDismiss(View viewInfo) {
                 viewGroup.addView(view);
-                Log.e("TestPlayerActivity", "after add->" + viewGroup.getChildCount());
+                holder.setVisibility(View.GONE);
             }
         });
         dialog.show();
