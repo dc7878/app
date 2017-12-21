@@ -62,6 +62,7 @@ public class TestPlayerActivity extends BaseActivity implements TestPlayerAdapte
     public void onItemClickListener(final View view, int position) {
         final ViewGroup viewGroup = (ViewGroup) view.getParent();
         final View holder = viewGroup.findViewById(R.id.tv_title);
+        final ViewGroup.LayoutParams params = view.getLayoutParams();
 
         viewGroup.removeView(view);
         holder.setVisibility(View.VISIBLE);
@@ -69,7 +70,7 @@ public class TestPlayerActivity extends BaseActivity implements TestPlayerAdapte
         TestDialog dialog = new TestDialog(this, R.style.TestDialog, view, new DialogDismissListener() {
             @Override
             public void dialogDismiss(View viewInfo) {
-                viewGroup.addView(view);
+                viewGroup.addView(viewInfo, params);
                 holder.setVisibility(View.GONE);
             }
         });

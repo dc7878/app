@@ -2,6 +2,7 @@ package com.cc.dc.customview.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -69,6 +70,76 @@ public class TestPlayerAdapter extends RecyclerView.Adapter<TestPlayerAdapter.Pl
                 public void onPrepared() {
                     //准备完成时触发
                     holder.playerView.start();
+                    Log.e("TestPlayerAdapter", "onPrepared");
+                }
+            });
+            holder.playerView.setOnCompletionListener(new IAliyunVodPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion() {
+                    //播放正常完成时触发
+                    Log.e("TestPlayerAdapter", "onCompletion");
+                }
+            });
+            holder.playerView.setOnFirstFrameStartListener(new IAliyunVodPlayer.OnFirstFrameStartListener() {
+                @Override
+                public void onFirstFrameStart() {
+                    //首帧显示时触发
+                    Log.e("TestPlayerAdapter", "onFirstFrameStart");
+                }
+            });
+            holder.playerView.setOnChangeQualityListener(new IAliyunVodPlayer.OnChangeQualityListener() {
+                @Override
+                public void onChangeQualitySuccess(String finalQuality) {
+                    //清晰度切换成功时触发
+                    Log.e("TestPlayerAdapter", "onChangeQualitySuccess");
+                }
+                @Override
+                public void onChangeQualityFail(int code, String msg) {
+                    //清晰度切换失败时触发
+                    Log.e("TestPlayerAdapter", "onChangeQualityFail");
+                }
+            });
+            holder.playerView.setOnStoppedListner(new IAliyunVodPlayer.OnStoppedListener() {
+                @Override
+                public void onStopped() {
+                    //使用stop接口时触发
+                    Log.e("TestPlayerAdapter", "onStopped");
+                }
+            });
+            holder.playerView.setOnCircleStartListener(new IAliyunVodPlayer.OnCircleStartListener() {
+                @Override
+                public void onCircleStart() {
+                    //循环播放开始
+                    Log.e("TestPlayerAdapter", "onPrepared");
+                }
+            });
+            holder.playerView.setOnInfoListener(new IAliyunVodPlayer.OnInfoListener() {
+                @Override
+                public void onInfo(int i, int i1) {
+                    Log.e("TestPlayerAdapter", "onInfo");
+                }
+            });
+            holder.playerView.setOnLoadingListener(new IAliyunVodPlayer.OnLoadingListener() {
+                @Override
+                public void onLoadStart() {
+                    Log.e("TestPlayerAdapter", "onLoadStart");
+                }
+
+                @Override
+                public void onLoadEnd() {
+                    Log.e("TestPlayerAdapter", "onLoadEnd");
+                }
+
+                @Override
+                public void onLoadProgress(int i) {
+                    Log.e("TestPlayerAdapter", "onLoadProgress");
+                }
+            });
+            holder.playerView.setOnBufferingUpdateListener(new IAliyunVodPlayer.OnBufferingUpdateListener() {
+
+                @Override
+                public void onBufferingUpdate(int i) {
+                    Log.e("TestPlayerAdapter", "onBufferingUpdate");
                 }
             });
         } else {
