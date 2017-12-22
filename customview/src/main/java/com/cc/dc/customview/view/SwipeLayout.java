@@ -80,12 +80,14 @@ public class SwipeLayout extends LinearLayout {
             case MotionEvent.ACTION_MOVE:
                 currentX = event.getX();
                 float offsetX = currentX - lastX;
-                scrollBy((int) -offsetX, 0);
+                if ((offsetX < 0 && (getScrollX() - offsetX) <= deleteW) || (offsetX > 0 && (getScrollX() - offsetX) >= 0)) {
+                    scrollBy((int) -offsetX, 0);
+                }
                 break;
             case MotionEvent.ACTION_UP:
-                if (getScrollX() >= deleteW) {
+                if (getScrollX() >= deleteW / 2) {
                     scrollTo((int)deleteW,0);
-                } else if(getScrollX() < 0){
+                } else {
                     scrollTo(0, 0);
                 }
                 break;
