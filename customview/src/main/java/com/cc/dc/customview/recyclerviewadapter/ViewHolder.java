@@ -26,11 +26,11 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         return holder;
     }
 
-    public static ViewHolder createViewHolder(Context context, ViewGroup parent, int layoutId) {
+    public static <H extends ViewHolder>  H createViewHolder(Context context, ViewGroup parent, int layoutId) {
         View itemView = LayoutInflater.from(context).inflate(layoutId, parent,
                 false);
         ViewHolder holder = new ViewHolder(context, itemView);
-        return holder;
+        return (H) holder;
     }
 
     public View getItemView() {

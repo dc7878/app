@@ -8,6 +8,7 @@ import com.cc.dc.common.ui.BaseActivity;
 import com.cc.dc.customview.R;
 import com.cc.dc.customview.bean.TestPlayerBean;
 import com.cc.dc.customview.recyclerviewadapter.BaseRecyclerViewAdapter;
+import com.cc.dc.customview.recyclerviewadapter.PlayerAdapter;
 import com.cc.dc.customview.recyclerviewadapter.PlayerDelegate;
 
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public class PlayerActivity extends BaseActivity {
             data.add(bean);
         }
 
-        BaseRecyclerViewAdapter<TestPlayerBean, PlayerDelegate.PlayerViewHolder> adapter = new BaseRecyclerViewAdapter(this, data);
+        PlayerAdapter adapter = new PlayerAdapter(this, data);
         adapter.addAdapterDelagate(new PlayerDelegate());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);

@@ -11,10 +11,10 @@ import java.util.List;
  * Created by dc on 2017/12/27.
  */
 
-public class BaseRecyclerViewAdapter<T, H extends ViewHolder> extends RecyclerView.Adapter<H> {
+public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
 
     private Context context;
-    private List<T> datas;
+    protected List<T> datas;
 
     private AdapterDelegatesManager delegatesManager;
 
@@ -25,23 +25,15 @@ public class BaseRecyclerViewAdapter<T, H extends ViewHolder> extends RecyclerVi
     }
 
     @Override
-    public H onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         AdapterDelegate delegate = delegatesManager.getItemViewDelegate(viewType);
         int layoutId = delegate.getItemViewLayoutId();
         ViewHolder holder = ViewHolder.createViewHolder(context, parent, layoutId);
-        onViewHolderCreated(holder, holder.getItemView());
-        return (H)holder;
+//        onViewHolderCreated(holder, holder.getItemView());
+        return holder;
     }
 
-    public void onViewHolderCreated(ViewHolder holder, View itemView) {
-    }
-
-    @Override
-    public void onBindViewHolder(H holder, int position) {
-        convert(holder, datas.get(position));
-    }
-
-    public void convert(H holder, T t) {
+    public void convert(ViewHolder holder, T t) {
         delegatesManager.convert(holder, t, holder.getAdapterPosition());
     }
 

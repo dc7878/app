@@ -29,18 +29,7 @@ public class PlayerDelegate implements AdapterDelegate<TestPlayerBean> {
 
     @Override
     public void convert(ViewHolder holder, TestPlayerBean testPlayerBean, int position) {
-        PlayerViewHolder playerViewHolder = (PlayerViewHolder) holder;
+        PlayerAdapter.PlayerViewHolder playerViewHolder = (PlayerAdapter.PlayerViewHolder) holder;
         playerViewHolder.tvTitle.setText(testPlayerBean.getTitle());
-    }
-
-    public static class PlayerViewHolder extends ViewHolder {
-
-        @Bind(R.id.tv_title)
-        TextView tvTitle;
-
-        public PlayerViewHolder(Context context, View itemView) {
-            super(context, itemView);
-            ButterKnife.bind(this, itemView);
-        }
     }
 }
