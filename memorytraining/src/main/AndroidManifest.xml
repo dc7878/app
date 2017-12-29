@@ -18,6 +18,8 @@
         <activity android:name=".ui.home.activity.NumberCodeTestActivity"/>
 
         <activity android:name=".ui.home.activity.PilePathActivity"/>
+
+        <activity android:name=".ui.home.activity.PIMemoryActivity"/>
     </application>
 
 </manifest>

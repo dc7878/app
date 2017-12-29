@@ -110,4 +110,10 @@ public class NumberCodeListActivity extends BaseActivity {
         Intent intent = new Intent(this, PilePathActivity.class);
         startActivity(intent);
     }
+
+    @OnClick(R.id.tv_pi)
+    protected void  clickPI() {
+        Intent intent = new Intent(this, PIMemoryActivity.class);
+        startActivity(intent);
+    }
 }
