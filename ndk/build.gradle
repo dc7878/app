@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.cc.dc.ndk"
-        minSdkVersion 14
+        minSdkVersion 18
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -34,7 +34,8 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile project(':common')
 }
