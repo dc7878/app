@@ -1,5 +1,7 @@
 package com.cc.dc.ui.home.fragment;
 
+import android.util.Log;
+
 import com.cc.dc.bean.HomeCateBean;
 import com.cc.dc.common.ui.BaseFragment;
 import com.cc.dc.custom.ParentViewPager;
@@ -51,6 +53,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCat
 
     @Override
     public void lazyLoadData() {
+        Log.e("HomeFragment", "HomeFragment");
     }
 
     @Override

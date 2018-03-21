@@ -43,11 +43,11 @@ public class TestPlayerActivity extends BaseActivity implements TestPlayerAdapte
         data = new ArrayList<>();
         for (int i = 0; i < 40; i++) {
             TestPlayerBean bean = new TestPlayerBean();
-            if (i == 0) {
+            if (i == 1) {
                 bean.setType(1);
                 bean.setUrl("http://test86400.b0.upaiyun.com/7937144.mp4");
             }
-            bean.setTitle("Player->" + i);
+            bean.setTitle("Player->``" + i);
             data.add(bean);
         }
 

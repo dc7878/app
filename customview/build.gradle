@@ -40,4 +40,6 @@ dependencies {
     compile(name: 'AliyunVodPlayer', ext: 'aar')
     compile(name: 'AliyunVodPlayerView', ext: 'aar')
     compile project(':common')
+
+    compile 'com.hannesdorfmann:adapterdelegates3:3.0.1'
 }

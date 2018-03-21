@@ -10,6 +10,7 @@
         android:id="@+id/tv_title"
         android:gravity="center"
         android:text="111"
+        android:visibility="gone"
         android:textColor="#f00"
         android:textSize="25sp"
         android:layout_width="match_parent"
@@ -17,7 +18,7 @@
     <com.cc.dc.customview.view.CustomLinearLayout
         android:id="@+id/layer_player"
         android:orientation="vertical"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.aliyun.vodplayerview.widget.AliyunVodPlayerView
@@ -26,5 +27,11 @@
             android:layout_width="match_parent"
             android:layout_height="200dp">
         </com.aliyun.vodplayerview.widget.AliyunVodPlayerView>
+        <ImageView
+            android:id="@+id/iv_play"
+            android:src="@drawable/icon_play"
+            android:layout_gravity="center"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
     </com.cc.dc.customview.view.CustomLinearLayout>
 </LinearLayout>

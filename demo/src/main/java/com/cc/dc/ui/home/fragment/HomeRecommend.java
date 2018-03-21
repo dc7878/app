@@ -2,6 +2,7 @@ package com.cc.dc.ui.home.fragment;
 
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -60,6 +61,7 @@ public class HomeRecommend extends BaseFragment<HomeRecommendPresenter> implemen
 
     @Override
     public void lazyLoadData() {
+        Log.e("HomeFragment", "HomeFragment HomeRecommend");
         presenter.loadSliderList();
 
         presenter.loadBigDataRoomList("android1", "", StringUtil.getAuth32());

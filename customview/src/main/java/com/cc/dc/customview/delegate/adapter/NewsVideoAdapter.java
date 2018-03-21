@@ -1,12 +1,14 @@
-package com.cc.dc.customview.adapter;
+package com.cc.dc.customview.delegate.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aliyun.vodplayer.media.AliyunLocalSource;
@@ -14,82 +16,83 @@ import com.aliyun.vodplayer.media.IAliyunVodPlayer;
 import com.aliyun.vodplayerview.widget.AliyunVodPlayerView;
 import com.cc.dc.common.utils.LUtil;
 import com.cc.dc.customview.R;
-import com.cc.dc.customview.bean.TestPlayerBean;
+import com.cc.dc.customview.delegate.bean.NewsEntity;
+import com.cc.dc.customview.delegate.bean.NewsVideoEntity;
 import com.cc.dc.customview.view.CustomLinearLayout;
+import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate;
 
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+
 /**
- * Created by dc on 2017/12/20.
+ * Created by dc on 2018/2/28.
+ * 新闻默认的Adapter
  */
 
-public class TestPlayerAdapter extends RecyclerView.Adapter<TestPlayerAdapter.PlayerHolder> {
+public class NewsVideoAdapter extends AbsListItemAdapterDelegate<NewsVideoEntity, NewsEntity, NewsVideoAdapter.NormalViewHolder> {
+
+    private LayoutInflater inflater;
 
     private Context context;
 
-    private List<TestPlayerBean> data;
-
-    private OnItemClickListener listener;
-
-    public TestPlayerAdapter(Context context, List<TestPlayerBean> data) {
+    public NewsVideoAdapter(Context context) {
         this.context = context;
-        this.data = data;
-    }
-
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        this.listener = listener;
+        this.inflater = LayoutInflater.from(context);
     }
 
     @Override
-    public PlayerHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_list_test_player, parent, false);
-        PlayerHolder holder = new PlayerHolder(view);
-        return holder;
+    protected boolean isForViewType(@NonNull NewsEntity item, @NonNull List<NewsEntity> items, int position) {
+        return item instanceof NewsVideoEntity;
+    }
+
+    @NonNull
+    @Override
+    protected NormalViewHolder onCreateViewHolder(@NonNull ViewGroup parent) {
+        return new NormalViewHolder(inflater.inflate(R.layout.item_list_test_player, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(final PlayerHolder holder, int position) {
-        int type = data.get(position).getType();
+    protected void onBindViewHolder(@NonNull NewsVideoEntity item, @NonNull final NormalViewHolder viewHolder, @NonNull List<Object> payloads) {
+        int type = 1;
         if (type == 1) {
-            LUtil.e("TestPlayerAdapter", "111");
-            holder.tvTitle.setVisibility(View.GONE);
-            holder.layerPlayer.setVisibility(View.VISIBLE);
+            viewHolder.tvTitle.setVisibility(View.GONE);
+            viewHolder.layerPlayer.setVisibility(View.VISIBLE);
             AliyunLocalSource.AliyunLocalSourceBuilder builder = new AliyunLocalSource.AliyunLocalSourceBuilder();
-            builder.setSource(data.get(position).getUrl());
+            builder.setSource("http://wvideo.spriteapp.cn/video/2018/0318/ffaf1d68-2a57-11e8-be56-1866daeb0df1_wpd.mp4");
             AliyunLocalSource localSource = builder.build();
-            holder.playerView.setLocalSource(localSource);
-            holder.playerView.setOnTouchListener(new View.OnTouchListener() {
+            viewHolder.playerView.setLocalSource(localSource);
+            viewHolder.playerView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     return false;
                 }
             });
-            holder.playerView.setOnPreparedListener(new IAliyunVodPlayer.OnPreparedListener() {
+            viewHolder.playerView.setOnPreparedListener(new IAliyunVodPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared() {
                     //准备完成时触发
-                    holder.playerView.start();
+//                    viewHolder.playerView.start();
                     Log.e("TestPlayerAdapter", "onPrepared");
                 }
             });
-            holder.playerView.setOnCompletionListener(new IAliyunVodPlayer.OnCompletionListener() {
+            viewHolder.playerView.setOnCompletionListener(new IAliyunVodPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion() {
                     //播放正常完成时触发
                     Log.e("TestPlayerAdapter", "onCompletion");
                 }
             });
-            holder.playerView.setOnFirstFrameStartListener(new IAliyunVodPlayer.OnFirstFrameStartListener() {
+            viewHolder.playerView.setOnFirstFrameStartListener(new IAliyunVodPlayer.OnFirstFrameStartListener() {
                 @Override
                 public void onFirstFrameStart() {
                     //首帧显示时触发
                     Log.e("TestPlayerAdapter", "onFirstFrameStart");
                 }
             });
-            holder.playerView.setOnChangeQualityListener(new IAliyunVodPlayer.OnChangeQualityListener() {
+            viewHolder.playerView.setOnChangeQualityListener(new IAliyunVodPlayer.OnChangeQualityListener() {
                 @Override
                 public void onChangeQualitySuccess(String finalQuality) {
                     //清晰度切换成功时触发
@@ -101,27 +104,27 @@ public class TestPlayerAdapter extends RecyclerView.Adapter<TestPlayerAdapter.Pl
                     Log.e("TestPlayerAdapter", "onChangeQualityFail");
                 }
             });
-            holder.playerView.setOnStoppedListner(new IAliyunVodPlayer.OnStoppedListener() {
+            viewHolder.playerView.setOnStoppedListner(new IAliyunVodPlayer.OnStoppedListener() {
                 @Override
                 public void onStopped() {
                     //使用stop接口时触发
                     Log.e("TestPlayerAdapter", "onStopped");
                 }
             });
-            holder.playerView.setOnCircleStartListener(new IAliyunVodPlayer.OnCircleStartListener() {
+            viewHolder.playerView.setOnCircleStartListener(new IAliyunVodPlayer.OnCircleStartListener() {
                 @Override
                 public void onCircleStart() {
                     //循环播放开始
                     Log.e("TestPlayerAdapter", "onPrepared");
                 }
             });
-            holder.playerView.setOnInfoListener(new IAliyunVodPlayer.OnInfoListener() {
+            viewHolder.playerView.setOnInfoListener(new IAliyunVodPlayer.OnInfoListener() {
                 @Override
                 public void onInfo(int i, int i1) {
                     Log.e("TestPlayerAdapter", "onInfo");
                 }
             });
-            holder.playerView.setOnLoadingListener(new IAliyunVodPlayer.OnLoadingListener() {
+            viewHolder.playerView.setOnLoadingListener(new IAliyunVodPlayer.OnLoadingListener() {
                 @Override
                 public void onLoadStart() {
                     Log.e("TestPlayerAdapter", "onLoadStart");
@@ -137,7 +140,7 @@ public class TestPlayerAdapter extends RecyclerView.Adapter<TestPlayerAdapter.Pl
                     Log.e("TestPlayerAdapter", "onLoadProgress");
                 }
             });
-            holder.playerView.setOnBufferingUpdateListener(new IAliyunVodPlayer.OnBufferingUpdateListener() {
+            viewHolder.playerView.setOnBufferingUpdateListener(new IAliyunVodPlayer.OnBufferingUpdateListener() {
 
                 @Override
                 public void onBufferingUpdate(int i) {
@@ -145,39 +148,21 @@ public class TestPlayerAdapter extends RecyclerView.Adapter<TestPlayerAdapter.Pl
                 }
             });
 //            holder.playerView.start();
+            viewHolder.imageViewPlay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    viewHolder.playerView.start();
+                }
+            });
         } else {
-            holder.tvTitle.setVisibility(View.VISIBLE);
-            holder.playerView.setVisibility(View.GONE);
+            viewHolder.tvTitle.setVisibility(View.VISIBLE);
+            viewHolder.playerView.setVisibility(View.GONE);
             LUtil.e("TestPlayerAdapter", "222");
         }
-        holder.tvTitle.setText(data.get(position).getTitle());
-//        holder.layerPlayer.setOnClickListener(new ClickListener(position));
+        viewHolder.tvTitle.setText(item.title);
     }
 
-    @Override
-    public int getItemCount() {
-        return data.size();
-    }
-
-    public interface OnItemClickListener {
-        void onItemClickListener(View view, int position);
-    }
-
-    class ClickListener implements View.OnClickListener {
-
-        private int position;
-
-        public ClickListener(int position) {
-            this.position = position;
-        }
-
-        @Override
-        public void onClick(View v) {
-            listener.onItemClickListener(v, position);
-        }
-    }
-
-    class PlayerHolder extends RecyclerView.ViewHolder {
+    static class NormalViewHolder extends RecyclerView.ViewHolder {
 
         @Bind(R.id.tv_title)
         TextView tvTitle;
@@ -185,13 +170,12 @@ public class TestPlayerAdapter extends RecyclerView.Adapter<TestPlayerAdapter.Pl
         CustomLinearLayout layerPlayer;
         @Bind(R.id.player_view)
         AliyunVodPlayerView playerView;
+        @Bind(R.id.iv_play)
+        ImageView imageViewPlay;
 
-        View itemView;
-
-        public PlayerHolder(View itemView) {
+        private NormalViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            this.itemView = itemView;
         }
     }
 }
