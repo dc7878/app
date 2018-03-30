@@ -52,105 +52,105 @@ public class TestPlayerAdapter extends RecyclerView.Adapter<TestPlayerAdapter.Pl
 
     @Override
     public void onBindViewHolder(final PlayerHolder holder, int position) {
-        int type = data.get(position).getType();
-        if (type == 1) {
-            LUtil.e("TestPlayerAdapter", "111");
-            holder.tvTitle.setVisibility(View.GONE);
-            holder.layerPlayer.setVisibility(View.VISIBLE);
-            AliyunLocalSource.AliyunLocalSourceBuilder builder = new AliyunLocalSource.AliyunLocalSourceBuilder();
-            builder.setSource(data.get(position).getUrl());
-            AliyunLocalSource localSource = builder.build();
-            holder.playerView.setLocalSource(localSource);
-            holder.playerView.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    return false;
-                }
-            });
-            holder.playerView.setOnPreparedListener(new IAliyunVodPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared() {
-                    //准备完成时触发
-                    holder.playerView.start();
-                    Log.e("TestPlayerAdapter", "onPrepared");
-                }
-            });
-            holder.playerView.setOnCompletionListener(new IAliyunVodPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion() {
-                    //播放正常完成时触发
-                    Log.e("TestPlayerAdapter", "onCompletion");
-                }
-            });
-            holder.playerView.setOnFirstFrameStartListener(new IAliyunVodPlayer.OnFirstFrameStartListener() {
-                @Override
-                public void onFirstFrameStart() {
-                    //首帧显示时触发
-                    Log.e("TestPlayerAdapter", "onFirstFrameStart");
-                }
-            });
-            holder.playerView.setOnChangeQualityListener(new IAliyunVodPlayer.OnChangeQualityListener() {
-                @Override
-                public void onChangeQualitySuccess(String finalQuality) {
-                    //清晰度切换成功时触发
-                    Log.e("TestPlayerAdapter", "onChangeQualitySuccess");
-                }
-                @Override
-                public void onChangeQualityFail(int code, String msg) {
-                    //清晰度切换失败时触发
-                    Log.e("TestPlayerAdapter", "onChangeQualityFail");
-                }
-            });
-            holder.playerView.setOnStoppedListner(new IAliyunVodPlayer.OnStoppedListener() {
-                @Override
-                public void onStopped() {
-                    //使用stop接口时触发
-                    Log.e("TestPlayerAdapter", "onStopped");
-                }
-            });
-            holder.playerView.setOnCircleStartListener(new IAliyunVodPlayer.OnCircleStartListener() {
-                @Override
-                public void onCircleStart() {
-                    //循环播放开始
-                    Log.e("TestPlayerAdapter", "onPrepared");
-                }
-            });
-            holder.playerView.setOnInfoListener(new IAliyunVodPlayer.OnInfoListener() {
-                @Override
-                public void onInfo(int i, int i1) {
-                    Log.e("TestPlayerAdapter", "onInfo");
-                }
-            });
-            holder.playerView.setOnLoadingListener(new IAliyunVodPlayer.OnLoadingListener() {
-                @Override
-                public void onLoadStart() {
-                    Log.e("TestPlayerAdapter", "onLoadStart");
-                }
-
-                @Override
-                public void onLoadEnd() {
-                    Log.e("TestPlayerAdapter", "onLoadEnd");
-                }
-
-                @Override
-                public void onLoadProgress(int i) {
-                    Log.e("TestPlayerAdapter", "onLoadProgress");
-                }
-            });
-            holder.playerView.setOnBufferingUpdateListener(new IAliyunVodPlayer.OnBufferingUpdateListener() {
-
-                @Override
-                public void onBufferingUpdate(int i) {
-                    Log.e("TestPlayerAdapter", "onBufferingUpdate");
-                }
-            });
-//            holder.playerView.start();
-        } else {
-            holder.tvTitle.setVisibility(View.VISIBLE);
-            holder.playerView.setVisibility(View.GONE);
-            LUtil.e("TestPlayerAdapter", "222");
-        }
-        holder.tvTitle.setText(data.get(position).getTitle());
+//        int type = data.get(position).getType();
+//        if (type == 1) {
+//            LUtil.e("TestPlayerAdapter", "111");
+//            holder.tvTitle.setVisibility(View.GONE);
+//            holder.layerPlayer.setVisibility(View.VISIBLE);
+//            AliyunLocalSource.AliyunLocalSourceBuilder builder = new AliyunLocalSource.AliyunLocalSourceBuilder();
+//            builder.setSource(data.get(position).getUrl());
+//            AliyunLocalSource localSource = builder.build();
+//            holder.playerView.setLocalSource(localSource);
+//            holder.playerView.setOnTouchListener(new View.OnTouchListener() {
+//                @Override
+//                public boolean onTouch(View v, MotionEvent event) {
+//                    return false;
+//                }
+//            });
+//            holder.playerView.setOnPreparedListener(new IAliyunVodPlayer.OnPreparedListener() {
+//                @Override
+//                public void onPrepared() {
+//                    //准备完成时触发
+//                    holder.playerView.start();
+//                    Log.e("TestPlayerAdapter", "onPrepared");
+//                }
+//            });
+//            holder.playerView.setOnCompletionListener(new IAliyunVodPlayer.OnCompletionListener() {
+//                @Override
+//                public void onCompletion() {
+//                    //播放正常完成时触发
+//                    Log.e("TestPlayerAdapter", "onCompletion");
+//                }
+//            });
+//            holder.playerView.setOnFirstFrameStartListener(new IAliyunVodPlayer.OnFirstFrameStartListener() {
+//                @Override
+//                public void onFirstFrameStart() {
+//                    //首帧显示时触发
+//                    Log.e("TestPlayerAdapter", "onFirstFrameStart");
+//                }
+//            });
+//            holder.playerView.setOnChangeQualityListener(new IAliyunVodPlayer.OnChangeQualityListener() {
+//                @Override
+//                public void onChangeQualitySuccess(String finalQuality) {
+//                    //清晰度切换成功时触发
+//                    Log.e("TestPlayerAdapter", "onChangeQualitySuccess");
+//                }
+//                @Override
+//                public void onChangeQualityFail(int code, String msg) {
+//                    //清晰度切换失败时触发
+//                    Log.e("TestPlayerAdapter", "onChangeQualityFail");
+//                }
+//            });
+//            holder.playerView.setOnStoppedListner(new IAliyunVodPlayer.OnStoppedListener() {
+//                @Override
+//                public void onStopped() {
+//                    //使用stop接口时触发
+//                    Log.e("TestPlayerAdapter", "onStopped");
+//                }
+//            });
+//            holder.playerView.setOnCircleStartListener(new IAliyunVodPlayer.OnCircleStartListener() {
+//                @Override
+//                public void onCircleStart() {
+//                    //循环播放开始
+//                    Log.e("TestPlayerAdapter", "onPrepared");
+//                }
+//            });
+//            holder.playerView.setOnInfoListener(new IAliyunVodPlayer.OnInfoListener() {
+//                @Override
+//                public void onInfo(int i, int i1) {
+//                    Log.e("TestPlayerAdapter", "onInfo");
+//                }
+//            });
+//            holder.playerView.setOnLoadingListener(new IAliyunVodPlayer.OnLoadingListener() {
+//                @Override
+//                public void onLoadStart() {
+//                    Log.e("TestPlayerAdapter", "onLoadStart");
+//                }
+//
+//                @Override
+//                public void onLoadEnd() {
+//                    Log.e("TestPlayerAdapter", "onLoadEnd");
+//                }
+//
+//                @Override
+//                public void onLoadProgress(int i) {
+//                    Log.e("TestPlayerAdapter", "onLoadProgress");
+//                }
+//            });
+//            holder.playerView.setOnBufferingUpdateListener(new IAliyunVodPlayer.OnBufferingUpdateListener() {
+//
+//                @Override
+//                public void onBufferingUpdate(int i) {
+//                    Log.e("TestPlayerAdapter", "onBufferingUpdate");
+//                }
+//            });
+////            holder.playerView.start();
+//        } else {
+//            holder.tvTitle.setVisibility(View.VISIBLE);
+//            holder.playerView.setVisibility(View.GONE);
+//            LUtil.e("TestPlayerAdapter", "222");
+//        }
+//        holder.tvTitle.setText(data.get(position).getTitle());
 //        holder.layerPlayer.setOnClickListener(new ClickListener(position));
     }
 
@@ -183,8 +183,8 @@ public class TestPlayerAdapter extends RecyclerView.Adapter<TestPlayerAdapter.Pl
         TextView tvTitle;
         @Bind(R.id.layer_player)
         CustomLinearLayout layerPlayer;
-        @Bind(R.id.player_view)
-        AliyunVodPlayerView playerView;
+//        @Bind(R.id.player_view)
+//        AliyunVodPlayerView playerView;
 
         View itemView;
 

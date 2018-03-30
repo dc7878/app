@@ -23,11 +23,12 @@ android {
             dirs 'libs'   // aar目录
         }
     }
+
 }
 
 dependencies {
 //    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:appcompat-v7:26.1.0'
     compile project(':common')
     compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
     // https://github.com/hdodenhof/CircleImageView
@@ -37,4 +38,6 @@ dependencies {
     compile 'com.android.support:design:25.3.1'
 
     compile(name:'AliyunPlayer', ext: 'aar')
+
+    compile 'com.jaeger.statusbarutil:library:1.5.0'
 }

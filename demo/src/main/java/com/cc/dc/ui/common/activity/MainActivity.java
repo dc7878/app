@@ -1,6 +1,8 @@
 package com.cc.dc.ui.common.activity;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 
 import com.cc.dc.Constant;
@@ -15,6 +17,7 @@ import com.cc.dc.ui.user.fragment.UserFragment;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
+import com.jaeger.library.StatusBarUtil;
 
 import java.util.ArrayList;
 
