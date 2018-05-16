@@ -32,17 +32,17 @@ public class TestActivity extends BaseActivity {
     @Override
     public void initView(Bundle savedInstanceState) {
 
-        OkHttpClient client = new OkHttpClient();
-        client.newCall(new Request()).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-
-            }
-        });
+//        OkHttpClient client = new OkHttpClient();
+//        client.newCall(new Request()).enqueue(new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//
+//            }
+//
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//
+//            }
+//        });
     }
 }

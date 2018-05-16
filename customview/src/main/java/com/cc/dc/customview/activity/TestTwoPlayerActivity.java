@@ -20,6 +20,8 @@ import com.cc.dc.customview.delegate.bean.NewsVideoEntity;
 import com.cc.dc.customview.dialog.TestDialog;
 import com.cc.dc.customview.marquee.ComplexItemEntity;
 import com.cc.dc.customview.marquee.ComplexViewMF;
+import com.cc.dc.customview.marquee.test.ADEnity;
+import com.cc.dc.customview.marquee.test.TextViewAd;
 import com.gongwen.marqueen.MarqueeView;
 
 import java.util.ArrayList;
@@ -33,6 +35,9 @@ import butterknife.Bind;
  */
 
 public class TestTwoPlayerActivity extends BaseActivity {
+
+    @Bind(R.id.text_view)
+    TextViewAd textViewAd;
 
     @Bind(R.id.marqueeView)
     MarqueeView marqueeView;
@@ -54,6 +59,18 @@ public class TestTwoPlayerActivity extends BaseActivity {
 
     @Override
     public void initView(Bundle savedInstanceState) {
+        List<ADEnity> adEnities = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            ADEnity enity = new ADEnity();
+            enity.setmFront("");
+            enity.setmBack("2222" + i);
+            enity.setmUrl("223232");
+            adEnities.add(enity);
+        }
+        textViewAd.setmTexts(adEnities);
+
+
+
         List<ComplexItemEntity> list = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             ComplexItemEntity entity = new ComplexItemEntity();

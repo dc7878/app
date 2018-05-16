@@ -1,12 +1,19 @@
 package com.cc.dc.common.http;
 
+import com.alibaba.fastjson.JSONObject;
+import com.cc.dc.common.bean.TestBean;
+import com.cc.dc.common.bean.TestInfo;
 import com.cc.dc.common.utils.LUtil;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Interceptor;
+import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 /**
  * Created by dc on 2017/9/21.
@@ -35,6 +42,30 @@ public class BaseResponseInterceptor implements Interceptor {
 
         Response response = chain.proceed(request);
         LUtil.e("Response", response.body().toString());
+//        return response;
+
+        JSONObject jsonObject = new JSONObject();
+
+        TestInfo testInfo = new TestInfo();
+        List<TestBean> list = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            TestBean testBean = new TestBean();
+            testBean.title = "test" + i;
+            testBean.type = "";
+            list.add(testBean);
+        }
+        testInfo.list = list;
+
+        jsonObject.put("data", "");
+//        jsonObject.put("code", "200");
+
+        LUtil.e("SomeTestModel", "jsonObject>>>" + jsonObject.toJSONString());
+
+//        return response.newBuilder()
+//                .code(200)
+//                .message("ok")
+//                .body(ResponseBody.create(MediaType.parse("json"), "{}"))
+//                .build();
         return response;
     }
 }

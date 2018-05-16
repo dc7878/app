@@ -11,9 +11,12 @@ import com.cc.dc.common.utils.ResourceUtil;
 import com.cc.dc.memorytraining.R;
 import com.cc.dc.memorytraining.bean.NumberCodeBean;
 import com.cc.dc.memorytraining.ui.home.adapter.NumberCodeRecyclerViewAdapter;
+import com.cc.dc.memorytraining.ui.user.model.SomeTestModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -72,6 +75,13 @@ public class NumberCodeListActivity extends BaseActivity {
     }
 
     private void loadData() {
+
+        Map<String, String> map = new HashMap<>();
+        map.put("tid", "0");
+        map.put("page", String.valueOf(1));
+        map.put("pagesize", String.valueOf(2));
+        new SomeTestModel().test(map);
+
         for (int i = 0; i < 100; i++) {
             NumberCodeBean bean = new NumberCodeBean();
             int resId;

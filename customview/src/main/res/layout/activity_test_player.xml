@@ -4,6 +4,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <com.cc.dc.customview.marquee.test.TextViewAd
+        android:id="@+id/text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <com.gongwen.marqueen.MarqueeView
         android:id="@+id/marqueeView"
         android:layout_width="match_parent"
