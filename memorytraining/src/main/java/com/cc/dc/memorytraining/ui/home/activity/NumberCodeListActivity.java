@@ -20,6 +20,12 @@ import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 public class NumberCodeListActivity extends BaseActivity {
 
@@ -125,5 +131,32 @@ public class NumberCodeListActivity extends BaseActivity {
     protected void  clickPI() {
         Intent intent = new Intent(this, PIMemoryActivity.class);
         startActivity(intent);
+
+        Observable.create(new ObservableOnSubscribe<String>() {
+            @Override
+            public void subscribe(ObservableEmitter<String> e) throws Exception {
+
+            }
+        }).subscribe(new Observer<String>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(String value) {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
     }
 }

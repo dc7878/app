@@ -30,7 +30,7 @@ dependencies {
     compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
     compile 'com.squareup.okhttp3:okhttp:3.8.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'
-    compile 'com.alibaba:fastjson:1.1.59.android'
+    compile 'com.alibaba:fastjson:1.1.68.android'
     compile 'com.orhanobut:logger:2.1.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
 

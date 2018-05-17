@@ -1,5 +1,6 @@
 package com.cc.dc.memorytraining.api;
 
+import com.cc.dc.common.bean.TestInfo;
 import com.cc.dc.memorytraining.bean.NewsBean;
 
 import java.util.Map;
@@ -17,5 +18,5 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("api.php?s=/News/getNewsListCache")
-    Observable<Integer> getNewsList(@FieldMap() Map<String, String> map);
+    Observable<NewsBean> getNewsList(@FieldMap() Map<String, String> map);
 }

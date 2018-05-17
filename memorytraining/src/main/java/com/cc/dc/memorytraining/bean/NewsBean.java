@@ -12,6 +12,5 @@ public class NewsBean {
 
     public int code;
 
-//    public List<TestBean> data;
-    public int data;
+    public List<TestBean> data;
 }

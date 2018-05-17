@@ -48,7 +48,7 @@ public class BaseResponseInterceptor implements Interceptor {
 
         TestInfo testInfo = new TestInfo();
         List<TestBean> list = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 1; i++) {
             TestBean testBean = new TestBean();
             testBean.title = "test" + i;
             testBean.type = "";
@@ -56,16 +56,16 @@ public class BaseResponseInterceptor implements Interceptor {
         }
         testInfo.list = list;
 
-        jsonObject.put("data", "");
-//        jsonObject.put("code", "200");
+        jsonObject.put("data", testInfo);
+        jsonObject.put("code", "200");
 
         LUtil.e("SomeTestModel", "jsonObject>>>" + jsonObject.toJSONString());
 
-//        return response.newBuilder()
-//                .code(200)
-//                .message("ok")
-//                .body(ResponseBody.create(MediaType.parse("json"), "{}"))
-//                .build();
-        return response;
+        return response.newBuilder()
+                .code(200)
+                .message("ok")
+                .body(ResponseBody.create(MediaType.parse("json"), jsonObject.toJSONString()))
+                .build();
+//        return response;
     }
 }

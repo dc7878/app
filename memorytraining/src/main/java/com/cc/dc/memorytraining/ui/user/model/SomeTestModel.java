@@ -24,15 +24,22 @@ public class SomeTestModel {
                 .getNewsList(map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new BaseObserver<Integer>() {
+                .subscribe(new BaseObserver<NewsBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(Integer value) {
+                    public void onNext(NewsBean value) {
 //                        LUtil.e("SomeTestModel", "SomeTestModel>>>" + value.code + " " + value.data);
-                        LUtil.e("SomeTestModel", "SomeTestModel>>>" + value);
+                        LUtil.e("SomeTestModel", "SomeTestModel>>>" + value.code);
+                        if (value != null) {
+                            if (value.data == null) {
+                                LUtil.e("SomeTestModel", "SomeTestModel>>> null");
+                            } else {
+                                LUtil.e("SomeTestModel", "SomeTestModel>>> not null " + value.data.size());
+                            }
+                        }
 //                        for (int i = 0; i < value.data.size(); i++) {
 //                            LUtil.e("SomeTestModel", "SomeTestModel>>>" +
 //                                    value.data.get(i).title + " " + value.data.get(i).type
