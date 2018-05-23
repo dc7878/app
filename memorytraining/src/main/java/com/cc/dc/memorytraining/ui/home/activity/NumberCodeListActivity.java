@@ -7,6 +7,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import com.cc.dc.common.custom.StaggeredItemDecoration;
 import com.cc.dc.common.ui.BaseActivity;
+import com.cc.dc.common.utils.LUtil;
 import com.cc.dc.common.utils.ResourceUtil;
 import com.cc.dc.memorytraining.R;
 import com.cc.dc.memorytraining.bean.NumberCodeBean;
@@ -23,9 +24,11 @@ import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 public class NumberCodeListActivity extends BaseActivity {
 
@@ -132,12 +135,30 @@ public class NumberCodeListActivity extends BaseActivity {
         Intent intent = new Intent(this, PIMemoryActivity.class);
         startActivity(intent);
 
-        Observable.create(new ObservableOnSubscribe<String>() {
+        Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
-            public void subscribe(ObservableEmitter<String> e) throws Exception {
-
+            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
+                LUtil.e("NumberTest", "111111111");
+                e.onNext(1111);
             }
-        }).subscribe(new Observer<String>() {
+        }).map(new Function<Integer, String>() {
+            @Override
+            public String apply(Integer integer) throws Exception {
+
+                return integer + " " + 10;
+            }
+        }).flatMap(new Function<String, ObservableSource<String>>() {
+            @Override
+            public ObservableSource<String> apply(String s) throws Exception {
+                return Observable.create(new ObservableOnSubscribe<String>() {
+                    @Override
+                    public void subscribe(ObservableEmitter<String> e) throws Exception {
+
+                    }
+                });
+            }
+        }).subscribeOn(Schedulers.io())
+                .subscribe(new Observer<String>() {
             @Override
             public void onSubscribe(Disposable d) {
 
