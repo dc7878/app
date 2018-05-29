@@ -147,25 +147,25 @@ public class NumberCodeListActivity extends BaseActivity {
 
                 return integer + " " + 10;
             }
-        }).flatMap(new Function<String, ObservableSource<String>>() {
+        }).flatMap(new Function<String, ObservableSource<Integer>>() {
             @Override
-            public ObservableSource<String> apply(String s) throws Exception {
-                return Observable.create(new ObservableOnSubscribe<String>() {
+            public ObservableSource<Integer> apply(String s) throws Exception {
+                return Observable.create(new ObservableOnSubscribe<Integer>() {
                     @Override
-                    public void subscribe(ObservableEmitter<String> e) throws Exception {
+                    public void subscribe(ObservableEmitter<Integer> e) throws Exception {
 
                     }
                 });
             }
         }).subscribeOn(Schedulers.io())
-                .subscribe(new Observer<String>() {
+        .subscribe(new Observer<Integer>() {
             @Override
             public void onSubscribe(Disposable d) {
 
             }
 
             @Override
-            public void onNext(String value) {
+            public void onNext(Integer value) {
 
             }
 

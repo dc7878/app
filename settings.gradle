@@ -1,1 +1,1 @@
-include ':demo', ':share', ':common', ':memorytraining', ':customview', ':ndk'
+include ':demo', ':share', ':common', ':memorytraining', ':customview', ':ndk', ':kotlindemo'
