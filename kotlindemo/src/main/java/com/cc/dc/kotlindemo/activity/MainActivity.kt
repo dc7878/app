@@ -1,14 +1,21 @@
 package com.cc.dc.kotlindemo.activity
 
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.cc.dc.kotlindemo.R
-import com.cc.dc.kotlindemo.adapter.MainAdapter
+import com.cc.dc.kotlindemo.adapter.news.NewsAdapter
 import com.cc.dc.kotlindemo.bean.BaseBean
 import com.cc.dc.kotlindemo.bean.ImageBean
 import com.cc.dc.kotlindemo.bean.VideoBean
+import com.cc.dc.kotlindemo.bean.news.NewsEntity
+import com.cc.dc.kotlindemo.bean.news.NewsImageEntity
+import com.cc.dc.kotlindemo.bean.news.NewsNormalEntity
+import com.cc.dc.kotlindemo.bean.news.NewsVideoEntity
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 /**
  * test main activity
@@ -18,29 +25,60 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 class MainActivity : BaseActivity() {
 
-    private var list: ArrayList<BaseBean>? = null
-    private var adapter: MainAdapter? = null
+    private var list: ArrayList<NewsEntity>? = null
+    private var adapter: NewsAdapter? = null
 
     override fun getLayout(): Int {
         return R.layout.activity_main
     }
 
     override fun initView() {
+        initData()
+
         tvName.text = "111 " + sum(1, 20)
         button.setBackgroundColor(resources.getColor(R.color.colorAccent))
+
+        adapter = NewsAdapter(this, list!!)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+
+
+        recyclerView.postDelayed(Runnable {
+            kotlin.run {
+                addData(10)
+                adapter!!.notifyDataSetChanged()
+            }
+        }, 2000)
     }
 
     override fun isRegisterEventBus(): Boolean {
         return true
     }
 
-    private fun init() {
+    private fun initData() {
         list = ArrayList()
-        var index = 0
-        for (index in 0..10) {
-            var bean = BaseBean()
-            bean.age = index
-            bean.name = "name is " + index
+        addData(20)
+    }
+
+    fun addData(size: Int) {
+        var random = Random()
+        for (index in 0..size) {
+            var type = random.nextInt(3)
+            when(type) {
+                0-> {
+                    var normalEntity = NewsNormalEntity()
+                    list!!.add(normalEntity)
+                }
+                1 -> {
+                    var videoEntity = NewsVideoEntity()
+                    list!!.add(videoEntity)
+                }
+                2 -> {
+                    var imageEntity = NewsImageEntity()
+                    list!!.add(imageEntity)
+                }
+            }
         }
     }
 

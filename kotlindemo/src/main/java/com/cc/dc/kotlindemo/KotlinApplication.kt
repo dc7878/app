@@ -12,7 +12,6 @@ class KotlinApplication : Application() {
         init()
     }
 
-    fun init() {
-
+    private fun init() {
     }
 }
