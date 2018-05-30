@@ -61,7 +61,7 @@ class MainActivity : BaseActivity() {
         addData(20)
     }
 
-    fun addData(size: Int) {
+    private fun addData(size: Int) {
         var random = Random()
         for (index in 0..size) {
             var type = random.nextInt(3)
