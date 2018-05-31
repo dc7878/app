@@ -10,6 +10,7 @@ import de.greenrobot.event.EventBus
 
 /**
  * Created by dc on 2018/5/31.
+ * base fragment
  */
 abstract class BaseFragment : Fragment() {
 

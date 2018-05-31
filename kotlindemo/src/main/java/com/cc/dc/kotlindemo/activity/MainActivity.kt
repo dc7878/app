@@ -27,14 +27,9 @@ class MainActivity : BaseActivity() {
         fragmentTransaction.add(R.id.content, MainFragment())
         fragmentTransaction.add(R.id.leftDrawer, DrawerLeftFragment())
         fragmentTransaction.commit()
-
-        drawerLayout.postDelayed(Runnable {
-            kotlin.run {
-                drawerLayout.openDrawer(leftDrawer, true)
-            }
-        }, 2000)
     }
 
+    @SuppressWarnings("unused")
     public fun onEvent(event: OpenDrawerEvent?) {
         drawerLayout.openDrawer(leftDrawer, true)
     }
