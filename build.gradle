@@ -2,6 +2,7 @@
 
 buildscript {
     ext.kotlin_version = '1.2.41'
+    ext.butterknife_version = '7.0.1'
     repositories {
         jcenter()
         mavenCentral()
