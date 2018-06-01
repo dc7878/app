@@ -1,9 +1,12 @@
 package com.cc.dc.kotlindemo.fragment
 
+import android.content.Intent
 import android.util.Log
 import butterknife.OnClick
 import com.cc.dc.kotlindemo.R
+import com.cc.dc.kotlindemo.activity.TestActivity
 import com.cc.dc.kotlindemo.base.BaseFragment
+import com.cc.dc.kotlindemo.bean.ChannelBean
 import com.cc.dc.kotlindemo.event.OpenDrawerEvent
 import com.cc.dc.kotlindemo.model.TestModel
 import com.cc.dc.kotlindemo.net.HttpCallBack
@@ -23,18 +26,26 @@ class MainFragment : BaseFragment() {
         Log.e("MainFragment", "showDrawerLeft>>>")
         EventBus.getDefault().post(OpenDrawerEvent())
 
-        TestModel.getChannelJson("1", object : HttpCallBack<String>{
+        TestModel.getChannelJson("1", object : HttpCallBack<List<ChannelBean>>{
             override fun onStart(disposable: Disposable) {
                 Log.e("TestModel", "MainFragment>>>onStart>>>")
             }
 
-            override fun onResult(result: String) {
+            override fun onResult(result: List<ChannelBean>) {
                 Log.e("TestModel", "MainFragment>>>onResult>>>" + result)
+                for(item in result) {
+                    Log.e("TestModel", "MainFragment>>>onResult>>>" + item.name + " " + item.tid)
+                }
             }
 
             override fun onError(msg: String) {
                 Log.e("TestModel", "MainFragment>>>onError>>>" + msg)
             }
         })
+    }
+    @OnClick(R.id.btn_test_activity)
+    fun goToTestActivity() {
+        var intent = Intent(context, TestActivity::class.java)
+        startActivity(intent)
     }
 }

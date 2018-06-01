@@ -59,7 +59,7 @@ class BaseParamsInterceptor : Interceptor {
 
             formBodyBuilder.add("platform", "Android")
             formBodyBuilder.add("system_version", Build.MODEL + "/Android " + Build.VERSION.RELEASE.toString())
-            //            UserBean userBean = SPUtil.getInstance().getUser();
+            //            UserBean userBean = SPUtil.create().getUser();
             //            if (null != userBean && !TextUtils.isEmpty(userBean.getLast_login_token())) {
             //                formBodyBuilder.add("login_token", userBean.getLast_login_token());
             //            }
@@ -75,7 +75,7 @@ class BaseParamsInterceptor : Interceptor {
             //            }
             //            String versionName;
             //            try {
-            //                versionName = DeviceInfoUtil.getVersionName(App.getInstance());
+            //                versionName = DeviceInfoUtil.getVersionName(App.create());
             //                if (!TextUtils.isEmpty(versionName)) {
             //                    formBodyBuilder.add("version", versionName);
             //                }

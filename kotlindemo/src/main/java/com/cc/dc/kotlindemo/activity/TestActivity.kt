@@ -51,10 +51,6 @@ class TestActivity : BaseActivity() {
         }, 2000)
     }
 
-    override fun isRegisterEventBus(): Boolean {
-        return true
-    }
-
     private fun initData() {
         list = ArrayList()
         addData(20)

@@ -13,24 +13,20 @@ import java.util.concurrent.TimeUnit
  */
 class NetManager {
 
-    private val testUrl130 = "https://"
-
-    private val defaultTimeOut = 10
-
     private var retrofit: Retrofit? = null
 
     private constructor() {
         if (null ==  retrofit) {
             val builder = OkHttpClient().newBuilder()
-            builder.readTimeout(defaultTimeOut.toLong(), TimeUnit.SECONDS)
-            builder.connectTimeout(defaultTimeOut.toLong(), TimeUnit.SECONDS)
-            builder.writeTimeout(defaultTimeOut.toLong(), TimeUnit.SECONDS)
+            builder.readTimeout(DEFAULT_TIME_OUT.toLong(), TimeUnit.SECONDS)
+            builder.connectTimeout(DEFAULT_TIME_OUT.toLong(), TimeUnit.SECONDS)
+            builder.writeTimeout(DEFAULT_TIME_OUT.toLong(), TimeUnit.SECONDS)
 
             builder.addInterceptor(BaseParamsInterceptor())
             builder.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             val okHttpClient = builder.build()
             retrofit = Retrofit.Builder()
-                    .baseUrl(testUrl130)
+                    .baseUrl(TEST_URL_APP)
                     .client(okHttpClient)
                     .addConverterFactory(FastJsonConverter.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -40,7 +36,11 @@ class NetManager {
 
     companion object {
 
-        fun getInstance(): Retrofit {
+        private val TEST_URL_APP = "https://"
+
+        private val DEFAULT_TIME_OUT = 10
+
+        fun create(): Retrofit {
             return NetManager().retrofit!!
         }
     }

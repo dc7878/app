@@ -1,5 +1,7 @@
 package com.cc.dc.kotlindemo.net.api
 
+import com.cc.dc.kotlindemo.bean.ChannelBean
+import com.cc.dc.kotlindemo.net.BaseResponse
 import io.reactivex.Observable
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -12,5 +14,5 @@ interface TestApi {
 
     @FormUrlEncoded
     @POST("api.php?s=/Type/getTypeListCache")
-    fun getChannelJson(@Field("siteid") siteId: String): Observable<String>
+    fun getChannelJson(@Field("siteid") siteId: String): Observable<BaseResponse<List<ChannelBean>>>
 }
