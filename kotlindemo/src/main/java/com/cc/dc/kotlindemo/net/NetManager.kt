@@ -40,8 +40,13 @@ class NetManager {
 
         private val DEFAULT_TIME_OUT = 10
 
+        private var netManager: NetManager? = null
+
         fun create(): Retrofit {
-            return NetManager().retrofit!!
+            if (netManager == null) {
+                netManager = NetManager()
+            }
+            return netManager!!.retrofit!!
         }
     }
 }

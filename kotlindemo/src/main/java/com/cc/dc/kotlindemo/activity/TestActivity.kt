@@ -2,6 +2,7 @@ package com.cc.dc.kotlindemo.activity
 
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -80,6 +81,8 @@ class TestActivity : BaseActivity() {
     fun clickButton(view: View) {
 //        Toast.makeText(this, "button click " + view.id, Toast.LENGTH_LONG).show()
         someTest()
+        addData(10)
+        adapter!!.notifyDataSetChanged()
     }
 
     private fun sum(a: Int, b: Int): Int{

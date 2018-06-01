@@ -2,6 +2,7 @@ package com.cc.dc.kotlindemo.model
 
 import android.util.Log
 import com.cc.dc.kotlindemo.bean.ChannelBean
+import com.cc.dc.kotlindemo.bean.news.NewsEntity
 import com.cc.dc.kotlindemo.net.HttpCallBack
 import com.cc.dc.kotlindemo.net.NetManager
 import com.cc.dc.kotlindemo.net.api.TestApi
@@ -32,6 +33,32 @@ object  TestModel {
 
                     override fun onNext(value: List<ChannelBean>?) {
                         Log.e("TestModel", "TestModel>>>onNext>>>" + value!!.size)
+                        callBack.onResult(value)
+                    }
+
+                    override fun onError(t: Throwable) {
+                        super.onError(t)
+                        Log.e("TestModel", "TestModel>>>onError>>>" + t.message)
+                        callBack.onError(t.message!!)
+                    }
+                })
+    }
+
+    fun getNewsList(map: Map<String, String>, callBack: HttpCallBack<List<NewsEntity>>){
+        NetManager.create()
+                .create(TestApi::class.java)
+                .getNewsList(map)
+                .map(HttpFunction())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object: BaseObserver<List<NewsEntity>>(){
+                    override fun onSubscribe(d: Disposable?) {
+                        Log.e("TestModel", "TestModel>>>onSubscribe>>>")
+                        callBack.onStart(d!!)
+                    }
+
+                    override fun onNext(value: List<NewsEntity>?) {
+                        Log.e("TestModel", "TestModel>>>onNext>>>" + value?.size)
                         callBack.onResult(value)
                     }
 

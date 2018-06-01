@@ -1,11 +1,11 @@
-package com.cc.dc.kotlindemo.bean.news
+package com.cc.dc.kotlindemo.bean
 
 import com.alibaba.fastjson.annotation.JSONField
 
 /**
- * Created by dc on 2018/5/30.
+ * Created by dc on 2018/6/1.
  */
-open class NewsEntity {
+class NewsBean {
 
     @JSONField(name = "rtype")
     var rType: String? = null

@@ -19,7 +19,7 @@ interface HttpCallBack<T> {
     /**
      * 请求成功
      */
-    fun onResult(result: T)
+    fun onResult(result: T?)
 
     /**
      * 请求失败
