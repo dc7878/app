@@ -34,11 +34,8 @@ class MainFragment : BaseFragment() {
                 Log.e("TestModel", "MainFragment>>>onStart>>>")
             }
 
-            override fun onResult(result: List<ChannelBean>) {
+            override fun onResult(result: List<ChannelBean>?) {
                 Log.e("TestModel", "MainFragment>>>onResult>>>" + result)
-                for(item in result) {
-                    Log.e("TestModel", "MainFragment>>>onResult>>>" + item.name + " " + item.tid)
-                }
             }
 
             override fun onError(msg: String) {

@@ -12,6 +12,7 @@ import java.util.*
 
 /**
  * Created by dc on 2018/6/1.
+ * base list activity
  */
 abstract class BaseListActivity<T> : BaseActivity(), PullRefreshLayout.OnRefreshListener {
 
@@ -37,7 +38,7 @@ abstract class BaseListActivity<T> : BaseActivity(), PullRefreshLayout.OnRefresh
 
     protected fun loadDataSuccess(result: List<T>?) {
         if (!firstLoading!!) {
-            if (pageNum === 1) {
+            if (pageNum == 1) {
                 pullRefreshLayout.refreshFinished()
             } else {
                 pullRefreshLayout.loadMoreFinished()
