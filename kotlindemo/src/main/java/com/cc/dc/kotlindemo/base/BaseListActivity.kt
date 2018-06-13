@@ -8,7 +8,6 @@ import com.cc.dc.kotlindemo.adapter.news.NewsAdapter
 import com.cc.dc.kotlindemo.utils.ViewStatusUtil
 import com.cc.dc.kotlindemo.widgets.PullRefreshLayout
 import kotlinx.android.synthetic.main.activity_pull_refresh.*
-import java.util.*
 
 /**
  * Created by dc on 2018/6/1.
@@ -18,7 +17,7 @@ abstract class BaseListActivity<T> : BaseActivity(), PullRefreshLayout.OnRefresh
 
     protected var pageNum = 1
 
-    protected var list: ArrayList<T>? = ArrayList()
+    protected val list = mutableListOf<T>()
     protected var adapter: NewsAdapter? = null
 
     private var viewStatus: ViewStatusUtil? = null
@@ -52,7 +51,7 @@ abstract class BaseListActivity<T> : BaseActivity(), PullRefreshLayout.OnRefresh
             // 数据为空
             if (pageNum == 1) {
                 // 第一次、刷新数据为空
-                list!!.clear()
+                list.clear()
                 viewStatus!!.showEmpty()
                 return
             }
@@ -67,9 +66,13 @@ abstract class BaseListActivity<T> : BaseActivity(), PullRefreshLayout.OnRefresh
             pullRefreshLayout.setHasNoMoreData(false)
         }
         if (pageNum == 1 && result.isNotEmpty()) {
-            list!!.clear()
+            list.clear()
         }
-        addData(pageSize)
+        if (needHandlerDataSelf()) {
+            list.addAll(needHandlerData(result)!!)
+        } else {
+            list.addAll(result)
+        }
         adapter!!.notifyDataSetChanged()
     }
 
@@ -91,5 +94,17 @@ abstract class BaseListActivity<T> : BaseActivity(), PullRefreshLayout.OnRefresh
 
     protected abstract fun initAdapter()
 
-    protected abstract fun addData(size: Int)
+    /**
+     * 是否需要自己处理数据
+     */
+    protected open fun needHandlerDataSelf() : Boolean {
+        return false
+    }
+
+    /**
+     * 处理数据的逻辑
+     */
+    protected open fun needHandlerData(result: List<T>?) : List<T>? {
+        return result
+    }
 }

@@ -19,7 +19,11 @@ import java.util.*
 class PullRefreshActivity : BaseListActivity<NewsEntity>() {
 
     override fun initAdapter() {
-        adapter = NewsAdapter(this, list!!)
+        adapter = NewsAdapter(this, list)
+    }
+
+    override fun needHandlerDataSelf(): Boolean {
+        return true
     }
 
     override fun loadListData() {
@@ -44,24 +48,31 @@ class PullRefreshActivity : BaseListActivity<NewsEntity>() {
         })
     }
 
-    override fun addData(size: Int) {
+    override fun needHandlerData(result: List<NewsEntity>?) : List<NewsEntity>? {
+        super.needHandlerData(result)
         val random = Random()
-        for (index in 0..size) {
+        val list = mutableListOf<NewsEntity>()
+        list.add(NewsEntity())
+        for (item in result!!) {
             val type = random.nextInt(3)
             when(type) {
                 0-> {
                     val normalEntity = NewsNormalEntity()
-                    list!!.add(normalEntity)
+                    normalEntity.title = item.title
+                    list.add(normalEntity)
                 }
                 1 -> {
                     val videoEntity = NewsVideoEntity()
-                    list!!.add(videoEntity)
+                    videoEntity.title = item.title
+                    list.add(videoEntity)
                 }
                 2 -> {
                     val imageEntity = NewsImageEntity()
-                    list!!.add(imageEntity)
+                    imageEntity.title = item.title
+                    list.add(imageEntity)
                 }
             }
         }
+        return list
     }
 }
