@@ -21,7 +21,7 @@ abstract class BaseMultiTypeAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewH
 
         this.delegatesManager = AdapterDelegatesManager()
         initDelegateAdapter(delegatesManager)
-        delegatesManager.fallbackDelegate = BaseFallDelegateAdapter(context)
+        delegatesManager.fallbackDelegate = ErrorTypeAdapter(context)
     }
 
     override fun getItemViewType(position: Int): Int {

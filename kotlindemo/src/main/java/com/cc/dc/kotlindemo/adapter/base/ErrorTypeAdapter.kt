@@ -10,9 +10,9 @@ import com.hannesdorfmann.adapterdelegates3.AbsFallbackAdapterDelegate
 
 /**
  * Created by dc on 2018/6/13.
- * BaseFall Delegate Adapter
+ * Error Type Adapter
  */
-class BaseFallDelegateAdapter<T> : AbsFallbackAdapterDelegate<List<T>> {
+class ErrorTypeAdapter<T> : AbsFallbackAdapterDelegate<List<T>> {
 
     private var context: Context? = null
 

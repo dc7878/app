@@ -4,17 +4,17 @@ import android.content.Intent
 import android.util.Log
 import butterknife.OnClick
 import com.cc.dc.kotlindemo.R
+import com.cc.dc.kotlindemo.activity.CommonListActivity
 import com.cc.dc.kotlindemo.activity.PullRefreshActivity
+import com.cc.dc.kotlindemo.activity.SpinnerActivity
 import com.cc.dc.kotlindemo.activity.TestActivity
 import com.cc.dc.kotlindemo.base.BaseFragment
 import com.cc.dc.kotlindemo.bean.ChannelBean
-import com.cc.dc.kotlindemo.bean.NewsBean
 import com.cc.dc.kotlindemo.event.OpenDrawerEvent
 import com.cc.dc.kotlindemo.model.TestModel
 import com.cc.dc.kotlindemo.net.HttpCallBack
 import de.greenrobot.event.EventBus
 import io.reactivex.disposables.Disposable
-import java.util.HashMap
 
 /**
  * Created by dc on 2018/5/31.
@@ -50,9 +50,21 @@ class MainFragment : BaseFragment() {
         startActivity(intent)
     }
 
+    @OnClick(R.id.btn_common_list_activity)
+    fun goToCommonListActivity() {
+        val intent = Intent(context, CommonListActivity::class.java)
+        startActivity(intent)
+    }
+
     @OnClick(R.id.btn_refresh_activity)
     fun goToRefreshLayout() {
         val intent = Intent(context, PullRefreshActivity::class.java)
+        startActivity(intent)
+    }
+
+    @OnClick(R.id.btn_spinner_activity)
+    fun goToSpinnerActivity() {
+        val intent = Intent(context, SpinnerActivity::class.java)
         startActivity(intent)
     }
 }

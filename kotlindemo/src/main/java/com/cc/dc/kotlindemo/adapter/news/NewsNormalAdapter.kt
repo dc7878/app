@@ -8,7 +8,7 @@ import com.cc.dc.kotlindemo.bean.news.NewsEntity
 import com.cc.dc.kotlindemo.bean.news.NewsNormalEntity
 import com.cc.dc.kotlindemo.common.CommonViewHolder
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
-import kotlinx.android.synthetic.main.layout_item.view.*
+import kotlinx.android.synthetic.main.item_common.view.*
 
 /**
  * Created by dc on 2018/5/30.

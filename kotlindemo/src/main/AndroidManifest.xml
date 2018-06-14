@@ -25,6 +25,10 @@
         <activity android:name=".activity.TestActivity"/>
 
         <activity android:name=".activity.PullRefreshActivity"/>
+
+        <activity android:name=".activity.CommonListActivity"/>
+
+        <activity android:name=".activity.SpinnerActivity"/>
     </application>
 
 </manifest>

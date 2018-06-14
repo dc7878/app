@@ -102,7 +102,7 @@ abstract class BaseListActivity<T> : BaseActivity(), PullRefreshLayout.OnRefresh
     }
 
     /**
-     * 处理数据的逻辑
+     * 自己处理数据需要重写该方法
      */
     protected open fun needHandlerData(result: List<T>?) : List<T>? {
         return result

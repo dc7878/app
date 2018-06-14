@@ -52,6 +52,7 @@ class PullRefreshActivity : BaseListActivity<NewsEntity>() {
         super.needHandlerData(result)
         val random = Random()
         val list = mutableListOf<NewsEntity>()
+        // add a error type item data
         list.add(NewsEntity())
         for (item in result!!) {
             val type = random.nextInt(3)
