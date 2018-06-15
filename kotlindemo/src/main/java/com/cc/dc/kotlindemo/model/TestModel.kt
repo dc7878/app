@@ -1,6 +1,7 @@
 package com.cc.dc.kotlindemo.model
 
 import android.util.Log
+import com.cc.dc.kotlindemo.KotlinApplication
 import com.cc.dc.kotlindemo.bean.ChannelBean
 import com.cc.dc.kotlindemo.bean.news.NewsEntity
 import com.cc.dc.kotlindemo.net.HttpCallBack
@@ -26,12 +27,7 @@ object  TestModel {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object: BaseObserver<List<ChannelBean>>(){
-                    override fun onSubscribe(d: Disposable?) {
-                        Log.e("TestModel", "TestModel>>>onSubscribe>>>")
-                        callBack.onStart(d!!)
-                    }
-
-                    override fun onNext(value: List<ChannelBean>?) {
+                    override fun onNext(value: List<ChannelBean>) {
                         Log.e("TestModel", "TestModel>>>onNext>>>" + value!!.size)
                         callBack.onResult(value)
                     }
@@ -51,13 +47,9 @@ object  TestModel {
                 .map(HttpFunction())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .compose(KotlinApplication.getLifecycleProvider().bindToLifecycle())
                 .subscribe(object: BaseObserver<List<NewsEntity>>(){
-                    override fun onSubscribe(d: Disposable?) {
-                        Log.e("TestModel", "TestModel>>>onSubscribe>>>")
-                        callBack.onStart(d!!)
-                    }
-
-                    override fun onNext(value: List<NewsEntity>?) {
+                    override fun onNext(value: List<NewsEntity>) {
                         Log.e("TestModel", "TestModel>>>onNext>>>" + value?.size)
                         callBack.onResult(value)
                     }

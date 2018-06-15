@@ -3,6 +3,7 @@ package com.cc.dc.kotlindemo.base
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import butterknife.ButterKnife
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import de.greenrobot.event.EventBus
 
 
@@ -10,7 +11,7 @@ import de.greenrobot.event.EventBus
  * Created by dc on 2018/5/29.
  * BaseActivity
  */
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : RxAppCompatActivity() {
 
     protected val pageSize = 15
 

@@ -13,6 +13,7 @@ import java.net.UnknownHostException
 import java.util.concurrent.TimeoutException
 
 import io.reactivex.Observer
+import io.reactivex.observers.DisposableObserver
 
 /**
  * Created by dc on 2017/7/10.
@@ -23,7 +24,7 @@ import io.reactivex.Observer
  * onError回调
  */
 
-abstract class BaseObserver<T> : Observer<T> {
+abstract class BaseObserver<T> : DisposableObserver<T>() {
 
     private val TAG = "NewsDetailModel"
 

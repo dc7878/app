@@ -1,18 +1,18 @@
 package com.cc.dc.kotlindemo.base
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import butterknife.ButterKnife
+import com.trello.rxlifecycle2.components.support.RxFragment
 import de.greenrobot.event.EventBus
 
 /**
  * Created by dc on 2018/5/31.
  * base fragment
  */
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : RxFragment() {
 
     private var rootView: View? = null
 

@@ -36,7 +36,7 @@ class NetManager {
 
     companion object {
 
-        private val TEST_URL_APP = "https://"
+        private val TEST_URL_APP = "https://zqbapp.cyol.com/zqzxapi/"
 
         private val DEFAULT_TIME_OUT = 10
 

@@ -10,6 +10,7 @@ import com.cc.dc.kotlindemo.bean.news.NewsVideoEntity
 import com.cc.dc.kotlindemo.model.TestModel
 import com.cc.dc.kotlindemo.net.HttpCallBack
 import io.reactivex.disposables.Disposable
+import kotlinx.android.synthetic.main.activity_pull_refresh.*
 import java.util.*
 
 /**
@@ -32,20 +33,24 @@ class PullRefreshActivity : BaseListActivity<NewsEntity>() {
         map.put("tid", "548")
         map.put("page", pageNum.toString())
         map.put("pagesize", pageSize.toString())
-        TestModel.getNewsList(map, object : HttpCallBack<List<NewsEntity>> {
-            override fun onStart(disposable: Disposable) {
-                Log.e("TestModel", "getNewsList>>>onStart>>>")
-            }
+        recyclerView.postDelayed(Runnable {
+            kotlin.run {
+                TestModel.getNewsList(map, object : HttpCallBack<List<NewsEntity>> {
+                    override fun onStart(disposable: Disposable) {
+                        Log.e("TestModel", "getNewsList>>>onStart>>>")
+                    }
 
-            override fun onResult(result: List<NewsEntity>?) {
-                loadDataSuccess(result)
-                Log.e("TestModel", "getNewsList>>>onResult>>>" + result?.size)
-            }
+                    override fun onResult(result: List<NewsEntity>?) {
+                        loadDataSuccess(result)
+                        Log.e("TestModel", "getNewsList>>>onResult>>>" + result?.size)
+                    }
 
-            override fun onError(msg: String) {
-                Log.e("TestModel", "getNewsList>>>onError>>>" + msg)
+                    override fun onError(msg: String) {
+                        Log.e("TestModel", "getNewsList>>>onError>>>" + msg)
+                    }
+                })
             }
-        })
+        },  5000)
     }
 
     override fun needHandlerData(result: List<NewsEntity>?) : List<NewsEntity>? {
