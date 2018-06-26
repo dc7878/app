@@ -9,7 +9,6 @@ import com.cc.dc.kotlindemo.activity.PullRefreshActivity
 import com.cc.dc.kotlindemo.activity.SpinnerActivity
 import com.cc.dc.kotlindemo.activity.TestActivity
 import com.cc.dc.kotlindemo.base.BaseFragment
-import com.cc.dc.kotlindemo.bean.ChannelBean
 import com.cc.dc.kotlindemo.event.OpenDrawerEvent
 import com.cc.dc.kotlindemo.model.TestModel
 import com.cc.dc.kotlindemo.net.HttpCallBack
@@ -26,22 +25,38 @@ class MainFragment : BaseFragment() {
 
     @OnClick(R.id.btn_show_drawer)
     fun showDrawerLeft() {
-        Log.e("MainFragment", "showDrawerLeft>>>")
-        EventBus.getDefault().post(OpenDrawerEvent())
+        val key = "df041422-a11d-428a-82b4-bc1f0ecef305"
+        var sign : String = "111"
 
-        TestModel.getChannelJson("1", object : HttpCallBack<List<ChannelBean>>{
+
+
+        TestModel.getUserInfo(key, sign, object : HttpCallBack<String> {
             override fun onStart(disposable: Disposable) {
-                Log.e("TestModel", "MainFragment>>>onStart>>>")
             }
 
-            override fun onResult(result: List<ChannelBean>?) {
-                Log.e("TestModel", "MainFragment>>>onResult>>>" + result)
+            override fun onResult(result: String?) {
             }
 
             override fun onError(msg: String) {
-                Log.e("TestModel", "MainFragment>>>onError>>>" + msg)
             }
         })
+
+        Log.e("MainFragment", "showDrawerLeft>>>")
+        EventBus.getDefault().post(OpenDrawerEvent())
+
+//        TestModel.getChannelJson("1", object : HttpCallBack<List<ChannelBean>>{
+//            override fun onStart(disposable: Disposable) {
+//                Log.e("TestModel", "MainFragment>>>onStart>>>")
+//            }
+//
+//            override fun onResult(result: List<ChannelBean>?) {
+//                Log.e("TestModel", "MainFragment>>>onResult>>>" + result)
+//            }
+//
+//            override fun onError(msg: String) {
+//                Log.e("TestModel", "MainFragment>>>onError>>>" + msg)
+//            }
+//        })
     }
 
     @OnClick(R.id.btn_test_activity)

@@ -10,7 +10,6 @@ import com.cc.dc.kotlindemo.net.api.TestApi
 import com.cc.dc.kotlindemo.net.function.HttpFunction
 import com.cc.dc.kotlindemo.net.observer.BaseObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 /**
@@ -18,6 +17,21 @@ import io.reactivex.schedulers.Schedulers
  * test network model
  */
 object  TestModel {
+
+    fun getUserInfo(accessKey : String, sign : String, callBack: HttpCallBack<String>) {
+
+        NetManager.create()
+                .create(TestApi::class.java)
+                .getUserInfo(accessKey, sign)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : BaseObserver<String>() {
+                    override fun onNext(t: String) {
+
+                    }
+                })
+    }
+
 
     fun getChannelJson(siteId: String, callBack: HttpCallBack<List<ChannelBean>>){
         NetManager.create()

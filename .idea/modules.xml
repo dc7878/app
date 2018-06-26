@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app.iml" filepath="$PROJECT_DIR$/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/all.iml" filepath="$PROJECT_DIR$/all.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/customview/customview.iml" filepath="$PROJECT_DIR$/customview/customview.iml" />
       <module fileurl="file://$PROJECT_DIR$/demo/demo.iml" filepath="$PROJECT_DIR$/demo/demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kotlindemo/kotlindemo.iml" filepath="$PROJECT_DIR$/kotlindemo/kotlindemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/memorytraining/memorytraining.iml" filepath="$PROJECT_DIR$/memorytraining/memorytraining.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ndk/ndk.iml" filepath="$PROJECT_DIR$/ndk/ndk.iml" />
       <module fileurl="file://$PROJECT_DIR$/share/share.iml" filepath="$PROJECT_DIR$/share/share.iml" />
     </modules>
   </component>

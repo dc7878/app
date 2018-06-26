@@ -14,6 +14,12 @@ import retrofit2.http.POST
  */
 interface TestApi {
 
+
+    @FormUrlEncoded
+    @POST("https://api.aacoin.com/v1/account/accounts")
+    fun getUserInfo(@Field("accessKey") accessKey: String, @Field("sign") sign: String): Observable<String>
+
+
     @FormUrlEncoded
     @POST("api.php?s=/Type/getTypeListCache")
     fun getChannelJson(@Field("siteid") siteId: String): Observable<BaseResponse<List<ChannelBean>>>
