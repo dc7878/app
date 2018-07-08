@@ -15,13 +15,13 @@
         android:layout_height="wrap_content" />
     <TextView
         android:id="@+id/tvETH"
-        android:text="111"
+        android:text="ETH"
         android:padding="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView
         android:id="@+id/tvUSDT"
-        android:text="222"
+        android:text="USDT"
         android:padding="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -30,6 +30,36 @@
         android:text="当前状态"
         android:padding="@dimen/normal_5"
         android:textColor="@color/colorAccent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvCount1"
+            android:text="0.02/次"
+            android:padding="@dimen/normal_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tvCount2"
+            android:text="0.002/次"
+            android:padding="@dimen/normal_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tvCount3"
+            android:text="0.0002/次"
+            android:padding="@dimen/normal_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tvCount"
+        android:textColor="@color/red"
+        android:padding="@dimen/normal_5"
+        android:text="每次交易数量: 0.0002"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button

@@ -30,6 +30,10 @@ class CoinBigTradeActivity : BaseActivity() {
 
     private var count = 0
 
+    private var everyTimeMin = 2
+
+    private var everyTimeCount = 0.0001f
+
     override fun getLayout(): Int = R.layout.activity_coin_big
 
     override fun initView() {
@@ -72,7 +76,7 @@ class CoinBigTradeActivity : BaseActivity() {
             type = "sell"
         }
         val price = priceInfo
-        val amount = "0.0001"
+        val amount = (everyTimeCount * everyTimeMin).toString()
         val symbol = "eth_usdt"
 
         map.put("apikey", key)
@@ -95,6 +99,7 @@ class CoinBigTradeActivity : BaseActivity() {
                             trade(priceInfo)
                         } else {
                             count = 0
+                            isBuy = !isBuy
                             getKline()
                         }
                     }
@@ -209,5 +214,27 @@ class CoinBigTradeActivity : BaseActivity() {
         isBuy = true
         isStopTrade = true
         updateTradeStatus(false)
+    }
+
+    @OnClick(R.id.tvCount1)
+    fun cliclTvCount1() {
+        everyTimeCount = 0.01f
+        updateEveryCount()
+    }
+
+    @OnClick(R.id.tvCount2)
+    fun cliclTvCount2() {
+        everyTimeCount = 0.001f
+        updateEveryCount()
+    }
+
+    @OnClick(R.id.tvCount3)
+    fun cliclTvCount3() {
+        everyTimeCount = 0.0001f
+        updateEveryCount()
+    }
+
+    private fun updateEveryCount() {
+        tvCount.text = "每次交易量: " + (everyTimeCount * everyTimeMin)
     }
 }
