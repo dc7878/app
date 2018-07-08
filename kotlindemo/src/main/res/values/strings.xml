@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">KotlinDemo</string>
+
+    <string name="user_have">当前账户余额: %1$s</string>
+
+    <string name="detail_highest">24小时最高价: %1$s</string>
+    <string name="detail_lowest">24小时最低价: %1$s</string>
+    <string name="detail_current">最新价: %1$s</string>
 </resources>

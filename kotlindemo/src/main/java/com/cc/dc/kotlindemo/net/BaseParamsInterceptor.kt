@@ -1,17 +1,13 @@
 package com.cc.dc.kotlindemo.net
 
 import android.os.Build
-import android.text.TextUtils
-
-import java.io.IOException
-
+import android.util.Log
 import okhttp3.FormBody
 import okhttp3.Interceptor
-import okhttp3.MediaType
-import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.Response
 import okio.Buffer
+import java.io.IOException
 
 /**
  * Created by dc on 2017/7/7.
@@ -57,8 +53,8 @@ class BaseParamsInterceptor : Interceptor {
         if (request.method() == "POST") {
             val formBodyBuilder = FormBody.Builder()
 
-            formBodyBuilder.add("platform", "Android")
-            formBodyBuilder.add("system_version", Build.MODEL + "/Android " + Build.VERSION.RELEASE.toString())
+//            formBodyBuilder.add("platform", "Android")
+//            formBodyBuilder.add("system_version", Build.MODEL + "/Android " + Build.VERSION.RELEASE.toString())
             //            UserBean userBean = SPUtil.create().getUser();
             //            if (null != userBean && !TextUtils.isEmpty(userBean.getLast_login_token())) {
             //                formBodyBuilder.add("login_token", userBean.getLast_login_token());
@@ -89,9 +85,10 @@ class BaseParamsInterceptor : Interceptor {
         val requestBuilder = request.newBuilder().removeHeader("User-Agent").addHeader("User-Agent",
                 userAgent)
                 .method(request.method(), request.body())
-        if (!TextUtils.isEmpty(postBodyString)) {
-            requestBuilder.post(RequestBody.create(MediaType.parse("application/x-www-form-urlencoded"), postBodyString))
-        }
+//        if (!TextUtils.isEmpty(postBodyString)) {
+//            requestBuilder.post(RequestBody.create(MediaType.parse("application/x-www-form-urlencoded"), postBodyString))
+//        }
+        Log.e("AccountRecordModel", "AccountRecordModel>>>" + requestBuilder.build().url().url().toString())
         return chain.proceed(requestBuilder.build())
     }
 

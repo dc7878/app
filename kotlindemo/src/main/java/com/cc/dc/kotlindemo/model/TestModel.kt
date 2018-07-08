@@ -17,22 +17,6 @@ import io.reactivex.schedulers.Schedulers
  * test network model
  */
 object  TestModel {
-
-    fun getUserInfo(accessKey : String, sign : String, callBack: HttpCallBack<String>) {
-
-        NetManager.create()
-                .create(TestApi::class.java)
-                .getUserInfo(accessKey, sign)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : BaseObserver<String>() {
-                    override fun onNext(t: String) {
-
-                    }
-                })
-    }
-
-
     fun getChannelJson(siteId: String, callBack: HttpCallBack<List<ChannelBean>>){
         NetManager.create()
                 .create(TestApi::class.java)

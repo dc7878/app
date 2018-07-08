@@ -10,10 +10,7 @@ import com.cc.dc.kotlindemo.activity.SpinnerActivity
 import com.cc.dc.kotlindemo.activity.TestActivity
 import com.cc.dc.kotlindemo.base.BaseFragment
 import com.cc.dc.kotlindemo.event.OpenDrawerEvent
-import com.cc.dc.kotlindemo.model.TestModel
-import com.cc.dc.kotlindemo.net.HttpCallBack
 import de.greenrobot.event.EventBus
-import io.reactivex.disposables.Disposable
 
 /**
  * Created by dc on 2018/5/31.
@@ -25,21 +22,9 @@ class MainFragment : BaseFragment() {
 
     @OnClick(R.id.btn_show_drawer)
     fun showDrawerLeft() {
-        val key = "df041422-a11d-428a-82b4-bc1f0ecef305"
-        var sign : String = "111"
 
-
-
-        TestModel.getUserInfo(key, sign, object : HttpCallBack<String> {
-            override fun onStart(disposable: Disposable) {
-            }
-
-            override fun onResult(result: String?) {
-            }
-
-            override fun onError(msg: String) {
-            }
-        })
+        val accessKey = "9716504e-efea-420e-9571-c62f6183df36"
+        val secretKey = "33c6af200c39475c8f9ce7a4ac3f7e37"
 
         Log.e("MainFragment", "showDrawerLeft>>>")
         EventBus.getDefault().post(OpenDrawerEvent())

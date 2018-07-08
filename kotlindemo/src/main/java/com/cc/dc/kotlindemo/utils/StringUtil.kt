@@ -1,15 +1,16 @@
 package com.cc.dc.kotlindemo.utils
 
+import org.apache.commons.codec.binary.Hex
 import java.io.UnsupportedEncodingException
-import java.security.InvalidKeyException
 import java.security.NoSuchAlgorithmException
 import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 
+
 /**
  * Created by dc on 18/6/26.
  */
-class StringUtil {
+object StringUtil {
     /**
      * 使用HmacSHA256消息摘要算法计算消息摘要
      *
@@ -24,11 +25,8 @@ class StringUtil {
             mac.init(secret_key)
             val signData = mac.doFinal(paramString.toByteArray(charset("UTF-8")))
             //进行加密 并转换成16进制
-            return Hex.encodeHexString(signData)
+            return String(Hex.encodeHex(signData))
         } catch (e: NoSuchAlgorithmException) {
-            e.printStackTrace()
-            return ""
-        } catch (e: InvalidKeyException) {
             e.printStackTrace()
             return ""
         } catch (e: UnsupportedEncodingException) {

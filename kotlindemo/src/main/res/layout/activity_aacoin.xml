@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tvUserHave"
+        android:padding="@dimen/normal_10"
+        android:textSize="16sp"
+        android:textColor="#0f0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="交易对: AAT_ETH"
+        android:padding="@dimen/normal_10"
+        android:textSize="16sp"
+        android:textColor="#f00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tvHeight"
+        android:padding="@dimen/normal_10"
+        android:textSize="16sp"
+        android:textColor="#f00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tvLow"
+        android:padding="@dimen/normal_10"
+        android:textSize="16sp"
+        android:textColor="#f00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tvCurrent"
+        android:padding="@dimen/normal_10"
+        android:textSize="16sp"
+        android:textColor="#f00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/getUserAccount"
+        android:text="获取当前账户数据"
+        android:padding="@dimen/normal_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/getCurrent"
+        android:text="获取当前价格"
+        android:padding="@dimen/normal_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/startTrade"
+        android:text="开始自动交易"
+        android:padding="@dimen/normal_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/stopTrade"
+        android:text="停止交易"
+        android:padding="@dimen/normal_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

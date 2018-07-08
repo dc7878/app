@@ -38,7 +38,7 @@ class NetManager {
 
         private val TEST_URL_APP = "https://zqbapp.cyol.com/zqzxapi/"
 
-        private val DEFAULT_TIME_OUT = 10
+        private val DEFAULT_TIME_OUT = 30
 
         private var netManager: NetManager? = null
 
