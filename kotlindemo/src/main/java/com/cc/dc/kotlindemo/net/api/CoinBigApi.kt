@@ -29,6 +29,7 @@ interface CoinBigApi {
     @POST("https://www.coinbig.com/api/publics/v1/userinfoBySymbol")
     fun getUserTotal(@Query("apikey") apikey: String,
                           @Query("shortName") shortName: String,
+                          @Query("time") time: String,
                           @Query("sign") sign: String):Observable<BaseCoinBigResponse<UserTotalBean>>
 
 
@@ -52,6 +53,7 @@ interface CoinBigApi {
               @Query("price") price: String,
               @Query("amount") amount: String,
               @Query("symbol") symbol: String,
+              @Query("time") time: String,
               @Query("sign") sign: String): Observable<BaseCoinBigResponse<TradeBean>>
 
     @POST("https://www.coinbig.com/api/publics/v1/trade")

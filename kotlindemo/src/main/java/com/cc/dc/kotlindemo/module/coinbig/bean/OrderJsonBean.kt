@@ -7,5 +7,5 @@ class OrderJsonBean {
 
     var result: Boolean = false
 
-    var orders: List<OrderBean>? = null
+    var orders: ArrayList<OrderBean>? = null
 }

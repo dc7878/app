@@ -4,9 +4,7 @@ import android.util.Log
 import butterknife.OnClick
 import com.cc.dc.kotlindemo.R
 import com.cc.dc.kotlindemo.base.BaseActivity
-import com.cc.dc.kotlindemo.module.coinbig.bean.KlineBean
-import com.cc.dc.kotlindemo.module.coinbig.bean.TradeBean
-import com.cc.dc.kotlindemo.module.coinbig.bean.UserTotalBean
+import com.cc.dc.kotlindemo.module.coinbig.bean.*
 import com.cc.dc.kotlindemo.module.coinbig.model.AccountRecordModel
 import com.cc.dc.kotlindemo.module.coinbig.model.CoinBigModel
 import com.cc.dc.kotlindemo.net.HttpCallBack
@@ -17,12 +15,15 @@ import java.security.NoSuchAlgorithmException
 
 /**
  * Created by dc on 18/7/7.
+ *
+查看API
+备注:dc
+权限: 交易
+apikey:0D956D70B5648BD687D6CC0406ACE88F
+secretKey:6CE994989B4EB1578627091741260F54
  */
 class CoinBigTradeActivity : BaseActivity() {
 
-    private val apikey = ""
-
-    private val secretKey = ""
 
     private var isBuy = true
 
@@ -30,13 +31,14 @@ class CoinBigTradeActivity : BaseActivity() {
 
     private var count = 0
 
-    private var everyTimeMin = 2
+    private var everyTimeMin = 0.025
 
-    private var everyTimeCount = 0.0001f
+    private var everyTimeCount = 1f
 
     override fun getLayout(): Int = R.layout.activity_coin_big
 
     override fun initView() {
+        updateEveryCount()
     }
 
     private fun getKline() {
@@ -66,6 +68,11 @@ class CoinBigTradeActivity : BaseActivity() {
         if (isStopTrade) {
             return
         }
+        val priceInt = priceInfo.toInt()
+        if (priceInt < 420 || priceInt > 470) {
+            updateTradeStatus(false)
+            return
+        }
         val map = HashMap<String, String>()
 
         val key = apikey
@@ -78,24 +85,34 @@ class CoinBigTradeActivity : BaseActivity() {
         val price = priceInfo
         val amount = (everyTimeCount * everyTimeMin).toString()
         val symbol = "eth_usdt"
+        val time = System.currentTimeMillis().toString()
 
         map.put("apikey", key)
         map.put("type", type)
         map.put("price", price)
         map.put("amount", amount)
         map.put("symbol", symbol)
+        map.put("time", time)
 
-        CoinBigModel.trade(key, type, price, amount, symbol, getSign(map),
+        CoinBigModel.trade(key, type, price, amount, symbol, time, getSign(map),
                 object : HttpCallBack<TradeBean> {
                     override fun onStart(disposable: Disposable) {
                     }
 
                     override fun onResult(result: TradeBean?) {
                         updateTradeStatus(true)
+                        if (count == 7) {
+                            getOrderInfo()
+                        }
                         Thread.sleep(3000)
                         count ++
                         Log.e("NewsListModel", "NewsListModel>>" + count)
-                        if (count < 6) {
+                        if (count < 8) {
+                            if (count % 2 == 1) {
+                                isBuy = !isBuy
+                            } else {
+                                isBuy = !isBuy
+                            }
                             trade(priceInfo)
                         } else {
                             count = 0
@@ -112,11 +129,13 @@ class CoinBigTradeActivity : BaseActivity() {
     }
 
     fun getTotal(shortName: String) {
+        val time = System.currentTimeMillis().toString()
         val map = HashMap<String, String>()
         map.put("apikey", apikey)
         map.put("shortName", shortName)
+        map.put("time", time)
 
-        AccountRecordModel.getUserTotal(apikey, shortName, getSign(map), object : HttpCallBack<UserTotalBean> {
+        AccountRecordModel.getUserTotal(apikey, shortName, time, getSign(map), object : HttpCallBack<UserTotalBean> {
             override fun onStart(disposable: Disposable) {
             }
 
@@ -218,23 +237,60 @@ class CoinBigTradeActivity : BaseActivity() {
 
     @OnClick(R.id.tvCount1)
     fun cliclTvCount1() {
-        everyTimeCount = 0.01f
+        everyTimeCount = 100f
         updateEveryCount()
     }
 
     @OnClick(R.id.tvCount2)
     fun cliclTvCount2() {
-        everyTimeCount = 0.001f
+        everyTimeCount = 10f
         updateEveryCount()
     }
 
     @OnClick(R.id.tvCount3)
     fun cliclTvCount3() {
-        everyTimeCount = 0.0001f
+        everyTimeCount = 1f
         updateEveryCount()
     }
 
     private fun updateEveryCount() {
         tvCount.text = "每次交易量: " + (everyTimeCount * everyTimeMin)
+    }
+
+    private fun getOrderInfo() {
+        val map = HashMap<String, String>()
+        val key = apikey
+        val symbol = "eth_usdt"
+        val time = System.currentTimeMillis().toString()
+        val size = 20.toString()
+        val type = "1"
+
+        map.put("apikey", key)
+        map.put("type", type)
+        map.put("symbol", symbol)
+        map.put("size", size)
+        map.put("time", time)
+        map.put("type", type)
+        map.put("sign", getSign(map))
+        CoinBigModel.getOrderInfos(map, object : HttpCallBack<OrderJsonBean> {
+            override fun onStart(disposable: Disposable) {
+            }
+
+            override fun onResult(result: OrderJsonBean?) {
+                if (result != null && result.result) {
+                    // 撤销订单
+                    if (result.orders != null && result.orders!!.isNotEmpty()) {
+                        orderCancel(result.orders!!)
+                    }
+                }
+            }
+
+            override fun onError(msg: String) {
+            }
+        })
+    }
+
+    private fun orderCancel(orderId: ArrayList<OrderBean>) {
+
     }
 }

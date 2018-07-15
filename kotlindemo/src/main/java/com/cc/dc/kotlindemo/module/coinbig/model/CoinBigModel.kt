@@ -2,6 +2,7 @@ package com.cc.dc.kotlindemo.module.coinbig.model
 
 import android.util.Log
 import com.cc.dc.kotlindemo.module.coinbig.bean.KlineBean
+import com.cc.dc.kotlindemo.module.coinbig.bean.OrderJsonBean
 import com.cc.dc.kotlindemo.module.coinbig.bean.TradeBean
 import com.cc.dc.kotlindemo.net.HttpCallBack
 import com.cc.dc.kotlindemo.net.NetManager
@@ -17,11 +18,11 @@ import io.reactivex.schedulers.Schedulers
 object CoinBigModel {
 
     fun trade(apikey: String, type: String, price: String,
-              amount: String, symbol: String, sign: String,
+              amount: String, symbol: String, time: String, sign: String,
                      callBack: HttpCallBack<TradeBean>) {
         NetManager.create()
                 .create(CoinBigApi::class.java)
-                .trade(apikey, type, price, amount, symbol, sign)
+                .trade(apikey, type, price, amount, symbol, time, sign)
                 .subscribeOn(Schedulers.io())
                 .map(CoinBigHttpFunction())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -80,6 +81,26 @@ object CoinBigModel {
                     override fun onError(t: Throwable) {
                         super.onError(t)
                         Log.e("AccountRecordModel", "trade>no price getUserTotal失败>> " + t.message)
+                    }
+                })
+    }
+
+    fun getOrderInfos(map: Map<String, String>, callBack: HttpCallBack<OrderJsonBean>) {
+        NetManager.create()
+                .create(CoinBigApi::class.java)
+                .getOrderInfos(map)
+                .subscribeOn(Schedulers.io())
+                .map(CoinBigHttpFunction())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : BaseObserver<OrderJsonBean>() {
+                    override fun onNext(bean: OrderJsonBean) {
+                        callBack.onResult(bean)
+                        Log.e("AccountRecordModel", "getOrderInfos>>下单成功> getOrderInfos")
+                    }
+
+                    override fun onError(t: Throwable) {
+                        super.onError(t)
+                        Log.e("AccountRecordModel", "getOrderInfos>下单失败>> " + t.message)
                     }
                 })
     }

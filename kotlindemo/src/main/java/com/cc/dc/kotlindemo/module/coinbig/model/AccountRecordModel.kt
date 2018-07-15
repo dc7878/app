@@ -78,11 +78,11 @@ object AccountRecordModel {
                 })
     }
 
-    fun getUserTotal(apikey: String, shortName: String, sign: String,
+    fun getUserTotal(apikey: String, shortName: String, time: String, sign: String,
                           callBack: HttpCallBack<UserTotalBean>) {
         NetManager.create()
                 .create(CoinBigApi::class.java)
-                .getUserTotal(apikey, shortName, sign)
+                .getUserTotal(apikey, shortName, time, sign)
                 .subscribeOn(Schedulers.io())
                 .map(CoinBigHttpFunction())
                 .observeOn(AndroidSchedulers.mainThread())
